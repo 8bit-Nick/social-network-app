@@ -6,8 +6,15 @@
 
 .item a {
     text-decoration: none;
-    color: #C70039;
+    color: #007388;
+    transition: color 0.2s;
 }
 .item a:hover {
-    color: #E3A1A1;
+    color: #91c6f5;
+}
+.item a.active {
+    color: #ea2121;
+}
+.item a.active:hover {
+    color: #ef8080;
 }

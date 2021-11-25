@@ -1,0 +1,21 @@
+.inputPost {
+    width: 70%;
+    height: 100px;
+    font-size: 18px;
+    font-family: Roboto, sans-serif;
+}
+
+.inputButton {
+    width: 160px;
+    height: 40px;
+}
+
+.inputButton {
+    font-weight: bold;
+    font-size: 16px;
+    color: #007388;
+    transition: color 0.2s;
+}
+.inputButton:hover {
+    /*color: #91c6f5;*/
+}
