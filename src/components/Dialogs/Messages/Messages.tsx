@@ -2,12 +2,16 @@ import React from "react";
 import classes from './Messages.module.css';
 import Message from "./Message/Message";
 
-const Messages = (props: any) => {
+type MessagesPropsType = {
+  messagesData: Array<{id: number, message: string}>
+};
+const Messages = (props: MessagesPropsType) => {
+
+  let messagesElements = props.messagesData.map((el) => <Message text={el.message} id={el.id}/>)
+
   return (
     <div className={classes.dialogsMessages}>
-      <Message text={'Message One'}/>
-      <Message text={'Message Two'}/>
-      <Message text={'Message Three'}/>
+      {messagesElements}
     </div>
   )
 }
