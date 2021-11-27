@@ -3,16 +3,14 @@ import classes from './MyPosts.module.css';
 import Post from "./Post/Post";
 import InputPost from "./InputPost/InputPost";
 
-let postsData = [
-  {id: 1, post: 'This is my first post!', likes: 15},
-  {id: 2, post: 'What music do you listen?', likes: 21},
-  {id: 3, post: 'Yeah, buddy!', likes: 370},
-  {id: 4, post: 'No, thanks.', likes: 3},
-];
+type MyPostsPropsType = {
+  postsData: Array<{ id: number, post: string, likes: number }>
+}
 
-let postsElements = postsData.map((el) => <Post id={el.id} message={el.post} likesCount={el.likes}/>)
+const MyPosts: React.FC<MyPostsPropsType> = (props) => {
 
-const MyPosts = () => {
+  let postsElements = props.postsData.map((el) => <Post id={el.id} message={el.post} likesCount={el.likes}/>)
+
   return (
     <div className={classes.content}>
       <InputPost/>

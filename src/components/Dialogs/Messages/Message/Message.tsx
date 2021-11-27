@@ -6,7 +6,7 @@ type MessagePropsType = {
   id: number
 }
 
-const Message = (props: MessagePropsType) => {
+const Message: React.FC<MessagePropsType> = (props) => {
   return (
     <div className={classes.item} key={props.id}>
       {props.text}

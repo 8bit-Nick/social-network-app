@@ -3,34 +3,19 @@ import classes from './Dialogs.module.css';
 import Contacts from "./Contacts/Contacts";
 import Messages from "./Messages/Messages";
 
-const Dialogs = () => {
+type DialogsPropsType = {
+  contactsData: Array<{ id: number, userName: string }>
+  messagesData: Array<{ id: number, message: string }>
+}
 
-  let contactsData = [
-    {id: 1, userName: 'Tommy'},
-    {id: 2, userName: 'John Wick'},
-    {id: 3, userName: 'Izabella'},
-    {id: 4, userName: 'Garold'},
-    {id: 5, userName: 'Hillary'},
-    {id: 6, userName: 'Antoine'},
-    {id: 7, userName: 'Ludwig'},
-    {id: 8, userName: 'Anna Lee'},
-  ];
+const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
-  let messagesData = [
-    {id: 1, message: 'Hello!'},
-    {id: 2, message: 'How are you?'},
-    {id: 3, message: 'Lets go!'},
-    {id: 4, message: 'Nice to meet you.'},
-  ];
-
-
-
-    return (
-        <div className={classes.dialogs}>
-            <Contacts contactsData={contactsData}/>
-            <Messages messagesData={messagesData}/>
-        </div>
-    )
+  return (
+    <div className={classes.dialogs}>
+      <Contacts contactsData={props.contactsData}/>
+      <Messages messagesData={props.messagesData}/>
+    </div>
+  )
 }
 
 export default Dialogs;

@@ -5,7 +5,7 @@ import Contact from "./Contact/Contact";
 type ContactsPropsType = {
   contactsData: Array<{ id: number, userName: string }>
 }
-const Contacts = (props: ContactsPropsType) => {
+const Contacts: React.FC<ContactsPropsType> = (props) => {
 
   let contactsElements = props.contactsData.map((el) => <Contact userName={el.userName} id={el.id}/>)
 

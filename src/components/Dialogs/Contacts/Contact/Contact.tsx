@@ -7,7 +7,7 @@ type ContactPropsType = {
   id: number
 }
 
-const Contact = (props: ContactPropsType) => {
+const Contact: React.FC<ContactPropsType> = (props) => {
   return (
     <div className={classes.name + ' ' + classes.item}>
       <NavLink to={`/messages/${props.id}`}>
