@@ -1,6 +1,7 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import classes from './Contact.module.css';
+import userLogo from './../../../../img/userlogo.png'
 
 type ContactPropsType = {
   userName: string
@@ -11,7 +12,12 @@ const Contact: React.FC<ContactPropsType> = (props) => {
   return (
     <div className={classes.name + ' ' + classes.item}>
       <NavLink to={`/messages/${props.id}`}>
-        {props.userName}
+        <div className={classes.userImg}>
+          <img src={userLogo} alt="user-logo"/>
+        </div>
+        <div>
+          {props.userName}
+        </div>
       </NavLink>
     </div>
   )

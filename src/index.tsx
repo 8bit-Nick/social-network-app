@@ -8,9 +8,7 @@ import {state} from "./redux/state";
 
 
 ReactDOM.render(
-  <App contactsData={state.contactsData}
-       messagesData={state.messagesData}
-       postsData={state.postsData}/>,
+  <App state={state}/>,
   document.getElementById('root')
 );
 
