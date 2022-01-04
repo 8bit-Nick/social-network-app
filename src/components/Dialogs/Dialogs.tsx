@@ -1,7 +1,7 @@
 import React from "react";
 import classes from './Dialogs.module.css';
 import Contacts from "./Contacts/Contacts";
-import Messages from "./Messages/Messages";
+import {Messages} from "./Messages/Messages";
 
 type DialogsPropsType = {
   contactsData: Array<{ id: number, userName: string }>

@@ -6,12 +6,10 @@ type MessagePropsType = {
   id: number
 }
 
-const Message: React.FC<MessagePropsType> = (props) => {
+export const Message: React.FC<MessagePropsType> = (props) => {
   return (
     <div className={classes.item} key={props.id}>
       {props.text}
     </div>
   )
 }
-
-export default Message;

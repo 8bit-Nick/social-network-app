@@ -5,6 +5,9 @@ import InputPost from "./InputPost/InputPost";
 
 type MyPostsPropsType = {
   postsData: Array<{ id: number, post: string, likes: number }>
+  addPost: (textPost: string) => void
+  textData: string
+  changeText: (text: string) => void
 }
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
@@ -13,7 +16,10 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
 
   return (
     <div className={classes.content}>
-      <InputPost/>
+      <InputPost addPost={props.addPost}
+                 textData={props.textData}
+                 changeText={props.changeText}
+      />
       {postsElements}
     </div>
   );
