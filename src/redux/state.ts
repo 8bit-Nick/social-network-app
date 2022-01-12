@@ -1,16 +1,38 @@
-type postsType = {
+import profileReducer, {addPostActionCreator, changeTextActionCreator} from "./profileReducer";
+import dialogsReducer, {addNewMessageActionCreator, changeTextMessageActionCreator} from "./dialogsReducer";
+
+export type PostsType = {
   postsData: Array<{ id: number, post: string, likes: number }>
   textData: string
 }
-export type stateType = {
-  profile: postsType
-  dialogs: {
-    contactsData: Array<{ id: number, userName: string }>,
-    messagesData: Array<{ id: number, message: string }>
-  }
+export type DialogsType = {
+  contactsData: Array<{ id: number, userName: string }>
+  messagesData: Array<{ id: number, message: string }>
+  messageText: string
+}
+export type StateType = {
+  profile: PostsType
+  dialogs: DialogsType
+}
+export type StoreType = {
+  _state: StateType
+  _callSubscriber: () => void
+  getState: () => StateType
+  subscribe: (observer: any) => void
+  dispatch: (action: ActionsTypes) => void
 }
 
-export let store = {
+export type ActionsTypes = AddPostActionType
+  | ChangeTextActionType
+  | AddNewMessageActionType
+  | ChangeTextMessageActionType
+
+export type AddPostActionType = ReturnType<typeof addPostActionCreator>
+export type ChangeTextActionType = ReturnType<typeof changeTextActionCreator>
+export type AddNewMessageActionType = ReturnType<typeof addNewMessageActionCreator>
+export type ChangeTextMessageActionType = ReturnType<typeof changeTextMessageActionCreator>
+
+export let store: StoreType = {
   _state: {
     profile: {
       postsData: [
@@ -38,27 +60,23 @@ export let store = {
         {id: 3, message: 'Lets go!'},
         {id: 4, message: 'Nice to meet you.'},
       ],
+      messageText: ''
     }
-  },
-  getState() {
-    return this._state;
   },
   _callSubscriber() {
     console.log("State changed");
   },
-  addPost() {
-    let copyState = {...this._state};
-    copyState.profile.postsData.push({id: 5, post: this._state.profile.textData, likes: 0});
-    this._state.profile.textData = '';
-    this._callSubscriber();
+
+  getState() {
+    return this._state;
   },
-  changeText(newText: string) {
-    this._state.profile.textData = newText;
-    this._callSubscriber();
-  },
-  subscribe(observer: any) {
+  subscribe(observer) {
     this._callSubscriber = observer;
+  },
+
+  dispatch(action) {
+    this._state.profile = profileReducer(this._state.profile, action);
+    this._state.dialogs = dialogsReducer(this._state.dialogs, action);
+    this._callSubscriber();
   }
 };
-
-

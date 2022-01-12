@@ -5,9 +5,8 @@ import UserInfo from "./UserInfo/UserInfo";
 
 type ProfilePropsType = {
   postsData: Array<{ id: number, post: string, likes: number }>
-  addPost: (textPost: string) => void
+  dispatch: (action: any) => void
   textData: string
-  changeText: (text: string) => void
 }
 
 const Profile: React.FC<ProfilePropsType> = (props) => {
@@ -15,9 +14,8 @@ const Profile: React.FC<ProfilePropsType> = (props) => {
     <div className={classes.profile}>
       <UserInfo/>
       <MyPosts postsData={props.postsData}
-               addPost={props.addPost}
+               dispatch={props.dispatch}
                textData={props.textData}
-               changeText={props.changeText}
       />
     </div>
   );

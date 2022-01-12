@@ -8,12 +8,11 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {stateType} from "./redux/state";
+import {StateType} from "./redux/state";
 
 type AppPropsType = {
-  state: stateType
-  addPost: (textPost: string) => void
-  changeText: (text: string) => void
+  state: StateType
+  dispatch: (action: any) => void
 
 }
 
@@ -25,12 +24,14 @@ const App: React.FC<AppPropsType> = (props) => {
       <div className='app-wrapper-content'>
         <Routes>
           <Route path='/profile' element={<Profile postsData={props.state.profile.postsData}
-                                                   addPost={props.addPost}
+                                                   dispatch={props.dispatch}
                                                    textData={props.state.profile.textData}
-                                                   changeText={props.changeText}
           />}/>
           <Route path='/messages' element={<Dialogs contactsData={props.state.dialogs.contactsData}
-                                                    messagesData={props.state.dialogs.messagesData}/>}/>
+                                                    messagesData={props.state.dialogs.messagesData}
+                                                    messageText={props.state.dialogs.messageText}
+                                                    dispatch={props.dispatch}
+          />}/>
           <Route path='/news' element={<News/>}/>
           <Route path='/music' element={<Music/>}/>
           <Route path='/settings' element={<Settings/>}/>

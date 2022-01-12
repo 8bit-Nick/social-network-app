@@ -1,10 +1,10 @@
 import React from 'react';
 import classes from './InputPost.module.css';
+import {addPostActionCreator, changeTextActionCreator} from "../../../../redux/profileReducer";
 
 type InputPropsType = {
-  addPost: (textPost: string) => void
+  dispatch: (action: any) => void
   textData: string
-  changeText: (text: string) => void
 }
 
 const InputPost: React.FC<InputPropsType> = (props) => {
@@ -13,8 +13,7 @@ const InputPost: React.FC<InputPropsType> = (props) => {
 
   const sendMessageBtn = () => {
     if (newPostElement.current) {
-      let text = newPostElement.current.value;
-      props.addPost(text);
+      props.dispatch(addPostActionCreator());
       newPostElement.current.value = '';
     }
   };
@@ -22,7 +21,7 @@ const InputPost: React.FC<InputPropsType> = (props) => {
   const onChangeHandler = () => {
     if (newPostElement.current) {
       let text = newPostElement.current.value;
-      props.changeText(text);
+      props.dispatch(changeTextActionCreator(text));
     }
   };
 

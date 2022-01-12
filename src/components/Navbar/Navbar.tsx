@@ -12,7 +12,6 @@ const Navbar: React.FC<NavbarPropsType> = (props) => {
   const friendsArray = props.friends
     .filter((el) => el.id < 4)
     .map((el) => <Favorite user={el.userName} id={el.id}/>);
-  console.log(friendsArray);
 
   return (
     <nav className={classes.nav}>
