@@ -9,7 +9,7 @@ type ProfilePropsType = {
   textData: string
 }
 
-const Profile: React.FC<ProfilePropsType> = (props) => {
+const Profile: React.FC<ProfilePropsType> = React.memo((props) => {
   return (
     <div className={classes.profile}>
       <UserInfo/>
@@ -19,6 +19,6 @@ const Profile: React.FC<ProfilePropsType> = (props) => {
       />
     </div>
   );
-}
+})
 
 export default Profile;

@@ -10,7 +10,7 @@ type DialogsPropsType = {
   dispatch: (action: any) => void
 }
 
-const Dialogs: React.FC<DialogsPropsType> = (props) => {
+const Dialogs: React.FC<DialogsPropsType> = React.memo((props) => {
 
   return (
     <div className={classes.dialogs}>
@@ -21,6 +21,6 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
       />
     </div>
   )
-}
+})
 
 export default Dialogs;

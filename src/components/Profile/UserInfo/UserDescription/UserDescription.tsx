@@ -9,7 +9,7 @@ type UserDescriptionPropsType = {
   profession: string
 }
 
-const UserDescription = (props: UserDescriptionPropsType) => {
+const UserDescription = React.memo((props: UserDescriptionPropsType) => {
   return (
     <div className={classes.userDescription}>
       <div>
@@ -21,6 +21,6 @@ const UserDescription = (props: UserDescriptionPropsType) => {
       </div>
     </div>
   );
-}
+})
 
 export default UserDescription;

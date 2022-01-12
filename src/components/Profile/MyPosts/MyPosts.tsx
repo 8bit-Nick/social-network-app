@@ -9,7 +9,7 @@ type MyPostsPropsType = {
   textData: string
 }
 
-const MyPosts: React.FC<MyPostsPropsType> = (props) => {
+const MyPosts: React.FC<MyPostsPropsType> = React.memo((props) => {
 
   let postsElements = props.postsData.map((el) => <Post id={el.id} message={el.post} likesCount={el.likes}/>)
 
@@ -21,6 +21,6 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
       {postsElements}
     </div>
   );
-}
+})
 
 export default MyPosts;

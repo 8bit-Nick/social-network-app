@@ -7,7 +7,7 @@ type InputPropsType = {
   textData: string
 }
 
-const InputPost: React.FC<InputPropsType> = (props) => {
+const InputPost: React.FC<InputPropsType> = React.memo((props) => {
 
   const newPostElement = React.createRef<HTMLTextAreaElement>();
 
@@ -38,6 +38,6 @@ const InputPost: React.FC<InputPropsType> = (props) => {
       </div>
     </div>
   );
-}
+})
 
 export default InputPost;

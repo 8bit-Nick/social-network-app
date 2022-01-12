@@ -16,7 +16,7 @@ type AppPropsType = {
 
 }
 
-const App: React.FC<AppPropsType> = (props) => {
+const App: React.FC<AppPropsType> = React.memo((props) => {
   return (
     <div className='app-wrapper'>
       <Header/>
@@ -39,6 +39,6 @@ const App: React.FC<AppPropsType> = (props) => {
       </div>
     </div>
   )
-}
+})
 
 export default App;

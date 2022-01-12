@@ -8,7 +8,7 @@ type MessagesPropsType = {
   messageText: string
   dispatch: (action: any) => void
 };
-export const Messages: React.FC<MessagesPropsType> = (props) => {
+export const Messages: React.FC<MessagesPropsType> = React.memo((props) => {
 
   let messagesElements = props.messagesData.map((el) => <Message text={el.message} id={el.id}/>);
 
@@ -42,4 +42,4 @@ export const Messages: React.FC<MessagesPropsType> = (props) => {
       <button onClick={sendMessageBtn} className={classes.inputButton}>SEND MESSAGE</button>
     </div>
   )
-}
+})

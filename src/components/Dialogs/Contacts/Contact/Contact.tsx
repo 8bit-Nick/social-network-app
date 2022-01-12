@@ -8,7 +8,7 @@ type ContactPropsType = {
   id: number
 }
 
-const Contact: React.FC<ContactPropsType> = (props) => {
+const Contact: React.FC<ContactPropsType> = React.memo((props) => {
   return (
     <div className={classes.name + ' ' + classes.item}>
       <NavLink to={`/messages/${props.id}`}>
@@ -21,6 +21,6 @@ const Contact: React.FC<ContactPropsType> = (props) => {
       </NavLink>
     </div>
   )
-}
+})
 
 export default Contact;
