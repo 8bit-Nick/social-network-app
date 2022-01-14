@@ -5,12 +5,12 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from "./App";
 import {BrowserRouter} from "react-router-dom";
-import { store } from "./redux/redux-store";
+import {store} from "./redux/redux-store";
 
 const renderEntireTree = (state: StateType) => {
   ReactDOM.render(
     <BrowserRouter>
-      <App state={state} dispatch={store.dispatch.bind(store)}/>
+      <App state={state} dispatch={store.dispatch.bind(store)} store={store}/>
     </BrowserRouter>,
     document.getElementById('root')
   );

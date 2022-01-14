@@ -1,19 +1,19 @@
 import React from 'react';
 import classes from './InputPost.module.css';
-import {addPostActionCreator, changeTextActionCreator} from "../../../../redux/profileReducer";
 
 type InputPropsType = {
-  dispatch: (action: any) => void
   textData: string
+  addPost: () => void
+  changeText: (text: string) => void
 }
 
-const InputPost: React.FC<InputPropsType> = React.memo((props) => {
+const InputPost: React.FC<InputPropsType> = (props) => {
 
   const newPostElement = React.createRef<HTMLTextAreaElement>();
 
   const sendMessageBtn = () => {
     if (newPostElement.current) {
-      props.dispatch(addPostActionCreator());
+      props.addPost();
       newPostElement.current.value = '';
     }
   };
@@ -21,7 +21,8 @@ const InputPost: React.FC<InputPropsType> = React.memo((props) => {
   const onChangeHandler = () => {
     if (newPostElement.current) {
       let text = newPostElement.current.value;
-      props.dispatch(changeTextActionCreator(text));
+      console.log(text)
+      props.changeText(text);
     }
   };
 
@@ -38,6 +39,6 @@ const InputPost: React.FC<InputPropsType> = React.memo((props) => {
       </div>
     </div>
   );
-})
+}
 
 export default InputPost;

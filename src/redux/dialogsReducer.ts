@@ -23,8 +23,7 @@ const initial :DialogsType = {
   messageText: ''
 }
 
-const dialogsReducer = (state = initial, action: ActionsTypes) => {
-
+const dialogsReducer = (state = initial, action: ActionsTypes): DialogsType => {
   switch (action.type) {
     case ADD_NEW_MESSAGE:
       let copyStateMessage = {...state};
@@ -32,8 +31,10 @@ const dialogsReducer = (state = initial, action: ActionsTypes) => {
       state.messageText = '';
       return state;
     case CHANGE_TEXT_MESSAGE:
-      state.messageText = action.newTextMessage;
-      return state;
+      return {
+        ...state,
+        messageText: action.newTextMessage
+      }
     default:
       return state;
   }

@@ -4,16 +4,17 @@ import {Route, Routes} from 'react-router-dom';
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
-import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {StateType} from "./redux/state";
+import {StoreType} from "./redux/redux-store";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 type AppPropsType = {
   state: StateType
   dispatch: (action: any) => void
-
+  store: StoreType
 }
 
 const App: React.FC<AppPropsType> = React.memo((props) => {
@@ -23,15 +24,8 @@ const App: React.FC<AppPropsType> = React.memo((props) => {
       <Navbar friends={props.state.dialogs.contactsData}/>
       <div className='app-wrapper-content'>
         <Routes>
-          <Route path='/profile' element={<Profile postsData={props.state.profile.postsData}
-                                                   dispatch={props.dispatch}
-                                                   textData={props.state.profile.textData}
-          />}/>
-          <Route path='/messages' element={<Dialogs contactsData={props.state.dialogs.contactsData}
-                                                    messagesData={props.state.dialogs.messagesData}
-                                                    messageText={props.state.dialogs.messageText}
-                                                    dispatch={props.dispatch}
-          />}/>
+          <Route path='/profile' element={<Profile store={props.store} />}/>
+          <Route path='/messages' element={<DialogsContainer store={props.store}/>}/>
           <Route path='/news' element={<News/>}/>
           <Route path='/music' element={<Music/>}/>
           <Route path='/settings' element={<Settings/>}/>

@@ -5,7 +5,7 @@ import Contact from "./Contact/Contact";
 type ContactsPropsType = {
   contactsData: Array<{ id: number, userName: string }>
 }
-const Contacts: React.FC<ContactsPropsType> = React.memo((props) => {
+const Contacts: React.FC<ContactsPropsType> = (props) => {
 
   let contactsElements = props.contactsData.map((el) => <Contact userName={el.userName} id={el.id}/>)
 
@@ -14,6 +14,6 @@ const Contacts: React.FC<ContactsPropsType> = React.memo((props) => {
       {contactsElements}
     </div>
   )
-})
+}
 
 export default Contacts;

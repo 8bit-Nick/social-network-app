@@ -7,7 +7,7 @@ type NavbarPropsType = {
   friends: Array<{ id: number, userName: string }>
 }
 
-const Navbar: React.FC<NavbarPropsType> = React.memo((props) => {
+const Navbar: React.FC<NavbarPropsType> = (props) => {
 
   const friendsArray = props.friends
     .filter((el) => el.id < 4)
@@ -65,6 +65,6 @@ const Navbar: React.FC<NavbarPropsType> = React.memo((props) => {
       </div>
     </nav>
   );
-})
+}
 
 export default Navbar;

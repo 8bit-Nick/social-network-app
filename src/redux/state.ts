@@ -14,7 +14,7 @@ export type StateType = {
   profile: PostsType
   dialogs: DialogsType
 }
-export type StoreType = {
+type StoreType = {
   _state: StateType
   _callSubscriber: () => void
   getState: () => StateType

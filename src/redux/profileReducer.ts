@@ -13,7 +13,7 @@ let initial: PostsType = {
   textData: ''
 }
 
-const profileReducer = (state = initial, action: ActionsTypes) => {
+const profileReducer = (state = initial, action: ActionsTypes): PostsType => {
   switch (action.type) {
     case ADD_POST:
       let copyState = {...state};
@@ -22,7 +22,7 @@ const profileReducer = (state = initial, action: ActionsTypes) => {
       return state;
     case CHANGE_TEXT:
       state.textData = action.newText;
-      return state;
+      return {...state};
     default:
       return state;
   }

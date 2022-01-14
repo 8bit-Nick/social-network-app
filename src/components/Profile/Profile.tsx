@@ -1,24 +1,23 @@
 import React from 'react';
 import classes from './Profile.module.css';
-import MyPosts from "./MyPosts/MyPosts";
 import UserInfo from "./UserInfo/UserInfo";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import {StoreType} from "../../redux/redux-store";
 
 type ProfilePropsType = {
-  postsData: Array<{ id: number, post: string, likes: number }>
-  dispatch: (action: any) => void
-  textData: string
+  // postsData: Array<{ id: number, post: string, likes: number }>
+  // dispatch: (action: any) => void
+  // textData: string
+  store: StoreType
 }
 
-const Profile: React.FC<ProfilePropsType> = React.memo((props) => {
+const Profile: React.FC<ProfilePropsType> = (props) => {
   return (
     <div className={classes.profile}>
       <UserInfo/>
-      <MyPosts postsData={props.postsData}
-               dispatch={props.dispatch}
-               textData={props.textData}
-      />
+      <MyPostsContainer store={props.store}/>
     </div>
   );
-})
+}
 
 export default Profile;
