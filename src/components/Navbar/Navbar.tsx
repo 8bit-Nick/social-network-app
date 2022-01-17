@@ -1,17 +1,8 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import classes from './Navbar.module.css';
-import Favorite from "./Favorite/Favorite";
 
-type NavbarPropsType = {
-  friends: Array<{ id: number, userName: string }>
-}
-
-const Navbar: React.FC<NavbarPropsType> = (props) => {
-
-  const friendsArray = props.friends
-    .filter((el) => el.id < 4)
-    .map((el) => <Favorite user={el.userName} id={el.id}/>);
+const Navbar = () => {
 
   return (
     <nav className={classes.nav}>
@@ -59,9 +50,6 @@ const Navbar: React.FC<NavbarPropsType> = (props) => {
         >
           Settings
         </NavLink>
-      </div>
-      <div>
-        Friends: {friendsArray}
       </div>
     </nav>
   );

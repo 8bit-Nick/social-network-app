@@ -1,9 +1,13 @@
-import {ActionsTypes, DialogsType} from "./state";
-
 const ADD_NEW_MESSAGE = 'ADD-NEW-MESSAGE';
 const CHANGE_TEXT_MESSAGE = 'CHANGE-TEXT-MESSAGE';
 
-const initial :DialogsType = {
+type DialogsType = {
+  contactsData: Array<{ id: number, userName: string }>
+  messagesData: Array<{ id: number, message: string }>
+  messageText: string
+}
+
+const initial: DialogsType = {
   contactsData: [
     {id: 1, userName: 'Tommy'},
     {id: 2, userName: 'John Wick'},
@@ -40,8 +44,12 @@ const dialogsReducer = (state = initial, action: ActionsTypes): DialogsType => {
   }
 };
 
-export const addNewMessageActionCreator = () => ({type: 'ADD-NEW-MESSAGE'} as const);
+type ActionsTypes = AddNewMessageActionType | ChangeTextMessageActionType
+type AddNewMessageActionType = ReturnType<typeof addNewMessageActionCreator>
+type ChangeTextMessageActionType = ReturnType<typeof changeTextMessageActionCreator>
+
+export const addNewMessageActionCreator = () => ({type: ADD_NEW_MESSAGE} as const);
 export const changeTextMessageActionCreator = (text: string) =>
-  ({type: 'CHANGE-TEXT-MESSAGE', newTextMessage: text} as const);
+  ({type: CHANGE_TEXT_MESSAGE, newTextMessage: text} as const);
 
 export default dialogsReducer;
