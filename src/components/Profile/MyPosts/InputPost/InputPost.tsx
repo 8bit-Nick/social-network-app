@@ -12,6 +12,7 @@ const InputPost: React.FC<InputPropsType> = (props) => {
   const newPostElement = React.createRef<HTMLTextAreaElement>();
 
   const sendMessageBtn = () => {
+    debugger
     if (newPostElement.current) {
       props.addPost();
       newPostElement.current.value = '';

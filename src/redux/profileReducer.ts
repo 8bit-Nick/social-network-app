@@ -17,7 +17,6 @@ let initial: ProfileType = {
 }
 
 const profileReducer = (state = initial, action: ActionsTypes): ProfileType => {
-  console.log(state, action)
   switch (action.type) {
     case ADD_POST:
       let copyState = {...state};

@@ -10,7 +10,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import Navbar from "./components/Navbar/Navbar";
 
 type AppPropsType = {
-  dispatch: (action: any) => void
+
 }
 
 const App: React.FC<AppPropsType> = (props) => {

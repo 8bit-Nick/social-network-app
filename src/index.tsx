@@ -5,14 +5,14 @@ import reportWebVitals from './reportWebVitals';
 import App from "./App";
 import {BrowserRouter} from "react-router-dom";
 import {store} from "./redux/redux-store";
-import { StoreContext } from './StoreContext';
+import {Provider} from "react-redux";
 
 const renderEntireTree = () => {
   ReactDOM.render(
     <BrowserRouter>
-      <StoreContext.Provider value={store}>
-        <App dispatch={store.dispatch.bind(store)}/>
-      </StoreContext.Provider>
+      <Provider store={store}>
+        <App/>
+      </Provider>
     </BrowserRouter>,
     document.getElementById('root')
   );

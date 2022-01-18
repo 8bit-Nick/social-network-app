@@ -12,3 +12,7 @@ export const store = createStore(reducers);
 export type StoreType = typeof store;
 
 export type AppRootStateType = ReturnType<typeof reducers>
+
+const state = store.getState();
+export type StateType = typeof state;
+export type DispatchType = typeof store.dispatch

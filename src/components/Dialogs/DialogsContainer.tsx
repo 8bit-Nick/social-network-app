@@ -1,43 +1,26 @@
-import React from "react";
 import Dialogs from "./Dialogs";
 import {addNewMessageActionCreator, changeTextMessageActionCreator} from "../../redux/dialogsReducer";
-import {StoreContext} from "../../StoreContext";
+import {connect} from "react-redux";
+import {DispatchType, StateType} from "../../redux/redux-store";
 
-type DialogsContainerPropsType = {
-
+const mapStateToProps = (state: StateType) => {
+  return {
+    contactsData: state.dialogs.contactsData,
+    messagesData: state.dialogs.messagesData,
+    messageText: state.dialogs.messageText,
+  }
+}
+const mapDispatchToProps = (dispatch: DispatchType) => {
+  return {
+    addMessage: () => {
+      dispatch(addNewMessageActionCreator());
+    },
+    changeTextMessage: (text: string) => {
+      dispatch(changeTextMessageActionCreator(text));
+    }
+  }
 }
 
-const DialogsContainer: React.FC<DialogsContainerPropsType> = (props) => {
-
-  return (
-    <div>
-      <StoreContext.Consumer>
-        {
-          (store) => {
-
-            let state = store.getState();
-
-            const sendMessageBtn = () => {
-              store.dispatch(addNewMessageActionCreator());
-            };
-
-            const onChangeHandler = (text: string) => {
-              store.dispatch(changeTextMessageActionCreator(text));
-            };
-
-            return (
-              <Dialogs contactsData={state.dialogs.contactsData}
-                       messagesData={state.dialogs.messagesData}
-                       messageText={state.dialogs.messageText}
-                       addMessage={sendMessageBtn}
-                       changeTextMessage={onChangeHandler}
-              />
-            )
-          }
-        }
-      </StoreContext.Consumer>
-    </div>
-  )
-}
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;
