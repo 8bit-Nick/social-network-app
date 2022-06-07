@@ -5,9 +5,9 @@ import {DispatchType, StateType} from "../../redux/redux-store";
 
 const mapStateToProps = (state: StateType) => {
   return {
-    contactsData: state.dialogs.contactsData,
-    messagesData: state.dialogs.messagesData,
-    messageText: state.dialogs.messageText,
+    contactsData: state.dialogsPage.contactsData,
+    messagesData: state.dialogsPage.messagesData,
+    messageText: state.dialogsPage.messageText,
   }
 }
 const mapDispatchToProps = (dispatch: DispatchType) => {

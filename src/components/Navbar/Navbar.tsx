@@ -25,6 +25,15 @@ const Navbar = () => {
         </NavLink>
       </div>
       <div className={classes.item}>
+        <NavLink to={'/users'}
+                 className={({isActive}) => {
+                   return isActive ? classes.active : ''
+                 }}
+        >
+          Users
+        </NavLink>
+      </div>
+      <div className={classes.item}>
         <NavLink to={'/news'}
                  className={({isActive}) => {
                    return isActive ? classes.active : ''

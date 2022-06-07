@@ -30,10 +30,11 @@ const initial: DialogsType = {
 const dialogsReducer = (state = initial, action: ActionsTypes): DialogsType => {
   switch (action.type) {
     case ADD_NEW_MESSAGE:
-      let copyStateMessage = {...state};
-      copyStateMessage.messagesData.push({id: 5, message: state.messageText});
-      state.messageText = '';
-      return state;
+      return {
+        ...state,
+        messagesData: [...state.messagesData, {id: 5, message: state.messageText}],
+        messageText: ''
+      }
     case CHANGE_TEXT_MESSAGE:
       return {
         ...state,

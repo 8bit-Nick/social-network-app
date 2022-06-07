@@ -8,13 +8,13 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import Navbar from "./components/Navbar/Navbar";
+import {UsersContainer} from "./components/UsersContainer/UsersContainer";
 
 type AppPropsType = {
 
 }
 
 const App: React.FC<AppPropsType> = (props) => {
-  console.log("App render")
   return (
     <div className='app-wrapper'>
       <Header/>
@@ -23,6 +23,7 @@ const App: React.FC<AppPropsType> = (props) => {
         <Routes>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/messages' element={<DialogsContainer/>}/>
+          <Route path='/users' element={<UsersContainer/>}/>
           <Route path='/news' element={<News/>}/>
           <Route path='/music' element={<Music/>}/>
           <Route path='/settings' element={<Settings/>}/>

@@ -5,8 +5,8 @@ import {DispatchType, StateType} from "../../../redux/redux-store";
 
 const mapStateToProps = (state: StateType) => {
   return {
-    postsData: state.profile.postsData,
-    textData: state.profile.textData
+    postsData: state.profilePage.postsData,
+    textData: state.profilePage.textData
   }
 }
 const mapDispatchToProps = (dispatch: DispatchType) => {
