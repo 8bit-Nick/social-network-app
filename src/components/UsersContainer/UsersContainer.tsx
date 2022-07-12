@@ -12,7 +12,6 @@ import {
 	unfollowAC,
 	usersType,
 } from "../../redux/usersReducer";
-import Preloader from "../common/Preloader/Preloader";
 
 type UsersAPIPropsType = {
 	users: usersType;
