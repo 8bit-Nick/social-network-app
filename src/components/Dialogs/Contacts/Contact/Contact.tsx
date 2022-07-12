@@ -1,7 +1,7 @@
-import React from "react";
-import {NavLink} from "react-router-dom";
+import React from 'react';
+import {NavLink} from 'react-router-dom';
 import classes from './Contact.module.css';
-import userLogo from './../../../../img/userlogo.png'
+import userLogo from './../../../../img/userlogo.png';
 
 type ContactPropsType = {
   userName: string
@@ -20,7 +20,7 @@ const Contact: React.FC<ContactPropsType> = (props) => {
         </div>
       </NavLink>
     </div>
-  )
-}
+  );
+};
 
 export default Contact;

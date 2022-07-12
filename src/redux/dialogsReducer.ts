@@ -24,8 +24,8 @@ const initial: DialogsType = {
     {id: 3, message: 'Lets go!'},
     {id: 4, message: 'Nice to meet you.'},
   ],
-  messageText: ''
-}
+  messageText: '',
+};
 
 const dialogsReducer = (state = initial, action: ActionsTypes): DialogsType => {
   switch (action.type) {
@@ -33,13 +33,13 @@ const dialogsReducer = (state = initial, action: ActionsTypes): DialogsType => {
       return {
         ...state,
         messagesData: [...state.messagesData, {id: 5, message: state.messageText}],
-        messageText: ''
-      }
+        messageText: '',
+      };
     case CHANGE_TEXT_MESSAGE:
       return {
         ...state,
-        messageText: action.newTextMessage
-      }
+        messageText: action.newTextMessage,
+      };
     default:
       return state;
   }

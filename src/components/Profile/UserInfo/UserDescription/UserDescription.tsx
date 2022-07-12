@@ -21,6 +21,6 @@ const UserDescription = (props: UserDescriptionPropsType) => {
       </div>
     </div>
   );
-}
+};
 
 export default UserDescription;

@@ -1,13 +1,13 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import {ComponentStory, ComponentMeta} from '@storybook/react';
 
-import { Message } from './Message';
+import {Message} from './Message';
 
 export default {
   title: 'Dialogs/Message Stories',
   component: Message,
   argTypes: {
-    backgroundColor: { control: 'color' },
+    backgroundColor: {control: 'color'},
   },
 } as ComponentMeta<typeof Message>;
 

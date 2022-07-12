@@ -1,3 +1,19 @@
 .users {
-  padding: 15px;
+	padding: 15px;
+}
+
+.pageWrapper {
+	border-bottom: 1px solid rgb(209, 209, 209);
+	display: flex;
+	justify-content: center;
+	padding: 15px;
+}
+
+.pages {
+	margin: 0 10px;
+}
+
+.page {
+	font-weight: 600;
+	color: rgb(255, 87, 87);
 }

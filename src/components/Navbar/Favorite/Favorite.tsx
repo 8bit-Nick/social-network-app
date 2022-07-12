@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import classes from './Favorite.module.css';
 
 type FavoritePropsType = {
@@ -11,7 +11,7 @@ const Favorite: React.FC<FavoritePropsType> = (props) => {
     <div className={classes.item} key={props.id}>
       {props.user}
     </div>
-  )
-}
+  );
+};
 
 export default Favorite;

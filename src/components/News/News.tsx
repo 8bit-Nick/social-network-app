@@ -3,11 +3,11 @@ import classes from './News.module.css';
 
 
 const News =() => {
-   return (
-       <div>
+  return (
+    <div>
            News
-       </div>
-   );
-}
+    </div>
+  );
+};
 
 export default News;

@@ -3,11 +3,11 @@ import classes from './News.module.css';
 
 
 const Settings = () => {
-    return (
-        <div>
+  return (
+    <div>
             Settings
-        </div>
-    );
-}
+    </div>
+  );
+};
 
 export default Settings;

@@ -6,15 +6,15 @@ type ProfileType = {
   textData: string
 }
 
-let initial: ProfileType = {
+const initial: ProfileType = {
   postsData: [
     {id: 1, post: 'This is my first post!', likes: 15},
     {id: 2, post: 'What music do you listen?', likes: 21},
     {id: 3, post: 'Yeah, buddy!', likes: 370},
     {id: 4, post: 'No, thanks.', likes: 3},
   ],
-  textData: ''
-}
+  textData: '',
+};
 
 const profileReducer = (state = initial, action: ActionsTypes): ProfileType => {
   switch (action.type) {
@@ -22,17 +22,16 @@ const profileReducer = (state = initial, action: ActionsTypes): ProfileType => {
       return {
         ...state,
         postsData: [...state.postsData, {id: 5, post: state.textData, likes: 0}],
-        textData: ""
-      }
+        textData: '',
+      };
     case CHANGE_TEXT:
       return {
         ...state,
-        textData: action.newText
-      }
+        textData: action.newText,
+      };
     default:
       return state;
   }
-
 };
 
 type ActionsTypes = AddPostActionType | ChangeTextActionType;

@@ -1,18 +1,16 @@
 import React from 'react';
 import './App.css';
 import {Route, Routes} from 'react-router-dom';
-import Header from "./components/Header/Header";
-import Profile from "./components/Profile/Profile";
-import News from "./components/News/News";
-import Music from "./components/Music/Music";
-import Settings from "./components/Settings/Settings";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import Navbar from "./components/Navbar/Navbar";
-import {UsersContainer} from "./components/UsersContainer/UsersContainer";
+import Header from './components/Header/Header';
+import Profile from './components/Profile/Profile';
+import News from './components/News/News';
+import Music from './components/Music/Music';
+import Settings from './components/Settings/Settings';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
+import Navbar from './components/Navbar/Navbar';
+import {UsersContainer} from './components/UsersContainer/UsersContainer';
 
-type AppPropsType = {
-
-}
+type AppPropsType = {}
 
 const App: React.FC<AppPropsType> = (props) => {
   return (
@@ -30,7 +28,7 @@ const App: React.FC<AppPropsType> = (props) => {
         </Routes>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default App;

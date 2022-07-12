@@ -3,11 +3,11 @@ import classes from './Music.module.css';
 
 
 const Music = () => {
-   return (
-       <div>
+  return (
+    <div>
            Music
-       </div>
-   );
-}
+    </div>
+  );
+};
 
 export default Music;

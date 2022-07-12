@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './UserInfo.module.css';
-import Avatar from "./Avatar/Avatar";
-import UserDescription from "./UserDescription/UserDescription";
+import Avatar from './Avatar/Avatar';
+import UserDescription from './UserDescription/UserDescription';
 
 const UserInfo = () => {
   return (
@@ -10,6 +10,6 @@ const UserInfo = () => {
       <UserDescription name={'Albert'} surname={'Einstein'} age={142} country={'Kingdom of Württemberg'} profession={'Physicist'}/>
     </div>
   );
-}
+};
 
 export default UserInfo;

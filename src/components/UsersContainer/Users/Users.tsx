@@ -1,61 +1,29 @@
-import axios from "axios";
 import React from "react";
 
 import userLogo from "../../../img/userlogo.png";
-import { setUsersAC, usersType } from "../../../redux/usersReducer";
+import { usersType } from "../../../redux/usersReducer";
+import Preloader from "../../common/Preloader/Preloader";
 import User from "./User/User";
-import classes from "./Users.module.css";
+import styles from "./Users.module.css";
 
 type UsersPropsType = {
 	users: usersType;
+	selectPage: number;
+	totalCount: number;
+	countItems: number;
 	follow: (userId: number) => void;
 	unfollow: (userId: number) => void;
-	setUsers: (users: usersType) => void;
+	onSelectPage: (pageNumber: number) => void;
+	isFetching: boolean;
 };
 
 const Users: React.FC<UsersPropsType> = (props) => {
-	if (props.users.length === 0) {
-		axios
-			.get("https://social-network.samuraijs.com/api/1.0/users")
-			.then((response) => {
-				props.setUsers(response.data.items);
-			});
+	// const pagesCount = Math.ceil(props.totalCount / props.countItems);
+	const pagesCount = 11;
+	const pages = [];
 
-		// props.setUsers([
-		// 	{
-		// 		id: 1,
-		// 		photoUrl: userLogo,
-		// 		followed: true,
-		// 		fullName: "Alex",
-		// 		status: "My first status.",
-		// 		location: {
-		// 			country: "Ukraine",
-		// 			city: "Kiev",
-		// 		},
-		// 	},
-		// 	{
-		// 		id: 2,
-		// 		photoUrl: userLogo,
-		// 		followed: false,
-		// 		fullName: "John",
-		// 		status: "My first status.",
-		// 		location: {
-		// 			country: "Ukraine",
-		// 			city: "Kiev",
-		// 		},
-		// 	},
-		// 	{
-		// 		id: 3,
-		// 		photoUrl: userLogo,
-		// 		followed: true,
-		// 		fullName: "Tom",
-		// 		status: "My first status.",
-		// 		location: {
-		// 			country: "Ukraine",
-		// 			city: "Kiev",
-		// 		},
-		// 	},
-		// ]);
+	for (let i = 0; i < pagesCount; i++) {
+		pages.push(i + 1);
 	}
 
 	const addUsers = props.users.map((el) => (
@@ -72,7 +40,28 @@ const Users: React.FC<UsersPropsType> = (props) => {
 		/>
 	));
 
-	return <div className={classes.users}>{addUsers}</div>;
+	return (
+		<div className={styles.users}>
+			<div className={styles.pageWrapper}>
+				{pages.map((page) => {
+					return (
+						<span
+							onClick={() => props.onSelectPage(page)}
+							className={
+								props.selectPage === page
+									? styles.page + " " + styles.pages
+									: styles.pages
+							}
+						>
+							{page}{" "}
+						</span>
+					);
+				})}
+			</div>
+
+			{props.isFetching ? <Preloader /> : addUsers}
+		</div>
+	);
 };
 
 export default Users;
