@@ -18,9 +18,8 @@ type UsersPropsType = {
 };
 
 const Users: React.FC<UsersPropsType> = (props) => {
-	// const pagesCount = Math.ceil(props.totalCount / props.countItems);
-	const pagesCount = 11;
-	const pages = [];
+	const pagesCount = Math.ceil(props.totalCount / props.countItems);
+	const pages: any = [];
 
 	for (let i = 0; i < pagesCount; i++) {
 		pages.push(i + 1);
@@ -40,23 +39,59 @@ const Users: React.FC<UsersPropsType> = (props) => {
 		/>
 	));
 
+	const paginationStart = pages.map((page: any) => {
+		if (page < 10 && props.selectPage < 5) {
+			return (
+				<span
+					onClick={() => props.onSelectPage(page)}
+					className={
+						props.selectPage === page
+							? styles.page + " " + styles.pages
+							: styles.pages
+					}
+				>
+					{page}
+				</span>
+			);
+		} else if (page > props.selectPage - 5 && page < props.selectPage + 5) {
+			return (
+				<span
+					onClick={() => props.onSelectPage(page)}
+					className={
+						props.selectPage === page
+							? styles.page + " " + styles.pages
+							: styles.pages
+					}
+				>
+					{page}
+				</span>
+			);
+		}
+	});
+
+	const paginationEnd = pages.map((page: any) => {
+		if (page === pages.length) {
+			return (
+				<span
+					onClick={() => props.onSelectPage(page)}
+					className={
+						props.selectPage === page
+							? styles.page + " " + styles.pages
+							: styles.pages
+					}
+				>
+					{page}
+				</span>
+			);
+		}
+	});
+
 	return (
 		<div className={styles.users}>
 			<div className={styles.pageWrapper}>
-				{pages.map((page) => {
-					return (
-						<span
-							onClick={() => props.onSelectPage(page)}
-							className={
-								props.selectPage === page
-									? styles.page + " " + styles.pages
-									: styles.pages
-							}
-						>
-							{page}{" "}
-						</span>
-					);
-				})}
+				{paginationStart}
+				{"..."}
+				{paginationEnd}
 			</div>
 
 			{props.isFetching ? <Preloader /> : addUsers}

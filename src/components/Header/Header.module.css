@@ -1,6 +1,13 @@
 .header {
-  grid-area: h;
-  background: #E5E5E5;
-  padding: 15px;
+	grid-area: h;
+	background: #e5e5e5;
+	padding: 15px;
 }
 
+.login {
+	float: right;
+}
+
+.login a {
+	text-decoration: none;
+}

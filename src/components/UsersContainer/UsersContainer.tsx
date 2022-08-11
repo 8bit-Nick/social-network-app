@@ -4,12 +4,12 @@ import Users from "./Users/Users";
 import { connect } from "react-redux";
 import { DispatchType, StateType } from "../../redux/redux-store";
 import {
-	followAC,
-	setPageSelectAC,
-	setTotalUsersCountAC,
-	setUsersAC,
-	toggleIsFetchingAC,
-	unfollowAC,
+	follow,
+	setPageSelect,
+	setTotalUsersCount,
+	setUsers,
+	toggleIsFetching,
+	unfollow,
 	usersType,
 } from "../../redux/usersReducer";
 
@@ -31,7 +31,10 @@ const UsersAPI: React.FC<UsersAPIPropsType> = (props) => {
 	useEffect(() => {
 		axios
 			.get(
-				`https://social-network.samuraijs.com/api/1.0/users?page=${props.selectPage}&count=${props.countItems}`
+				`https://social-network.samuraijs.com/api/1.0/users?page=${props.selectPage}&count=${props.countItems}`,
+				{
+					withCredentials: true,
+				}
 			)
 			.then((response) => {
 				props.toggleIsFetching(false);
@@ -80,30 +83,12 @@ const mapStateToProps = (state: StateType) => {
 		isFetching: state.usersPage.isFetching,
 	};
 };
-const mapDispatchToProps = (dispatch: DispatchType) => {
-	return {
-		follow: (userId: number) => {
-			dispatch(followAC(userId));
-		},
-		unfollow: (userId: number) => {
-			dispatch(unfollowAC(userId));
-		},
-		setUsers: (users: usersType) => {
-			dispatch(setUsersAC(users));
-		},
-		setPageSelect: (selectPage: number) => {
-			dispatch(setPageSelectAC(selectPage));
-		},
-		setTotalUsersCount: (totalCount: number) => {
-			dispatch(setTotalUsersCountAC(totalCount));
-		},
-		toggleIsFetching: (isFetching: boolean) => {
-			dispatch(toggleIsFetchingAC(isFetching));
-		},
-	};
-};
 
-export const UsersContainer = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(UsersAPI);
+export const UsersContainer = connect(mapStateToProps, {
+	follow,
+	unfollow,
+	setUsers,
+	setPageSelect,
+	setTotalUsersCount,
+	toggleIsFetching,
+})(UsersAPI);

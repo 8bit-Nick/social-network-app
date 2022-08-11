@@ -1,0 +1,27 @@
+.footer {
+	grid-area: f;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	padding: 15px 0;
+	background: #e5e5e5;
+	font-size: 18px;
+}
+
+.footer img {
+	width: 30px;
+	height: 30px;
+}
+
+.footer a {
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	color: rgb(0, 0, 0);
+}
+
+.links {
+	padding-right: 25px;
+}
