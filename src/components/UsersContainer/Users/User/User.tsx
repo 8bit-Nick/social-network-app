@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { subscribeAPI } from "../../../../api/api";
 
 import classes from "./User.module.css";
 
@@ -43,21 +44,11 @@ const User: React.FC<UsersPropsType> = (props) => {
 				{props.followed ? (
 					<button
 						onClick={() => {
-							axios
-								.delete(
-									`https://social-network.samuraijs.com/api/1.0/follow/${props.userId}`,
-									{
-										withCredentials: true,
-										headers: {
-											"API-KEY": "a99ae56a-8de1-41e1-bdc2-66384efc5e52",
-										},
-									}
-								)
-								.then((response) => {
-									if (response.data.resultCode === 0) {
-										props.unfollow(props.userId);
-									}
-								});
+							subscribeAPI.unfollowUser(props.userId).then((data: any) => {
+								if (data.resultCode === 0) {
+									props.unfollow(props.userId);
+								}
+							});
 						}}
 					>
 						UNFOLLOWED
@@ -65,22 +56,11 @@ const User: React.FC<UsersPropsType> = (props) => {
 				) : (
 					<button
 						onClick={() => {
-							axios
-								.post(
-									`https://social-network.samuraijs.com/api/1.0/follow/${props.userId}`,
-									{},
-									{
-										withCredentials: true,
-										headers: {
-											"API-KEY": "a99ae56a-8de1-41e1-bdc2-66384efc5e52",
-										},
-									}
-								)
-								.then((response) => {
-									if (response.data.resultCode === 0) {
-										props.follow(props.userId);
-									}
-								});
+							subscribeAPI.followUser(props.userId).then((data: any) => {
+								if (data.resultCode === 0) {
+									props.follow(props.userId);
+								}
+							});
 						}}
 					>
 						FOLLOWED

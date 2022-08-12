@@ -8,8 +8,8 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import Navbar from "./components/Navbar/Navbar";
-import { UsersContainer } from "./components/UsersContainer/UsersContainer";
 import { Footer } from "./components/Footer/Footer";
+import UsersContainer from "./components/UsersContainer/UsersContainer";
 
 type AppPropsType = {};
 

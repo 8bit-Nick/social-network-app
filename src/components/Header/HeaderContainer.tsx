@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { connect } from "react-redux";
+import { authAPI } from "../../api/api";
 import { authType, setAuthUserData } from "../../redux/authReducer";
 import { StateType } from "../../redux/redux-store";
 import Header from "./Header";
@@ -13,13 +14,9 @@ type HeaderContainerTypes = {
 
 const HeaderContainer: React.FC<HeaderContainerTypes> = (props) => {
 	useEffect(() => {
-		axios
-			.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-				withCredentials: true,
-			})
-			.then((response) => {
-				props.setAuthUserData(response.data.data);
-			});
+		authAPI.logIn().then((data: any) => {
+			props.setAuthUserData(data.data);
+		});
 	}, []);
 
 	return <Header isAuth={props.isAuth} login={props.login} />;

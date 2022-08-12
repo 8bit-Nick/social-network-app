@@ -12,8 +12,24 @@ import {
 	unfollow,
 	usersType,
 } from "../../redux/usersReducer";
+import { usersAPI } from "../../api/api";
 
-type UsersAPIPropsType = {
+type userItemType = {
+	followed: boolean;
+	id: number;
+	name: string;
+	photos: { small: string | null; large: string | null };
+	status: string | null;
+	uniqueUrlName: string | null;
+};
+
+type usersDataType = {
+	error: string | null;
+	items: any;
+	totalCount: number;
+};
+
+type UsersContainerType = {
 	users: usersType;
 	totalCount: number;
 	countItems: number;
@@ -27,19 +43,14 @@ type UsersAPIPropsType = {
 	toggleIsFetching: (isFetching: boolean) => void;
 };
 
-const UsersAPI: React.FC<UsersAPIPropsType> = (props) => {
+const UsersContainer: React.FC<UsersContainerType> = (props) => {
 	useEffect(() => {
-		axios
-			.get(
-				`https://social-network.samuraijs.com/api/1.0/users?page=${props.selectPage}&count=${props.countItems}`,
-				{
-					withCredentials: true,
-				}
-			)
-			.then((response) => {
+		usersAPI
+			.getUsers(props.selectPage, props.countItems)
+			.then((data: usersDataType) => {
 				props.toggleIsFetching(false);
-				props.setUsers(response.data.items);
-				props.setTotalUsersCount(response.data.totalCount);
+				props.setUsers(data.items);
+				props.setTotalUsersCount(data.totalCount);
 			});
 	}, []);
 
@@ -47,14 +58,12 @@ const UsersAPI: React.FC<UsersAPIPropsType> = (props) => {
 		props.setPageSelect(pageNumber);
 		props.toggleIsFetching(true);
 
-		axios
-			.get(
-				`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${props.countItems}`
-			)
-			.then((response) => {
+		usersAPI
+			.getUsers(pageNumber, props.countItems)
+			.then((data: usersDataType) => {
 				props.toggleIsFetching(false);
-				props.setUsers(response.data.items);
-				props.setTotalUsersCount(response.data.totalCount);
+				props.setUsers(data.items);
+				props.setTotalUsersCount(data.totalCount);
 			});
 	};
 
@@ -84,11 +93,11 @@ const mapStateToProps = (state: StateType) => {
 	};
 };
 
-export const UsersContainer = connect(mapStateToProps, {
+export default connect(mapStateToProps, {
 	follow,
 	unfollow,
 	setUsers,
 	setPageSelect,
 	setTotalUsersCount,
 	toggleIsFetching,
-})(UsersAPI);
+})(UsersContainer);
