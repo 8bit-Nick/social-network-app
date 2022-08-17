@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { subscribeAPI } from "../../../../api/api";
+import { usersAPI } from "../../../../api/api";
 
 import classes from "./User.module.css";
 
@@ -14,6 +14,10 @@ type UsersPropsType = {
 	follow: (userId: number) => void;
 	unfollow: (userId: number) => void;
 	followed: boolean;
+	toggleFollowing: (isFollowing: boolean, userId: number) => void;
+	followingInProcess: number[];
+	unfollowThunkCreator: (userId: number) => void;
+	followThunkCreator: (userId: number) => void;
 };
 
 const User: React.FC<UsersPropsType> = (props) => {
@@ -43,24 +47,22 @@ const User: React.FC<UsersPropsType> = (props) => {
 			<div className={classes.userBtn}>
 				{props.followed ? (
 					<button
+						disabled={props.followingInProcess.some(
+							(id) => id === props.userId
+						)}
 						onClick={() => {
-							subscribeAPI.unfollowUser(props.userId).then((data: any) => {
-								if (data.resultCode === 0) {
-									props.unfollow(props.userId);
-								}
-							});
+							props.unfollowThunkCreator(props.userId);
 						}}
 					>
 						UNFOLLOWED
 					</button>
 				) : (
 					<button
+						disabled={props.followingInProcess.some(
+							(id) => id === props.userId
+						)}
 						onClick={() => {
-							subscribeAPI.followUser(props.userId).then((data: any) => {
-								if (data.resultCode === 0) {
-									props.follow(props.userId);
-								}
-							});
+							props.followThunkCreator(props.userId);
 						}}
 					>
 						FOLLOWED

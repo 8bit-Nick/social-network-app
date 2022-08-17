@@ -5,12 +5,13 @@ import { connect } from "react-redux";
 import { DispatchType, StateType } from "../../redux/redux-store";
 import {
 	follow,
+	unfollowThunkCreator,
+	getUsersThunkCreator,
 	setPageSelect,
-	setTotalUsersCount,
-	setUsers,
-	toggleIsFetching,
+	toggleFollowing,
 	unfollow,
 	usersType,
+	followThunkCreator,
 } from "../../redux/usersReducer";
 import { usersAPI } from "../../api/api";
 
@@ -35,36 +36,24 @@ type UsersContainerType = {
 	countItems: number;
 	selectPage: number;
 	isFetching: boolean;
+	followingInProcess: number[];
 	follow: (userId: number) => void;
 	unfollow: (userId: number) => void;
-	setUsers: (users: usersType) => void;
 	setPageSelect: (selectPage: number) => void;
-	setTotalUsersCount: (totalCount: number) => void;
-	toggleIsFetching: (isFetching: boolean) => void;
+	toggleFollowing: (isFollowing: boolean, userId: number) => void;
+	getUsersThunkCreator: (selectPage: number, countItems: number) => void;
+	unfollowThunkCreator: (userId: number) => void;
+	followThunkCreator: (userId: number) => void;
 };
 
 const UsersContainer: React.FC<UsersContainerType> = (props) => {
 	useEffect(() => {
-		usersAPI
-			.getUsers(props.selectPage, props.countItems)
-			.then((data: usersDataType) => {
-				props.toggleIsFetching(false);
-				props.setUsers(data.items);
-				props.setTotalUsersCount(data.totalCount);
-			});
+		props.getUsersThunkCreator(props.selectPage, props.countItems);
 	}, []);
 
 	const onSelectPage = (pageNumber: number) => {
 		props.setPageSelect(pageNumber);
-		props.toggleIsFetching(true);
-
-		usersAPI
-			.getUsers(pageNumber, props.countItems)
-			.then((data: usersDataType) => {
-				props.toggleIsFetching(false);
-				props.setUsers(data.items);
-				props.setTotalUsersCount(data.totalCount);
-			});
+		props.getUsersThunkCreator(pageNumber, props.countItems);
 	};
 
 	return (
@@ -74,10 +63,14 @@ const UsersContainer: React.FC<UsersContainerType> = (props) => {
 				follow={props.follow}
 				unfollow={props.unfollow}
 				onSelectPage={onSelectPage}
+				toggleFollowing={props.toggleFollowing}
 				selectPage={props.selectPage}
 				totalCount={props.totalCount}
 				countItems={props.countItems}
 				isFetching={props.isFetching}
+				followingInProcess={props.followingInProcess}
+				unfollowThunkCreator={props.unfollowThunkCreator}
+				followThunkCreator={props.followThunkCreator}
 			/>
 		</div>
 	);
@@ -90,14 +83,16 @@ const mapStateToProps = (state: StateType) => {
 		countItems: state.usersPage.countItems,
 		selectPage: state.usersPage.selectPage,
 		isFetching: state.usersPage.isFetching,
+		followingInProcess: state.usersPage.followingInProcess,
 	};
 };
 
 export default connect(mapStateToProps, {
 	follow,
 	unfollow,
-	setUsers,
 	setPageSelect,
-	setTotalUsersCount,
-	toggleIsFetching,
+	toggleFollowing,
+	getUsersThunkCreator,
+	followThunkCreator,
+	unfollowThunkCreator,
 })(UsersContainer);

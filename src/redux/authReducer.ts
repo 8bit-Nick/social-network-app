@@ -1,3 +1,6 @@
+import { authAPI } from "../api/api";
+import { DispatchType } from "./redux-store";
+
 const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
 
 export type authType = {
@@ -37,5 +40,13 @@ type setAuthUserDataActionType = ReturnType<typeof setAuthUserData>;
 
 export const setAuthUserData = (data: authType) =>
 	({ type: SET_AUTH_USER_DATA, data } as const);
+
+export const authThunkCreator = () => {
+	return (dispatch: DispatchType) => {
+		authAPI.logIn().then((data: any) => {
+			dispatch(setAuthUserData(data.data));
+		});
+	};
+};
 
 export default authReducer;

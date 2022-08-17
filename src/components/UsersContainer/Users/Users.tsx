@@ -11,10 +11,14 @@ type UsersPropsType = {
 	selectPage: number;
 	totalCount: number;
 	countItems: number;
+	followingInProcess: number[];
 	follow: (userId: number) => void;
 	unfollow: (userId: number) => void;
 	onSelectPage: (pageNumber: number) => void;
+	toggleFollowing: (isFollowing: boolean, userId: number) => void;
 	isFetching: boolean;
+	unfollowThunkCreator: (userId: number) => void;
+	followThunkCreator: (userId: number) => void;
 };
 
 const Users: React.FC<UsersPropsType> = (props) => {
@@ -36,6 +40,10 @@ const Users: React.FC<UsersPropsType> = (props) => {
 			follow={props.follow}
 			unfollow={props.unfollow}
 			followed={el.followed}
+			toggleFollowing={props.toggleFollowing}
+			followingInProcess={props.followingInProcess}
+			unfollowThunkCreator={props.unfollowThunkCreator}
+			followThunkCreator={props.followThunkCreator}
 		/>
 	));
 
