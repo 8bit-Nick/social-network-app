@@ -1,5 +1,7 @@
 import { userProfile } from "./../types/profileTypes";
 import { ProfileType } from "../types/profileTypes";
+import { DispatchType } from "./redux-store";
+import { usersAPI } from "../api/api";
 
 const ADD_POST = "ADD_POST";
 const CHANGE_TEXT = "CHANGE_EXT";
@@ -78,5 +80,13 @@ export const changeTextActionCreator = (text: string) =>
 	({ type: CHANGE_TEXT, newText: text } as const);
 export const setUserProfile = (profile: userProfile) =>
 	({ type: SET_USER_PROFILE, profile } as const);
+
+export const getProfileThunkCreator = (userId: number) => {
+	return (dispatch: DispatchType) => {
+		usersAPI.getProfile(userId).then((data: any) => {
+			dispatch(setUserProfile(data));
+		});
+	};
+};
 
 export default profileReducer;

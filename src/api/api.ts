@@ -14,17 +14,18 @@ export const usersAPI: any = {
 			.get(`users?page=${selectPage}&count=${countItems}`)
 			.then((response) => response.data);
 	},
-};
-
-export const subscribeAPI: any = {
-	followUser(userId: number) {
+	follow(userId: number) {
 		return instance.post(`follow/${userId}`).then((response) => response.data);
 	},
 
-	unfollowUser(userId: number) {
+	unfollow(userId: number) {
 		return instance
 			.delete(`follow/${userId}`)
 			.then((response) => response.data);
+	},
+
+	getProfile(userId: number) {
+		return instance.get(`profile/${userId}`).then((response) => response.data);
 	},
 };
 
