@@ -7,6 +7,8 @@ import { userProfile } from "../../types/profileTypes";
 type ProfilePropsType = {
 	setUserProfile: (profile: userProfile) => void;
 	profile: userProfile;
+	userProfileStatus: string;
+	putUserProfileStatus: (status: string) => void;
 };
 
 const Profile: React.FC<ProfilePropsType> = (props) => {

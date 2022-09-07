@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { connect } from "react-redux";
+import { compose } from "redux";
 import { authAPI } from "../../api/api";
 import {
 	authThunkCreator,
@@ -30,6 +31,6 @@ const mapStateToProps = (state: StateType) => ({
 	login: state.auth.login,
 });
 
-export default connect(mapStateToProps, { setAuthUserData, authThunkCreator })(
-	HeaderContainer
-);
+export default compose(
+	connect(mapStateToProps, { setAuthUserData, authThunkCreator })
+)(HeaderContainer);

@@ -4,8 +4,9 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { usersAPI } from "../../api/api";
 import {
-	getProfileThunkCreator,
-	setUserProfile,
+	getUserProfile,
+	getUserProfileStatus,
+	putUserProfileStatus,
 } from "../../redux/profileReducer";
 import { StateType } from "../../redux/redux-store";
 import { userProfile } from "../../types/profileTypes";
@@ -13,14 +14,17 @@ import Profile from "./Profile";
 
 type ProfileContainerType = {
 	profile: userProfile;
-	getProfileThunkCreator: (userId: number) => void;
+	getUserProfile: (userId: number) => void;
+	userProfileStatus: string;
+	putUserProfileStatus: (status: string) => void;
 };
 
 const ProfileContainer: React.FC<ProfileContainerType> = (props: any) => {
 	const { userId } = useParams();
 
 	useEffect(() => {
-		props.getProfileThunkCreator(userId);
+		props.getUserProfile(userId);
+		props.getUserProfileStatus(userId);
 	}, []);
 
 	return (
@@ -32,9 +36,11 @@ const ProfileContainer: React.FC<ProfileContainerType> = (props: any) => {
 
 const mapStateToProps = (state: StateType) => ({
 	profile: state.profilePage.profile,
+	userProfileStatus: state.profilePage.userProfileStatus,
 });
 
 export default connect(mapStateToProps, {
-	setUserProfile,
-	getProfileThunkCreator,
+	getUserProfile,
+	getUserProfileStatus,
+	putUserProfileStatus,
 })(ProfileContainer);

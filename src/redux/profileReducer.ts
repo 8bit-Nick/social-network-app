@@ -1,11 +1,12 @@
 import { userProfile } from "./../types/profileTypes";
 import { ProfileType } from "../types/profileTypes";
 import { DispatchType } from "./redux-store";
-import { usersAPI } from "../api/api";
+import { profileAPI, usersAPI } from "../api/api";
 
 const ADD_POST = "ADD_POST";
 const CHANGE_TEXT = "CHANGE_EXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_USER_PROFILE_STATUS = "SET_USER_PROFILE_STATUS";
 
 const initial: ProfileType = {
 	postsData: [
@@ -36,6 +37,7 @@ const initial: ProfileType = {
 			large: null,
 		},
 	},
+	userProfileStatus: "",
 };
 
 const profileReducer = (
@@ -62,6 +64,11 @@ const profileReducer = (
 				...state,
 				profile: action.profile,
 			};
+		case SET_USER_PROFILE_STATUS:
+			return {
+				...state,
+				userProfileStatus: action.status,
+			};
 		default:
 			return state;
 	}
@@ -70,21 +77,43 @@ const profileReducer = (
 type ActionsTypes =
 	| AddPostActionType
 	| ChangeTextActionType
-	| setUserProfileType;
+	| setUserProfileType
+	| setUserProfileStatusType;
 type AddPostActionType = ReturnType<typeof addPostActionCreator>;
 type ChangeTextActionType = ReturnType<typeof changeTextActionCreator>;
 type setUserProfileType = ReturnType<typeof setUserProfile>;
+type setUserProfileStatusType = ReturnType<typeof setUserProfileStatus>;
 
 export const addPostActionCreator = () => ({ type: ADD_POST } as const);
 export const changeTextActionCreator = (text: string) =>
 	({ type: CHANGE_TEXT, newText: text } as const);
-export const setUserProfile = (profile: userProfile) =>
+const setUserProfile = (profile: userProfile) =>
 	({ type: SET_USER_PROFILE, profile } as const);
 
-export const getProfileThunkCreator = (userId: number) => {
+const setUserProfileStatus = (status: string) =>
+	({ type: SET_USER_PROFILE_STATUS, status } as const);
+
+// Thunk Creators
+export const getUserProfile = (userId: number) => {
 	return (dispatch: DispatchType) => {
 		usersAPI.getProfile(userId).then((data: any) => {
 			dispatch(setUserProfile(data));
+		});
+	};
+};
+
+export const getUserProfileStatus = (userId: number) => {
+	return (dispatch: DispatchType) => {
+		profileAPI.getStatus(userId).then((data: string) => {
+			dispatch(setUserProfileStatus(data));
+		});
+	};
+};
+
+export const putUserProfileStatus = (status: string) => {
+	return (dispatch: DispatchType) => {
+		profileAPI.putStatus(status).then((data: string) => {
+			dispatch(setUserProfileStatus(status));
 		});
 	};
 };

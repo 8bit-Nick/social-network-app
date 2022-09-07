@@ -14,6 +14,9 @@ import {
 	followThunkCreator,
 } from "../../redux/usersReducer";
 import { usersAPI } from "../../api/api";
+import { Navigate } from "react-router-dom";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 type userItemType = {
 	followed: boolean;
@@ -37,6 +40,7 @@ type UsersContainerType = {
 	selectPage: number;
 	isFetching: boolean;
 	followingInProcess: number[];
+	isAuth: boolean | undefined;
 	follow: (userId: number) => void;
 	unfollow: (userId: number) => void;
 	setPageSelect: (selectPage: number) => void;
@@ -84,15 +88,19 @@ const mapStateToProps = (state: StateType) => {
 		selectPage: state.usersPage.selectPage,
 		isFetching: state.usersPage.isFetching,
 		followingInProcess: state.usersPage.followingInProcess,
+		isAuth: state.auth.isAuth,
 	};
 };
 
-export default connect(mapStateToProps, {
-	follow,
-	unfollow,
-	setPageSelect,
-	toggleFollowing,
-	getUsersThunkCreator,
-	followThunkCreator,
-	unfollowThunkCreator,
-})(UsersContainer);
+export default compose(
+	connect(mapStateToProps, {
+		follow,
+		unfollow,
+		setPageSelect,
+		toggleFollowing,
+		getUsersThunkCreator,
+		followThunkCreator,
+		unfollowThunkCreator,
+	}),
+	withAuthRedirect
+)(UsersContainer);

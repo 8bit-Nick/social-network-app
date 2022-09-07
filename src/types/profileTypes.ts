@@ -23,4 +23,5 @@ export type ProfileType = {
 	postsData: Array<{ id: number; post: string; likes: number }>;
 	textData: string;
 	profile: userProfile;
+	userProfileStatus: string;
 };

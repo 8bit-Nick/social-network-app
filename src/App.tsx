@@ -10,6 +10,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import Navbar from "./components/Navbar/Navbar";
 import { Footer } from "./components/Footer/Footer";
 import UsersContainer from "./components/UsersContainer/UsersContainer";
+import { Login } from "./components/Login/Login";
 
 type AppPropsType = {};
 
@@ -23,6 +24,7 @@ const App: React.FC<AppPropsType> = (props) => {
 					<Route path="/profile/:userId" element={<ProfileContainer />} />
 					<Route path="/messages" element={<DialogsContainer />} />
 					<Route path="/users" element={<UsersContainer />} />
+					<Route path="/login" element={<Login />} />
 					<Route path="/news" element={<News />} />
 					<Route path="/music" element={<Music />} />
 					<Route path="/settings" element={<Settings />} />
