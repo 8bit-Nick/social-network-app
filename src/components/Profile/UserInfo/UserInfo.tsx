@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import classes from "./UserInfo.module.css";
 import Avatar from "./Avatar/Avatar";
 import UserDescription from "./UserDescription/UserDescription";
@@ -15,7 +15,6 @@ type UserInfoType = {
 const UserInfo: React.FC<UserInfoType> = (props) => {
 	const [editMode, setEditMode] = useState(false);
 	const [inputStatus, setInputStatus] = useState(props.userProfileStatus);
-	debugger;
 
 	const editModeON = () => {
 		setEditMode(true);
@@ -29,6 +28,10 @@ const UserInfo: React.FC<UserInfoType> = (props) => {
 	const changeInputStatus = (e: ChangeEvent<HTMLInputElement>) => {
 		setInputStatus(e.currentTarget.value);
 	};
+
+	useEffect(() => {
+		setInputStatus(props.userProfileStatus);
+	}, [props.userProfileStatus]);
 
 	if (!props.profile) {
 		return <Preloader />;
