@@ -1,48 +1,43 @@
-import React from 'react';
-import classes from './Messages.module.css';
-import {Message} from './Message/Message';
+import React from "react";
+import classes from "./Messages.module.css";
+import { Field, reduxForm } from "redux-form";
 
 type MessagesPropsType = {
 	messagesData: Array<{ id: number; message: string }>;
-	messageText: string;
-	addMessage: () => void;
-	changeTextMessage: (text: string) => void;
+	addNewMessage: (newMessage: string) => void;
 };
 export const Messages: React.FC<MessagesPropsType> = (props) => {
-  const messagesElements = props.messagesData.map((el) => (
-    <Message text={el.message} id={el.id} />
-  ));
+	const messagesElements = props.messagesData.map((el) => (
+		<div className={classes.item} key={el.id}>
+			{el.message}
+		</div>
+	));
 
-  const newMessageElement = React.createRef<HTMLTextAreaElement>();
+	const newMessage = (value: any) => {
+		props.addNewMessage(value.messageBody);
+		value.messageBody = "";
+	};
 
-  const sendMessageBtn = () => {
-    if (newMessageElement.current) {
-      props.addMessage();
-      newMessageElement.current.value = '';
-    }
-  };
-
-  const onChangeHandler = () => {
-    if (newMessageElement.current) {
-      const text = newMessageElement.current.value;
-      console.log(text);
-      props.changeTextMessage(text);
-    }
-  };
-
-  return (
-    <div className={classes.dialogsMessages}>
-      <div className={classes.messagesBlock}>{messagesElements}</div>
-      <textarea
-        ref={newMessageElement}
-        placeholder={'Your message...'}
-        className={classes.inputPost}
-        value={props.messageText}
-        onChange={onChangeHandler}
-      />
-      <button onClick={sendMessageBtn} className={classes.inputButton}>
-				SEND MESSAGE
-      </button>
-    </div>
-  );
+	return (
+		<div className={classes.dialogsMessages}>
+			<div className={classes.messagesBlock}>{messagesElements}</div>
+			<ReduxMessageFrom onSubmit={newMessage} />
+		</div>
+	);
 };
+
+const MessageForm = (props: any) => {
+	return (
+		<form onSubmit={props.handleSubmit}>
+			<Field
+				component="textarea"
+				name="messageBody"
+				placeholder={"Your message..."}
+				className={classes.inputPost}
+			/>
+			<button className={classes.inputButton}>SEND MESSAGE</button>
+		</form>
+	);
+};
+
+const ReduxMessageFrom = reduxForm({ form: "messageForm" })(MessageForm);

@@ -4,7 +4,6 @@ import { DispatchType } from "./redux-store";
 import { profileAPI, usersAPI } from "../api/api";
 
 const ADD_POST = "ADD_POST";
-const CHANGE_TEXT = "CHANGE_EXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_USER_PROFILE_STATUS = "SET_USER_PROFILE_STATUS";
 
@@ -15,7 +14,6 @@ const initial: ProfileType = {
 		{ id: 3, post: "Yeah, buddy!", likes: 370 },
 		{ id: 4, post: "No, thanks.", likes: 3 },
 	],
-	textData: "",
 	profile: {
 		aboutMe: "",
 		contacts: {
@@ -50,15 +48,10 @@ const profileReducer = (
 				...state,
 				postsData: [
 					...state.postsData,
-					{ id: 5, post: state.textData, likes: 0 },
+					{ id: 5, post: action.newMessage, likes: 0 },
 				],
-				textData: "",
 			};
-		case CHANGE_TEXT:
-			return {
-				...state,
-				textData: action.newText,
-			};
+
 		case SET_USER_PROFILE:
 			return {
 				...state,
@@ -76,17 +69,15 @@ const profileReducer = (
 
 type ActionsTypes =
 	| AddPostActionType
-	| ChangeTextActionType
 	| setUserProfileType
 	| setUserProfileStatusType;
 type AddPostActionType = ReturnType<typeof addPostActionCreator>;
-type ChangeTextActionType = ReturnType<typeof changeTextActionCreator>;
 type setUserProfileType = ReturnType<typeof setUserProfile>;
 type setUserProfileStatusType = ReturnType<typeof setUserProfileStatus>;
 
-export const addPostActionCreator = () => ({ type: ADD_POST } as const);
-export const changeTextActionCreator = (text: string) =>
-	({ type: CHANGE_TEXT, newText: text } as const);
+export const addPostActionCreator = (newMessage: string) =>
+	({ type: ADD_POST, newMessage } as const);
+
 const setUserProfile = (profile: userProfile) =>
 	({ type: SET_USER_PROFILE, profile } as const);
 
