@@ -39,8 +39,8 @@ const dialogsReducer = (state = initial, action: ActionsTypes): DialogsType => {
 	}
 };
 
-type ActionsTypes = AddNewMessageType;
-type AddNewMessageType = ReturnType<typeof addNewMessage>;
+type ActionsTypes = AddNewMessageActionType;
+type AddNewMessageActionType = ReturnType<typeof addNewMessage>;
 
 export const addNewMessage = (newMessage: string) =>
 	({ type: ADD_NEW_MESSAGE, newMessage } as const);

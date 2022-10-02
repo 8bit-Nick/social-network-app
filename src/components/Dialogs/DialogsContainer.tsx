@@ -1,9 +1,10 @@
 import Dialogs from "./Dialogs";
 import { addNewMessage } from "../../redux/dialogsReducer";
 import { connect } from "react-redux";
-import { DispatchType, StateType } from "../../redux/redux-store";
+import { StateType } from "../../redux/redux-store";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
+import React from "react";
 
 type DialogsContainerType = {
 	contactsData: Array<{ id: number; userName: string }>;
@@ -31,7 +32,7 @@ const mapStateToProps = (state: StateType) => {
 	};
 };
 
-export default compose(
+export default compose<React.ComponentType>(
 	connect(mapStateToProps, { addNewMessage }),
 	withAuthRedirect
 )(DialogsContainer);

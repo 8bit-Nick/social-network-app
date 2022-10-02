@@ -1,6 +1,8 @@
 import React from "react";
 import classes from "./Messages.module.css";
 import { Field, reduxForm } from "redux-form";
+import { Textarea } from "../../common/FormControl/FormControl";
+import { requiredField } from "../../../utils/validators";
 
 type MessagesPropsType = {
 	messagesData: Array<{ id: number; message: string }>;
@@ -30,7 +32,8 @@ const MessageForm = (props: any) => {
 	return (
 		<form onSubmit={props.handleSubmit}>
 			<Field
-				component="textarea"
+				component={Textarea}
+				validate={[requiredField]}
 				name="messageBody"
 				placeholder={"Your message..."}
 				className={classes.inputPost}

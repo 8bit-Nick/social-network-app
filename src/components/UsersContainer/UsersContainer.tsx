@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+
 import Users from "./Users/Users";
 import { connect } from "react-redux";
-import { DispatchType, StateType } from "../../redux/redux-store";
+import { StateType } from "../../redux/redux-store";
 import {
 	follow,
 	unfollowThunkCreator,
@@ -13,25 +13,23 @@ import {
 	usersType,
 	followThunkCreator,
 } from "../../redux/usersReducer";
-import { usersAPI } from "../../api/api";
-import { Navigate } from "react-router-dom";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
 
-type userItemType = {
-	followed: boolean;
-	id: number;
-	name: string;
-	photos: { small: string | null; large: string | null };
-	status: string | null;
-	uniqueUrlName: string | null;
-};
+// type userItemType = {
+// 	followed: boolean;
+// 	id: number;
+// 	name: string;
+// 	photos: { small: string | null; large: string | null };
+// 	status: string | null;
+// 	uniqueUrlName: string | null;
+// };
 
-type usersDataType = {
-	error: string | null;
-	items: any;
-	totalCount: number;
-};
+// type usersDataType = {
+// 	error: string | null;
+// 	items: any;
+// 	totalCount: number;
+// };
 
 type UsersContainerType = {
 	users: usersType;
@@ -92,7 +90,7 @@ const mapStateToProps = (state: StateType) => {
 	};
 };
 
-export default compose(
+export default compose<React.ComponentType>(
 	connect(mapStateToProps, {
 		follow,
 		unfollow,

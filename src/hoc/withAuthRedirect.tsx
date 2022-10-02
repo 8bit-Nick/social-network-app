@@ -1,4 +1,3 @@
-import { ComponentType } from "react";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { StateType } from "../redux/redux-store";
@@ -13,12 +12,14 @@ const mstp = (state: StateType): mstpType => {
 	};
 };
 
-export function withAuthRedirect(Component: any) {
+export function withAuthRedirect<T extends object>(
+	Component: React.ComponentType<T>
+) {
 	const RedirectComponent: React.FC<mstpType> = (props) => {
 		let { isAuth, ...restProps } = props;
 
 		if (!isAuth) return <Navigate to="/login" />;
-		return <Component {...restProps} />;
+		return <Component {...(restProps as T)} />;
 	};
 
 	const ConnectedRedirectComponent = connect(mstp)(RedirectComponent);

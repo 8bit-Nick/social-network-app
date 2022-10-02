@@ -1,8 +1,6 @@
-import axios from "axios";
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
-import { usersAPI } from "../../api/api";
 import {
 	getUserProfile,
 	getUserProfileStatus,
