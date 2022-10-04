@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
+import { compose } from "redux";
+import { withLoginRedirect } from "../../hoc/withLoginRedirect";
 import {
 	getUserProfile,
 	getUserProfileStatus,

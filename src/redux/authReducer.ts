@@ -25,8 +25,7 @@ const authReducer = (
 		case SET_AUTH_USER_DATA:
 			return {
 				...state,
-				...action.data,
-				isAuth: true,
+				...action.payload,
 			};
 
 		default:
@@ -38,13 +37,51 @@ type ActionsTypes = setAuthUserDataActionType;
 
 type setAuthUserDataActionType = ReturnType<typeof setAuthUserData>;
 
-export const setAuthUserData = (data: authType) =>
-	({ type: SET_AUTH_USER_DATA, data } as const);
+export const setAuthUserData = (
+	id: number | null,
+	email: string | null,
+	login: string | null,
+	isAuth: boolean
+) => {
+	return {
+		type: SET_AUTH_USER_DATA,
+		payload: { id, email, login, isAuth },
+	} as const;
+};
 
-export const authThunkCreator = () => {
+// Thunk Creators
+
+export const authMe = () => {
 	return (dispatch: DispatchType) => {
-		authAPI.logIn().then((data: any) => {
-			dispatch(setAuthUserData(data.data));
+		authAPI.me().then((data: any) => {
+			if (data.resultCode === 0) {
+				const { id, email, login } = data.data;
+				dispatch(setAuthUserData(id, email, login, true));
+			}
+		});
+	};
+};
+
+export const loginUser = (
+	email: string,
+	password: string,
+	rememberMe: boolean
+) => {
+	return (dispatch: any) => {
+		authAPI.login(email, password, rememberMe).then((data: any) => {
+			if (data.resultCode === 0) {
+				dispatch(authMe());
+			}
+		});
+	};
+};
+
+export const logoutUser = () => {
+	return (dispatch: any) => {
+		authAPI.logout().then((data: any) => {
+			if (data.resultCode === 0) {
+				dispatch(setAuthUserData(null, null, null, false));
+			}
 		});
 	};
 };

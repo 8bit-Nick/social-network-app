@@ -6,6 +6,7 @@ import classes from "./Header.module.css";
 type HeaderTypes = {
 	isAuth: boolean | undefined;
 	login: string | null;
+	logoutUser: () => void;
 };
 
 const Header: React.FC<HeaderTypes> = (props) => {
@@ -13,7 +14,16 @@ const Header: React.FC<HeaderTypes> = (props) => {
 		<header className={classes.header}>
 			Facepalm
 			<div className={classes.login}>
-				{props.isAuth ? props.login : <NavLink to="/login">Login</NavLink>}
+				{props.isAuth ? (
+					<div>
+						{props.login} |{" "}
+						<NavLink to="/login" onClick={props.logoutUser}>
+							Logout
+						</NavLink>
+					</div>
+				) : (
+					<NavLink to="/login">Login</NavLink>
+				)}
 			</div>
 		</header>
 	);

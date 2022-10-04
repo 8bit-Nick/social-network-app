@@ -3,27 +3,29 @@ import { useEffect } from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { authAPI } from "../../api/api";
-import {
-	authThunkCreator,
-	authType,
-	setAuthUserData,
-} from "../../redux/authReducer";
+import { authMe, logoutUser } from "../../redux/authReducer";
 import { StateType } from "../../redux/redux-store";
 import Header from "./Header";
 
 type HeaderContainerTypes = {
 	login: string | null;
 	isAuth: boolean | undefined;
-	setAuthUserData: (data: authType) => void;
-	authThunkCreator: () => void;
+	authMe: () => void;
+	logoutUser: () => void;
 };
 
 const HeaderContainer: React.FC<HeaderContainerTypes> = (props) => {
 	useEffect(() => {
-		props.authThunkCreator();
+		props.authMe();
 	}, []);
 
-	return <Header isAuth={props.isAuth} login={props.login} />;
+	return (
+		<Header
+			isAuth={props.isAuth}
+			login={props.login}
+			logoutUser={props.logoutUser}
+		/>
+	);
 };
 
 const mapStateToProps = (state: StateType) => ({
@@ -31,6 +33,6 @@ const mapStateToProps = (state: StateType) => ({
 	login: state.auth.login,
 });
 
-export default compose(
-	connect(mapStateToProps, { setAuthUserData, authThunkCreator })
-)(HeaderContainer);
+export default compose(connect(mapStateToProps, { authMe, logoutUser }))(
+	HeaderContainer
+);

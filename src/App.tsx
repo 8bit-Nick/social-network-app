@@ -10,7 +10,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import Navbar from "./components/Navbar/Navbar";
 import { Footer } from "./components/Footer/Footer";
 import UsersContainer from "./components/UsersContainer/UsersContainer";
-import { Login } from "./components/Login/Login";
+import Login from "./components/Login/Login";
 
 type AppPropsType = {};
 

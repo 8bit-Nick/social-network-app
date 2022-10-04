@@ -1,12 +1,22 @@
+import React from "react";
+import { connect } from "react-redux";
+import { compose } from "redux";
 import { Field, InjectedFormProps, reduxForm } from "redux-form";
+import { withLoginRedirect } from "../../hoc/withLoginRedirect";
+import { loginUser } from "../../redux/authReducer";
+import { StateType } from "../../redux/redux-store";
 import { requiredField } from "../../utils/validators";
 import { Input } from "../common/FormControl/FormControl";
 import styles from "./Login.module.css";
 
 type formDataType = {
-	login: string;
+	email: string;
 	password: string;
 	rememberMe: boolean;
+};
+
+type LoginType = {
+	loginUser: (email: string, password: string, rememberMe: boolean) => void;
 };
 
 const LoginForm: React.FC<InjectedFormProps<formDataType>> = (props) => {
@@ -15,8 +25,8 @@ const LoginForm: React.FC<InjectedFormProps<formDataType>> = (props) => {
 			<div className={styles.login_box}>
 				<Field
 					className={styles.field}
-					placeholder={"Login"}
-					name={"login"}
+					placeholder={"Email"}
+					name={"email"}
 					component={Input}
 					validate={[requiredField]}
 					type="text"
@@ -47,9 +57,9 @@ const LoginForm: React.FC<InjectedFormProps<formDataType>> = (props) => {
 
 const LoginReduxForm = reduxForm<formDataType>({ form: "login" })(LoginForm);
 
-export const Login = () => {
+const Login: React.FC<LoginType> = (props) => {
 	const onSubmit = (formData: formDataType) => {
-		console.log(formData);
+		props.loginUser(formData.email, formData.password, formData.rememberMe);
 	};
 
 	return (
@@ -59,3 +69,8 @@ export const Login = () => {
 		</div>
 	);
 };
+
+export default compose<React.ComponentType>(
+	connect(null, { loginUser }),
+	withLoginRedirect
+)(Login);
