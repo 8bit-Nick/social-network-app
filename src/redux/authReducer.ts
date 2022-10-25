@@ -1,7 +1,9 @@
-import { authAPI } from "../api/api";
-import { DispatchType } from "./redux-store";
+import { stopSubmit } from 'redux-form';
+import { authAPI } from '../api/api';
+import { DispatchType } from './redux-store';
+import { Formik } from 'formik';
 
-const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
+const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
 
 export type authType = {
 	id: number | null;
@@ -65,12 +67,15 @@ export const authMe = () => {
 export const loginUser = (
 	email: string,
 	password: string,
-	rememberMe: boolean
+	rememberMe: boolean,
+	setStatus: any
 ) => {
 	return (dispatch: any) => {
 		authAPI.login(email, password, rememberMe).then((data: any) => {
 			if (data.resultCode === 0) {
 				dispatch(authMe());
+			} else {
+				setStatus(data.messages);
 			}
 		});
 	};

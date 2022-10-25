@@ -1,7 +1,7 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { authType } from "../../redux/authReducer";
-import classes from "./Header.module.css";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { authType } from '../../redux/authReducer';
+import classes from './Header.module.css';
 
 type HeaderTypes = {
 	isAuth: boolean | undefined;
@@ -16,7 +16,7 @@ const Header: React.FC<HeaderTypes> = (props) => {
 			<div className={classes.login}>
 				{props.isAuth ? (
 					<div>
-						{props.login} |{" "}
+						{props.login} |{' '}
 						<NavLink to="/login" onClick={props.logoutUser}>
 							Logout
 						</NavLink>

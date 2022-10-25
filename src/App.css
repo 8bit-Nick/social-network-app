@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 .app-wrapper {
 	font-family: Roboto, sans-serif;
@@ -10,9 +10,9 @@
 
 	display: grid;
 	grid-template-areas:
-		"h h"
-		"n c"
-		"f f";
+		'h h'
+		'n c'
+		'f f';
 	grid-template-rows: 60px 1fr;
 	grid-template-columns: 2fr 10fr;
 	grid-gap: 10px;

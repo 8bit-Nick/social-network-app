@@ -1,71 +1,107 @@
-import React from "react";
-import { connect } from "react-redux";
-import { compose } from "redux";
-import { Field, InjectedFormProps, reduxForm } from "redux-form";
-import { withLoginRedirect } from "../../hoc/withLoginRedirect";
-import { loginUser } from "../../redux/authReducer";
-import { StateType } from "../../redux/redux-store";
-import { requiredField } from "../../utils/validators";
-import { Input } from "../common/FormControl/FormControl";
-import styles from "./Login.module.css";
+import { Formik, Form, Field } from 'formik';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import * as yup from 'yup';
+import { withLoginRedirect } from '../../hoc/withLoginRedirect';
+import { loginUser } from '../../redux/authReducer';
+import styles from './Login.module.css';
 
-type formDataType = {
-	email: string;
-	password: string;
-	rememberMe: boolean;
-};
+interface validateError {
+	email?: string;
+	password?: string;
+}
 
-type LoginType = {
-	loginUser: (email: string, password: string, rememberMe: boolean) => void;
-};
+interface loginValidation {
+	email: string | undefined;
+	password: string | undefined;
+}
 
-const LoginForm: React.FC<InjectedFormProps<formDataType>> = (props) => {
-	return (
-		<form onSubmit={props.handleSubmit} className={styles.form}>
-			<div className={styles.login_box}>
-				<Field
-					className={styles.field}
-					placeholder={"Email"}
-					name={"email"}
-					component={Input}
-					validate={[requiredField]}
-					type="text"
-				/>
-			</div>
-			<div className={styles.login_box}>
-				<Field
-					className={styles.field}
-					placeholder={"Password"}
-					name={"password"}
-					component={Input}
-					validate={[requiredField]}
-					type="password"
-				/>
-			</div>
-			<div className={styles.checkbox}>
-				<div className={styles.checkbox__item}>
-					<Field type={"checkbox"} name={"rememberMe"} component={"input"} />{" "}
-					remember me
-				</div>
-			</div>
-			<div className={styles.container__btn}>
-				<button className={styles.btn}>Login</button>
-			</div>
-		</form>
-	);
-};
-
-const LoginReduxForm = reduxForm<formDataType>({ form: "login" })(LoginForm);
-
-const Login: React.FC<LoginType> = (props) => {
-	const onSubmit = (formData: formDataType) => {
-		props.loginUser(formData.email, formData.password, formData.rememberMe);
-	};
+const Login = (props: any) => {
+	const validationSchema = yup.object().shape({
+		email: yup
+			.string()
+			.email('please enter a valid email')
+			.required('✘ the field is empty'),
+		password: yup.string().required('✘ the field is empty!'),
+	});
 
 	return (
 		<div className={styles.container}>
 			<h2 className={styles.auth}>authorization</h2>
-			<LoginReduxForm onSubmit={onSubmit} />
+			<Formik
+				initialValues={{ email: '', password: '' }}
+				onSubmit={(values: any, onSubmitProps) => {
+					setTimeout(() => {
+						props.loginUser(
+							values.email,
+							values.password,
+							values.rememberMe,
+							onSubmitProps.setStatus,
+							onSubmitProps.setSubmitting
+						);
+						onSubmitProps.setSubmitting(true);
+					}, 400);
+				}}
+				validationSchema={validationSchema}
+			>
+				{({
+					values,
+					errors,
+					touched,
+					handleChange,
+					handleBlur,
+					handleSubmit,
+					isSubmitting,
+					status,
+				}) => (
+					<Form className={styles.form}>
+						<div className={styles.login_box}>
+							<Field
+								className={
+									touched.email && errors.email
+										? styles.field + ' ' + styles.errorField
+										: styles.field
+								}
+								type="email"
+								name="email"
+							/>
+							<div className={styles.error}>
+								{touched.email && errors.email}
+							</div>
+						</div>
+						<div className={styles.login_box}>
+							<Field
+								className={
+									touched.password && errors.password
+										? styles.field + ' ' + styles.errorField
+										: styles.field
+								}
+								type="password"
+								name="password"
+							/>
+							<div className={styles.error}>
+								{touched.password && errors.password}
+								{status}
+							</div>
+						</div>
+						<div className={styles.checkbox}>
+							<div className={styles.checkbox__item}>
+								<Field type="checkbox" name="rememberMe" />
+								Remember me
+							</div>
+						</div>
+						<div className={styles.container__btn}>
+							<button
+								className={styles.btn}
+								type="submit"
+								disabled={isSubmitting}
+							>
+								Submit
+							</button>
+						</div>
+					</Form>
+				)}
+			</Formik>
 		</div>
 	);
 };

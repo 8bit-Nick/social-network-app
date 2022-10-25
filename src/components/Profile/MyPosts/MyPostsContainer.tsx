@@ -1,7 +1,7 @@
-import MyPosts from "./MyPosts";
-import { addPostActionCreator } from "../../../redux/profileReducer";
-import { connect } from "react-redux";
-import { DispatchType, StateType } from "../../../redux/redux-store";
+import MyPosts from './MyPosts';
+import { addPostActionCreator } from '../../../redux/profileReducer';
+import { connect } from 'react-redux';
+import { DispatchType, StateType } from '../../../redux/redux-store';
 
 const mapStateToProps = (state: StateType) => {
 	return {

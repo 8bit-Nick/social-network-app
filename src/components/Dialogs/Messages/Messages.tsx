@@ -1,8 +1,6 @@
-import React from "react";
-import classes from "./Messages.module.css";
-import { Field, reduxForm } from "redux-form";
-import { Textarea } from "../../common/FormControl/FormControl";
-import { requiredField } from "../../../utils/validators";
+import React from 'react';
+import styles from './Messages.module.css';
+import MyTextarea from '../../common/MyTextarea/MyTextarea';
 
 type MessagesPropsType = {
 	messagesData: Array<{ id: number; message: string }>;
@@ -10,37 +8,17 @@ type MessagesPropsType = {
 };
 export const Messages: React.FC<MessagesPropsType> = (props) => {
 	const messagesElements = props.messagesData.map((el) => (
-		<div className={classes.item} key={el.id}>
+		<div className={styles.messageItem} key={el.id}>
 			{el.message}
 		</div>
 	));
 
-	const newMessage = (value: any) => {
-		props.addNewMessage(value.messageBody);
-		value.messageBody = "";
-	};
-
 	return (
-		<div className={classes.dialogsMessages}>
-			<div className={classes.messagesBlock}>{messagesElements}</div>
-			<ReduxMessageFrom onSubmit={newMessage} />
+		<div className={styles.container}>
+			<div className={styles.messagesBlock}>{messagesElements}</div>
+			<div>
+				<MyTextarea submitForm={props.addNewMessage} />
+			</div>
 		</div>
 	);
 };
-
-const MessageForm = (props: any) => {
-	return (
-		<form onSubmit={props.handleSubmit}>
-			<Field
-				component={Textarea}
-				validate={[requiredField]}
-				name="messageBody"
-				placeholder={"Your message..."}
-				className={classes.inputPost}
-			/>
-			<button className={classes.inputButton}>SEND MESSAGE</button>
-		</form>
-	);
-};
-
-const ReduxMessageFrom = reduxForm({ form: "messageForm" })(MessageForm);

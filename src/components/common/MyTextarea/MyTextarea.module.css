@@ -1,0 +1,26 @@
+.myTextarea {
+	width: 500px;
+	height: 84px;
+	font-family: Roboto, sans-serif;
+	font-size: 18px;
+	padding: 5px;
+}
+
+.error {
+	height: 26px;
+	color: red;
+	font-size: 20px;
+}
+
+.errorField {
+	border: 1px solid red;
+}
+
+.button {
+	width: 150px;
+	height: 35px;
+	font-size: 18px;
+	padding: 5px;
+	margin-top: 5px;
+	display: block;
+}
