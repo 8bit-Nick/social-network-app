@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: flex-end;
+}
+
+.message {
+  width: fit-content;
+  height: fit-content;
+  background: rgb(249, 249, 249);
+  border: 1px solid rgb(185, 185, 185);
+  border-radius: 15px 15px 15px 0;
+  padding: 10px;
+}
+
+.avatar {
+  height: 60px;
+  margin-right: 10px;
+}
+
+.avatar__img {
+  width: 60px;
+  height: 60px;
+}
+
+.message__like {
+  display: flex;
+  align-items: center;
+}
+
+.heart {
+  color: rgb(235, 100, 100);
+  padding-right: 5px;
+}
+
+.heartZero {
+  color: rgb(192, 189, 189);
+  padding-right: 5px;
+}
+
+.likesCount {
+  font-size: 18px;
+}
