@@ -1,8 +1,9 @@
 import React from 'react';
-import styles from './MyPosts.module.css';
-import Post from './Post/Post';
-import MyTextarea from '../../common/MyTextarea/MyTextarea';
+
 import avatar from '../../../img/avatar.png';
+import MyTextarea from '../../common/MyTextarea/MyTextarea';
+import styles from './ProfilePosts.module.css';
+import Post from './Post/Post';
 
 type MyPostsPropsType = {
   postsData: Array<{ id: number; post: string; likes: number }>;

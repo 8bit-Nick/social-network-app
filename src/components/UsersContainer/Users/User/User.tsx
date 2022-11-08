@@ -6,7 +6,7 @@ import {
   followThunkCreator,
   unfollowThunkCreator,
 } from '../../../../redux/usersReducer';
-import { getFollowingInProcess } from '../../../../redux/usersSelectors';
+import { getFollowingInProcess } from '../../../../redux/selectors/usersSelectors';
 import classes from './User.module.css';
 
 type UsersPropsType = {

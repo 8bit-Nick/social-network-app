@@ -1,4 +1,4 @@
-import { StateType } from './redux-store';
+import { StateType } from '../redux-store';
 
 export const getUsers = (state: StateType) => {
   return state.usersPage.users;

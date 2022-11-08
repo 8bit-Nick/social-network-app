@@ -9,7 +9,7 @@ import {
   getCountItems,
   getSelectPage,
   getTotalCount,
-} from '../../../redux/usersSelectors';
+} from '../../../redux/selectors/usersSelectors';
 
 interface IPagination {
   stylePage: string;

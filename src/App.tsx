@@ -12,7 +12,7 @@ import Login from './components/Login/Login';
 import Music from './components/Music/Music';
 import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
-import ProfileContainer from './components/Profile/ProfileContainer';
+import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
 import Users from './components/UsersContainer/Users/Users';
 import { initializeApp } from './redux/appReducer';
@@ -39,7 +39,7 @@ const App: React.FC<AppPropsType> = (props) => {
       <Navbar />
       <div className="app-wrapper-content">
         <Routes>
-          <Route path="/profile/:userId" element={<ProfileContainer />} />
+          <Route path="/profile/:userId" element={<Profile />} />
           <Route path="/messages" element={<DialogsContainer />} />
           <Route path="/users" element={<Users />} />
           <Route path="/login" element={<Login />} />

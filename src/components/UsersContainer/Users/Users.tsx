@@ -8,7 +8,7 @@ import {
   getIsFetching,
   getSelectPage,
   getUsers,
-} from '../../../redux/usersSelectors';
+} from '../../../redux/selectors/usersSelectors';
 import { Pagination } from '../../common/Pagination/Pagination';
 import Preloader from '../../common/Preloader/Preloader';
 import User from './User/User';

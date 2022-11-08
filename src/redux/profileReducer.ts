@@ -97,7 +97,7 @@ const setUserProfileStatus = (status: string) =>
   ({ type: SET_USER_PROFILE_STATUS, status } as const);
 
 // Thunk Creators
-export const getUserProfile = (userId: number) => {
+export const getUserProfile = (userId: string | undefined) => {
   return (dispatch: DispatchType) => {
     usersAPI.getProfile(userId).then((data: any) => {
       dispatch(setUserProfile(data));
@@ -105,7 +105,7 @@ export const getUserProfile = (userId: number) => {
   };
 };
 
-export const getUserProfileStatus = (userId: number) => {
+export const getUserProfileStatus = (userId: string | undefined) => {
   return (dispatch: DispatchType) => {
     profileAPI.getStatus(userId).then((data: string) => {
       dispatch(setUserProfileStatus(data));
@@ -113,9 +113,9 @@ export const getUserProfileStatus = (userId: number) => {
   };
 };
 
-export const putUserProfileStatus = (status: string) => {
+export const updateUserProfileStatus = (status: string) => {
   return (dispatch: DispatchType) => {
-    profileAPI.putStatus(status).then((data: string) => {
+    profileAPI.putStatus(status).then(() => {
       dispatch(setUserProfileStatus(status));
     });
   };

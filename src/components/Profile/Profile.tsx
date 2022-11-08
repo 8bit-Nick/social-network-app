@@ -1,23 +1,41 @@
-import React from "react";
-import classes from "./Profile.module.css";
-import UserInfo from "./UserInfo/UserInfo";
-import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import { userProfile } from "../../types/profileTypes";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-type ProfilePropsType = {
-	setUserProfile: (profile: userProfile) => void;
-	profile: userProfile;
-	userProfileStatus: string;
-	putUserProfileStatus: (status: string) => void;
-};
+import {
+  getUserProfile,
+  getUserProfileStatus,
+} from '../../redux/profileReducer';
+import {
+  getProfile,
+  getProfileStatus,
+} from '../../redux/selectors/profileSelectors';
+import classes from './Profile.module.css';
+import MyPostsContainer from './ProfilePosts/MyPostsContainer';
+import ProfileUserInfo from './ProfileUserInfo/ProfileUserInfo';
 
-const Profile: React.FC<ProfilePropsType> = (props) => {
-	return (
-		<div className={classes.profile}>
-			<UserInfo {...props} />
-			<MyPostsContainer />
-		</div>
-	);
+const Profile = () => {
+  const profile = useSelector(getProfile);
+  const userProfileStatus = useSelector(getProfileStatus);
+
+  const dispatch = useDispatch();
+
+  const { userId } = useParams();
+
+  useEffect(() => {
+    dispatch(getUserProfile(userId));
+    dispatch(getUserProfileStatus(userId));
+  }, []);
+
+  return (
+    <div className={classes.profile}>
+      <ProfileUserInfo
+        profile={profile}
+        userProfileStatus={userProfileStatus}
+      />
+      <MyPostsContainer />
+    </div>
+  );
 };
 
 export default Profile;
