@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   getUsersThunkCreator,
   setPageSelect,
-} from '../../../redux/usersReducer';
+} from '../../../redux/usersReducer/usersReducer';
 import {
   getCountItems,
   getSelectPage,

@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import {
   followThunkCreator,
   unfollowThunkCreator,
-} from '../../../../redux/usersReducer';
+} from '../../../../redux/usersReducer/usersReducer';
 import { getFollowingInProcess } from '../../../../redux/selectors/usersSelectors';
 import classes from './User.module.css';
 

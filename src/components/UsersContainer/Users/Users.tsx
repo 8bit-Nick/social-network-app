@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import userLogo from '../../../img/userlogo.png';
-import { getUsersThunkCreator } from '../../../redux/usersReducer';
+import { getUsersThunkCreator } from '../../../redux/usersReducer/usersReducer';
 import {
   getCountItems,
   getIsFetching,
