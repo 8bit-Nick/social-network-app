@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 import {
   getUserProfile,
   getUserProfileStatus,
-} from '../../redux/profileReducer';
+} from "../../redux/profileReducer";
 import {
   getProfile,
   getProfileStatus,
-} from '../../redux/selectors/profileSelectors';
-import classes from './Profile.module.css';
-import MyPostsContainer from './ProfilePosts/MyPostsContainer';
-import ProfileUserInfo from './ProfileUserInfo/ProfileUserInfo';
+} from "../../redux/selectors/profileSelectors";
+import classes from "./Profile.module.css";
+import MyPostsContainer from "./ProfilePosts/MyPostsContainer";
+import ProfileUserInfo from "./ProfileUserInfo/ProfileUserInfo";
 
 const Profile = () => {
   const profile = useSelector(getProfile);

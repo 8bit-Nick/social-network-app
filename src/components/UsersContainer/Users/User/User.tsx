@@ -2,11 +2,11 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
+import { getFollowingInProcess } from '../../../../redux/selectors/usersSelectors';
 import {
   followThunkCreator,
   unfollowThunkCreator,
-} from '../../../../redux/usersReducer/usersReducer';
-import { getFollowingInProcess } from '../../../../redux/selectors/usersSelectors';
+} from '../../../../redux/usersReducer';
 import classes from './User.module.css';
 
 type UsersPropsType = {
@@ -47,7 +47,9 @@ const User: React.FC<UsersPropsType> = (props) => {
       <div className={classes.userBtn}>
         {props.followed ? (
           <button
-            disabled={followingInProcess.some((id) => id === props.userId)}
+            disabled={followingInProcess.some(
+              (id: number) => id === props.userId
+            )}
             onClick={() => {
               dispatch(unfollowThunkCreator(props.userId));
             }}
@@ -56,7 +58,9 @@ const User: React.FC<UsersPropsType> = (props) => {
           </button>
         ) : (
           <button
-            disabled={followingInProcess.some((id) => id === props.userId)}
+            disabled={followingInProcess.some(
+              (id: number) => id === props.userId
+            )}
             onClick={() => {
               dispatch(followThunkCreator(props.userId));
             }}

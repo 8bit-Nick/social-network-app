@@ -1,7 +1,8 @@
-import MyPosts from './ProfilePosts';
-import { addPostActionCreator } from '../../../redux/profileReducer';
 import { connect } from 'react-redux';
-import { DispatchType, StateType } from '../../../redux/redux-store';
+
+import { addProfilePost } from '../../../redux/profileReducer';
+import { StateType } from '../../../redux/redux-store';
+import MyPosts from './ProfilePosts';
 
 const mapStateToProps = (state: StateType) => {
   return {
@@ -11,7 +12,7 @@ const mapStateToProps = (state: StateType) => {
 const mapDispatchToProps = (dispatch: any) => {
   return {
     addPost: (newMessage: string) => {
-      dispatch(addPostActionCreator(newMessage));
+      dispatch(addProfilePost(newMessage));
     },
   };
 };

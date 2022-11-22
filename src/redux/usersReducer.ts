@@ -1,13 +1,13 @@
-import { usersAPI } from '../../api/api';
-import { DispatchType } from '../redux-store';
+import { usersAPI } from "../api/api";
+import { DispatchType } from "./redux-store";
 
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET_USERS';
-const SET_PAGE_SELECT = 'SET_PAGE_SELECT';
-const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
-const TOGGLE_FOLLOWING = 'TOGGLE_FOLLOWING';
+const FOLLOW = "FOLLOW";
+const UNFOLLOW = "UNFOLLOW";
+const SET_USERS = "SET_USERS";
+const SET_PAGE_SELECT = "SET_PAGE_SELECT";
+const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
+const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
+const TOGGLE_FOLLOWING = "TOGGLE_FOLLOWING";
 
 export type initialStateType = {
   users: userType[];

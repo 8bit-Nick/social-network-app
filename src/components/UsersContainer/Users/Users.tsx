@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import userLogo from '../../../img/userlogo.png';
-import { getUsersThunkCreator } from '../../../redux/usersReducer/usersReducer';
+
 import {
   getCountItems,
   getIsFetching,
   getSelectPage,
   getUsers,
 } from '../../../redux/selectors/usersSelectors';
+import { getUsersThunkCreator, userType } from '../../../redux/usersReducer';
 import { Pagination } from '../../common/Pagination/Pagination';
 import Preloader from '../../common/Preloader/Preloader';
 import User from './User/User';
@@ -26,7 +27,7 @@ const Users = () => {
     dispatch(getUsersThunkCreator(selectPage, countItems));
   }, []);
 
-  const addUsers = users.map((el) => (
+  const addUsers = users.map((el: userType) => (
     <User
       key={el.id}
       fullName={el.name}

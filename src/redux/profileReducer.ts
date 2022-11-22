@@ -83,17 +83,17 @@ type ActionsTypes =
   | AddPostActionType
   | setUserProfileType
   | setUserProfileStatusType;
-type AddPostActionType = ReturnType<typeof addPostActionCreator>;
+type AddPostActionType = ReturnType<typeof addProfilePost>;
 type setUserProfileType = ReturnType<typeof setUserProfile>;
 type setUserProfileStatusType = ReturnType<typeof setUserProfileStatus>;
 
-export const addPostActionCreator = (newMessage: string) =>
+export const addProfilePost = (newMessage: string) =>
   ({ type: ADD_POST, newMessage } as const);
 
-const setUserProfile = (profile: userProfile) =>
+export const setUserProfile = (profile: userProfile) =>
   ({ type: SET_USER_PROFILE, profile } as const);
 
-const setUserProfileStatus = (status: string) =>
+export const setUserProfileStatus = (status: string) =>
   ({ type: SET_USER_PROFILE_STATUS, status } as const);
 
 // Thunk Creators

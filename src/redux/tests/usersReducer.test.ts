@@ -8,7 +8,7 @@ import usersReducer, {
   toggleIsFetching,
   unfollow,
   userType,
-} from './usersReducer';
+} from '../usersReducer';
 
 let state: initialStateType;
 let newUsers: userType[];

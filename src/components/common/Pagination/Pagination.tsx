@@ -2,14 +2,14 @@ import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
-  getUsersThunkCreator,
-  setPageSelect,
-} from '../../../redux/usersReducer/usersReducer';
-import {
   getCountItems,
   getSelectPage,
   getTotalCount,
 } from '../../../redux/selectors/usersSelectors';
+import {
+  getUsersThunkCreator,
+  setPageSelect,
+} from '../../../redux/usersReducer';
 
 interface IPagination {
   stylePage: string;

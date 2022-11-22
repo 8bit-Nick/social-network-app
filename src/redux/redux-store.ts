@@ -1,10 +1,11 @@
-import profileReducer from './profileReducer';
-import dialogsReducer from './dialogsReducer';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
-import usersReducer from './usersReducer/usersReducer';
-import authReducer from './authReducer';
 import thunk from 'redux-thunk';
+
 import appReducer from './appReducer';
+import authReducer from './authReducer';
+import dialogsReducer from './dialogsReducer';
+import profileReducer from './profileReducer';
+import usersReducer from './usersReducer';
 
 const rootReducer = combineReducers({
   profilePage: profileReducer,
