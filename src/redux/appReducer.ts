@@ -1,6 +1,4 @@
-import { authAPI } from '../api/api';
 import { authMe } from './authReducer';
-import { DispatchType } from './redux-store';
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
