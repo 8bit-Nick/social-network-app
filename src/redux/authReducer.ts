@@ -51,42 +51,30 @@ export const setAuthUserData = (
 
 // Thunk Creators
 
-export const authMe = () => {
-  return (dispatch: DispatchType) => {
-    return authAPI.me().then((data: any) => {
-      if (data.resultCode === 0) {
-        const { id, email, login } = data.data;
-        dispatch(setAuthUserData(id, email, login, true));
-      }
-    });
-  };
+export const authMe = () => async (dispatch: DispatchType) => {
+  const data = await authAPI.me();
+  if (data.resultCode === 0) {
+    const { id, email, login } = data.data;
+    dispatch(setAuthUserData(id, email, login, true));
+  }
 };
 
-export const loginUser = (
-  email: string,
-  password: string,
-  rememberMe: boolean,
-  setStatus: any
-) => {
-  return (dispatch: any) => {
-    authAPI.login(email, password, rememberMe).then((data: any) => {
-      if (data.resultCode === 0) {
-        dispatch(authMe());
-      } else {
-        setStatus(data.messages);
-      }
-    });
+export const loginUser =
+  (email: string, password: string, rememberMe: boolean, setStatus: any) =>
+  async (dispatch: any) => {
+    const data = await authAPI.login(email, password, rememberMe);
+    if (data.resultCode === 0) {
+      dispatch(authMe());
+    } else {
+      setStatus(data.messages);
+    }
   };
-};
 
-export const logoutUser = () => {
-  return (dispatch: any) => {
-    authAPI.logout().then((data: any) => {
-      if (data.resultCode === 0) {
-        dispatch(setAuthUserData(null, null, null, false));
-      }
-    });
-  };
+export const logoutUser = () => async (dispatch: any) => {
+  const data = await authAPI.logout();
+  if (data.resultCode === 0) {
+    dispatch(setAuthUserData(null, null, null, false));
+  }
 };
 
 export default authReducer;

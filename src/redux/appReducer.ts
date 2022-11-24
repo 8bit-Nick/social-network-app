@@ -26,10 +26,9 @@ const appReducer = (state: authType = initial, action: any): authType => {
 export const initializedSuccess = () => ({ type: INITIALIZED_SUCCESS });
 
 // Thunk Creators
-export const initializeApp = () => (dispatch: any) => {
-  dispatch(authMe()).then(() => {
-    dispatch(initializedSuccess());
-  });
+export const initializeApp = () => async (dispatch: any) => {
+  await dispatch(authMe());
+  dispatch(initializedSuccess());
 };
 
 export default appReducer;

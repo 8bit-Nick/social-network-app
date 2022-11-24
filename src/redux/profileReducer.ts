@@ -97,28 +97,22 @@ export const setUserProfileStatus = (status: string) =>
   ({ type: SET_USER_PROFILE_STATUS, status } as const);
 
 // Thunk Creators
-export const getUserProfile = (userId: string | undefined) => {
-  return (dispatch: DispatchType) => {
-    usersAPI.getProfile(userId).then((data: any) => {
-      dispatch(setUserProfile(data));
-    });
+export const getUserProfile =
+  (userId: string | undefined) => async (dispatch: DispatchType) => {
+    const data = await usersAPI.getProfile(userId);
+    dispatch(setUserProfile(data));
   };
-};
 
-export const getUserProfileStatus = (userId: string | undefined) => {
-  return (dispatch: DispatchType) => {
-    profileAPI.getStatus(userId).then((data: string) => {
-      dispatch(setUserProfileStatus(data));
-    });
+export const getUserProfileStatus =
+  (userId: string | undefined) => async (dispatch: DispatchType) => {
+    const data = await profileAPI.getStatus(userId);
+    dispatch(setUserProfileStatus(data));
   };
-};
 
-export const updateUserProfileStatus = (status: string) => {
-  return (dispatch: DispatchType) => {
-    profileAPI.putStatus(status).then(() => {
-      dispatch(setUserProfileStatus(status));
-    });
+export const updateUserProfileStatus =
+  (status: string) => async (dispatch: DispatchType) => {
+    await profileAPI.putStatus(status);
+    dispatch(setUserProfileStatus(status));
   };
-};
 
 export default profileReducer;

@@ -9,19 +9,20 @@ const instance = axios.create({
 });
 
 export const usersAPI: any = {
-  getUsers(selectPage: number, countItems: number) {
-    return instance
-      .get(`users?page=${selectPage}&count=${countItems}`)
-      .then((response) => response.data);
+  async getUsers(selectPage: number, countItems: number) {
+    const response = await instance.get(
+      `users?page=${selectPage}&count=${countItems}`
+    );
+    return response.data;
   },
-  follow(userId: number) {
-    return instance.post(`follow/${userId}`).then((response) => response.data);
+  async follow(userId: number) {
+    const response = await instance.post(`follow/${userId}`);
+    return response.data;
   },
 
-  unfollow(userId: number) {
-    return instance
-      .delete(`follow/${userId}`)
-      .then((response) => response.data);
+  async unfollow(userId: number) {
+    const response = await instance.delete(`follow/${userId}`);
+    return response.data;
   },
 
   getProfile(userId: number) {
@@ -31,33 +32,38 @@ export const usersAPI: any = {
 };
 
 export const profileAPI: any = {
-  getProfile(userId: number) {
-    return instance.get(`profile/${userId}`).then((response) => response.data);
+  async getProfile(userId: number) {
+    const response = await instance.get(`profile/${userId}`);
+    return response.data;
   },
 
-  getStatus(userId: number) {
-    return instance
-      .get(`profile/status/${userId}`)
-      .then((response) => response.data);
+  async getStatus(userId: number) {
+    const response = await instance.get(`profile/status/${userId}`);
+    return response.data;
   },
 
-  putStatus(status: string) {
-    return instance.put(`profile/status/`, { status });
+  async putStatus(status: string) {
+    return await instance.put(`profile/status/`, { status });
   },
 };
 
 export const authAPI: any = {
-  me() {
-    return instance.get(`auth/me`).then((response) => response.data);
+  async me() {
+    const response = await instance.get(`auth/me`);
+    return response.data;
   },
 
-  login(email: string, password: string, rememberMe: boolean) {
-    return instance
-      .post(`auth/login`, { email, password, rememberMe })
-      .then((response) => response.data);
+  async login(email: string, password: string, rememberMe: boolean) {
+    const response = await instance.post(`auth/login`, {
+      email,
+      password,
+      rememberMe,
+    });
+    return response.data;
   },
 
-  logout() {
-    return instance.delete(`auth/login`).then((response) => response.data);
+  async logout() {
+    const response = await instance.delete(`auth/login`);
+    return response.data;
   },
 };

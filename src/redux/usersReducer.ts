@@ -1,13 +1,13 @@
-import { usersAPI } from "../api/api";
-import { DispatchType } from "./redux-store";
+import { usersAPI } from '../api/api';
+import { DispatchType } from './redux-store';
 
-const FOLLOW = "FOLLOW";
-const UNFOLLOW = "UNFOLLOW";
-const SET_USERS = "SET_USERS";
-const SET_PAGE_SELECT = "SET_PAGE_SELECT";
-const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
-const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
-const TOGGLE_FOLLOWING = "TOGGLE_FOLLOWING";
+const FOLLOW = 'FOLLOW';
+const UNFOLLOW = 'UNFOLLOW';
+const SET_USERS = 'SET_USERS';
+const SET_PAGE_SELECT = 'SET_PAGE_SELECT';
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const TOGGLE_FOLLOWING = 'TOGGLE_FOLLOWING';
 
 export type initialStateType = {
   users: userType[];
@@ -126,48 +126,35 @@ export const toggleIsFetching = (isFetching: boolean) =>
 export const toggleFollowing = (isFollowing: boolean, userId: number) =>
   ({ type: TOGGLE_FOLLOWING, isFollowing, userId } as const);
 
-type usersDataType = {
-  error: string | null;
-  items: any;
-  totalCount: number;
-};
-
-export const getUsersThunkCreator = (
-  selectPage: number,
-  countItems: number
-) => {
-  return (dispatch: DispatchType) => {
+export const getUsersThunkCreator =
+  (selectPage: number, countItems: number) =>
+  async (dispatch: DispatchType) => {
     dispatch(toggleIsFetching(true));
-    usersAPI.getUsers(selectPage, countItems).then((data: usersDataType) => {
-      dispatch(toggleIsFetching(false));
-      dispatch(setUsers(data.items));
-      dispatch(setTotalUsersCount(data.totalCount));
-    });
+    const data = await usersAPI.getUsers(selectPage, countItems);
+    dispatch(toggleIsFetching(false));
+    dispatch(setUsers(data.items));
+    dispatch(setTotalUsersCount(data.totalCount));
   };
-};
 
-export const followThunkCreator = (userId: number) => {
-  return (dispatch: DispatchType) => {
+export const followThunkCreator =
+  (userId: number) => async (dispatch: DispatchType) => {
     dispatch(toggleFollowing(true, userId));
-    usersAPI.follow(userId).then((data: any) => {
-      if (data.resultCode === 0) {
-        dispatch(follow(userId));
-      }
-      dispatch(toggleFollowing(false, userId));
-    });
+    const data = await usersAPI.follow(userId);
+    if (data.resultCode === 0) {
+      dispatch(follow(userId));
+    }
+    dispatch(toggleFollowing(false, userId));
   };
-};
 
-export const unfollowThunkCreator = (userId: number) => {
-  return (dispatch: DispatchType) => {
+export const unfollowThunkCreator =
+  (userId: number) => async (dispatch: DispatchType) => {
     dispatch(toggleFollowing(true, userId));
-    usersAPI.unfollow(userId).then((data: any) => {
-      if (data.resultCode === 0) {
-        dispatch(unfollow(userId));
-      }
-      dispatch(toggleFollowing(false, userId));
-    });
+    const data = await usersAPI.unfollow(userId);
+
+    if (data.resultCode === 0) {
+      dispatch(unfollow(userId));
+    }
+    dispatch(toggleFollowing(false, userId));
   };
-};
 
 export default usersReducer;
