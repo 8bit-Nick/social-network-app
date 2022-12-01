@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import { getFollowingInProcess } from '../../../../redux/selectors/usersSelectors';
-import {
-  followThunkCreator,
-  unfollowThunkCreator,
-} from '../../../../redux/usersReducer';
+import { followTC, unfollowTC } from '../../../../redux/usersReducer';
 import classes from './User.module.css';
 
 type UsersPropsType = {
@@ -51,7 +48,7 @@ const User: React.FC<UsersPropsType> = (props) => {
               (id: number) => id === props.userId
             )}
             onClick={() => {
-              dispatch(unfollowThunkCreator(props.userId));
+              dispatch(unfollowTC(props.userId));
             }}
           >
             UNFOLLOWED
@@ -62,7 +59,7 @@ const User: React.FC<UsersPropsType> = (props) => {
               (id: number) => id === props.userId
             )}
             onClick={() => {
-              dispatch(followThunkCreator(props.userId));
+              dispatch(followTC(props.userId));
             }}
           >
             FOLLOWED

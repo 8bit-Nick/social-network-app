@@ -6,10 +6,7 @@ import {
   getSelectPage,
   getTotalCount,
 } from '../../../redux/selectors/usersSelectors';
-import {
-  getUsersThunkCreator,
-  setPageSelect,
-} from '../../../redux/usersReducer';
+import { getUsersTC, setPageSelectAC } from '../../../redux/usersReducer';
 
 interface IPagination {
   stylePage: string;
@@ -27,8 +24,8 @@ export const Pagination: FC<IPagination> = (props) => {
   const pages: number[] = [];
 
   const onSelectPage = (pageNumber: number) => {
-    dispatch(setPageSelect(pageNumber));
-    dispatch(getUsersThunkCreator(pageNumber, countItems));
+    dispatch(setPageSelectAC(pageNumber));
+    dispatch(getUsersTC(pageNumber, countItems));
   };
 
   for (let i = 0; i < pagesCount; i++) {
