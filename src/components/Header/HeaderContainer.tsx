@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { authAPI } from '../../api/api';
-import { authMe, logoutUser } from '../../redux/authReducer';
-import { StateType } from '../../redux/redux-store';
+import { authMe, logoutUser } from '../../store/authReducer';
+import { AppRootState } from '../../store/store';
 import Header from './Header';
 
 type HeaderContainerTypes = {
@@ -28,7 +28,7 @@ const HeaderContainer: React.FC<HeaderContainerTypes> = (props) => {
   );
 };
 
-const mapStateToProps = (state: StateType) => ({
+const mapStateToProps = (state: AppRootState) => ({
   isAuth: state.auth.isAuth,
   login: state.auth.login,
 });

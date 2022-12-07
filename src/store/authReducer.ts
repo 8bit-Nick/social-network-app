@@ -1,5 +1,5 @@
 import { authAPI } from '../api/api';
-import { DispatchType } from './redux-store';
+import { AppDispatch } from './store';
 
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
 
@@ -51,7 +51,7 @@ export const setAuthUserData = (
 
 // Thunk Creators
 
-export const authMe = () => async (dispatch: DispatchType) => {
+export const authMe = () => async (dispatch: AppDispatch) => {
   const data = await authAPI.me();
   if (data.resultCode === 0) {
     const { id, email, login } = data.data;

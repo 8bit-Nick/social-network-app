@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { updateUserProfileStatus } from '../../../redux/profileReducer';
+import { updateUserProfileStatus } from '../../../store/profileReducer';
 import { userProfile } from '../../../types/profileTypes';
 import Preloader from '../../common/Preloader/Preloader';
 import Avatar from './Avatar/Avatar';

@@ -1,26 +1,26 @@
-import { connect } from "react-redux";
-import { Navigate } from "react-router-dom";
-import { StateType } from "../redux/redux-store";
+import { connect } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import { AppRootState } from '../store/store';
 
 type mstpType = {
-	id: number | null;
+  id: number | null;
 };
 
-const mstp = (state: StateType): mstpType => {
-	return {
-		id: state.auth.id,
-	};
+const mstp = (state: AppRootState): mstpType => {
+  return {
+    id: state.auth.id,
+  };
 };
 
 export function withLoginRedirect<T extends object>(
-	Component: React.ComponentType<T>
+  Component: React.ComponentType<T>
 ) {
-	const RedirectComponent: React.FC<mstpType> = (props) => {
-		let { id, ...restProps } = props;
+  const RedirectComponent: React.FC<mstpType> = (props) => {
+    let { id, ...restProps } = props;
 
-		if (id) return <Navigate to={`/profile/${id}`} />;
-		return <Component {...(restProps as T)} />;
-	};
+    if (id) return <Navigate to={`/profile/${id}`} />;
+    return <Component {...(restProps as T)} />;
+  };
 
-	return connect(mstp)(RedirectComponent);
+  return connect(mstp)(RedirectComponent);
 }

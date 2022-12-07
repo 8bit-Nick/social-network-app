@@ -1,6 +1,6 @@
-import { userProfile } from './../types/profileTypes';
+import { userProfile } from '../types/profileTypes';
 import { ProfileType } from '../types/profileTypes';
-import { DispatchType } from './redux-store';
+import { AppDispatch } from './store';
 import { profileAPI, usersAPI } from '../api/api';
 
 const ADD_POST = 'ADD_POST';
@@ -98,19 +98,19 @@ export const setUserProfileStatus = (status: string) =>
 
 // Thunk Creators
 export const getUserProfile =
-  (userId: string | undefined) => async (dispatch: DispatchType) => {
+  (userId: string | undefined) => async (dispatch: AppDispatch) => {
     const data = await usersAPI.getProfile(userId);
     dispatch(setUserProfile(data));
   };
 
 export const getUserProfileStatus =
-  (userId: string | undefined) => async (dispatch: DispatchType) => {
+  (userId: string | undefined) => async (dispatch: AppDispatch) => {
     const data = await profileAPI.getStatus(userId);
     dispatch(setUserProfileStatus(data));
   };
 
 export const updateUserProfileStatus =
-  (status: string) => async (dispatch: DispatchType) => {
+  (status: string) => async (dispatch: AppDispatch) => {
     await profileAPI.putStatus(status);
     dispatch(setUserProfileStatus(status));
   };

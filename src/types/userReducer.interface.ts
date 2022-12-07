@@ -1,12 +1,12 @@
 import {
-  followAC,
-  setPageSelectAC,
-  setTotalUsersCountAC,
-  setUsersAC,
-  toggleFollowingAC,
-  toggleIsFetchingAC,
-  unfollowAC,
-} from '../redux/usersReducer';
+  follow,
+  setPageSelect,
+  setTotalUsersCount,
+  setUsers,
+  toggleFollowing,
+  toggleIsFetching,
+  unfollow,
+} from './../store/reducers/usersSlice';
 
 export interface IUser {
   id: number;
@@ -20,7 +20,7 @@ export interface IUser {
   };
 }
 
-export interface IState {
+export interface IUserState {
   users: IUser[];
   totalUsersCount: number;
   countItems: number;
@@ -30,21 +30,19 @@ export interface IState {
 }
 
 export type ActionsTypes =
-  | followACType
-  | unfollowACType
-  | setUsersACType
-  | setPageSelectACType
-  | setTotalUsersCountACType
-  | toggleIsFetchingACType
-  | toggleFollowingACType;
-type followACType = ReturnType<typeof followAC>;
-type unfollowACType = ReturnType<typeof unfollowAC>;
-type setUsersACType = ReturnType<typeof setUsersAC>;
-type setPageSelectACType = ReturnType<typeof setPageSelectAC>;
-type setTotalUsersCountACType = ReturnType<typeof setTotalUsersCountAC>;
-type toggleIsFetchingACType = ReturnType<typeof toggleIsFetchingAC>;
-type toggleFollowingACType = ReturnType<typeof toggleFollowingAC>;
+  | followType
+  | unfollowType
+  | setUsersType
+  | setPageSelectType
+  | setTotalUsersCountType
+  | toggleIsFetchingType
+  | toggleFollowingType;
+type followType = typeof follow;
+type unfollowType = typeof unfollow;
+type setUsersType = typeof setUsers;
+type setPageSelectType = typeof setPageSelect;
+type setTotalUsersCountType = typeof setTotalUsersCount;
+type toggleIsFetchingType = typeof toggleIsFetching;
+type toggleFollowingType = typeof toggleFollowing;
 
 export type actionCreatorType = followType | unfollowType;
-type followType = typeof followAC;
-type unfollowType = typeof unfollowAC;

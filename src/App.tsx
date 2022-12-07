@@ -15,8 +15,8 @@ import News from './components/News/News';
 import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
 import Users from './components/UsersContainer/Users/Users';
-import { initializeApp } from './redux/appReducer';
-import { StateType } from './redux/redux-store';
+import { initializeApp } from './store/appReducer';
+import { AppRootState } from './store/store';
 
 type AppPropsType = {
   initializeApp: () => void;
@@ -53,7 +53,7 @@ const App: React.FC<AppPropsType> = (props) => {
   );
 };
 
-const mapStateToProps = (state: StateType) => ({
+const mapStateToProps = (state: AppRootState) => ({
   initialized: state.app.initialized,
   id: state.auth.id,
 });

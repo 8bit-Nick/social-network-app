@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 
-import { addProfilePost } from '../../../redux/profileReducer';
-import { StateType } from '../../../redux/redux-store';
+import { addProfilePost } from '../../../store/profileReducer';
+import { AppRootState } from '../../../store/store';
 import MyPosts from './ProfilePosts';
 
-const mapStateToProps = (state: StateType) => {
+const mapStateToProps = (state: AppRootState) => {
   return {
     postsData: state.profilePage.postsData,
   };

@@ -2,8 +2,11 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import { getFollowingInProcess } from '../../../../redux/selectors/usersSelectors';
-import { followTC, unfollowTC } from '../../../../redux/usersReducer';
+import {
+  followTC,
+  unfollowTC,
+} from '../../../../store/reducers/thunkCreators/usersThunkCreator';
+import { getFollowingInProcess } from '../../../../store/selectors/usersSelectors';
 import classes from './User.module.css';
 
 type UsersPropsType = {

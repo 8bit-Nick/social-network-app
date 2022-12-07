@@ -1,12 +1,13 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { getUsersTC } from '../../../store/reducers/thunkCreators/usersThunkCreator';
+import { setPageSelect } from '../../../store/reducers/usersSlice';
 import {
   getCountItems,
   getSelectPage,
   getTotalCount,
-} from '../../../redux/selectors/usersSelectors';
-import { getUsersTC, setPageSelectAC } from '../../../redux/usersReducer';
+} from '../../../store/selectors/usersSelectors';
 
 interface IPagination {
   stylePage: string;
@@ -24,7 +25,7 @@ export const Pagination: FC<IPagination> = (props) => {
   const pages: number[] = [];
 
   const onSelectPage = (pageNumber: number) => {
-    dispatch(setPageSelectAC(pageNumber));
+    dispatch(setPageSelect(pageNumber));
     dispatch(getUsersTC(pageNumber, countItems));
   };
 

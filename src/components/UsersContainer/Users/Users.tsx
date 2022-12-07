@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
+import { useAppDispatch } from '../../../hooks/redux';
 import userLogo from '../../../img/userlogo.png';
+import { getUsersTC } from '../../../store/reducers/thunkCreators/usersThunkCreator';
 import {
   getCountItems,
   getIsFetching,
   getSelectPage,
   getUsers,
-} from '../../../redux/selectors/usersSelectors';
-import { getUsersTC } from '../../../redux/usersReducer';
+} from '../../../store/selectors/usersSelectors';
 import { IUser } from '../../../types/userReducer.interface';
 import { Pagination } from '../../common/Pagination/Pagination';
 import Preloader from '../../common/Preloader/Preloader';
@@ -16,7 +17,7 @@ import User from './User/User';
 import styles from './Users.module.css';
 
 const Users = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const users = useSelector(getUsers);
   const selectPage = useSelector(getSelectPage);

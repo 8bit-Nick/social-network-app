@@ -1,17 +1,16 @@
+import { IUser, IUserState } from '../../../types/userReducer.interface';
 import usersReducer, {
   follow,
-  initialStateType,
   setPageSelect,
   setTotalUsersCount,
   setUsers,
   toggleFollowing,
   toggleIsFetching,
   unfollow,
-  userType,
-} from '../usersReducer';
+} from '../usersSlice';
 
-let state: initialStateType;
-let newUsers: userType[];
+let state: IUserState;
+let newUsers: IUser[];
 beforeEach(() => {
   newUsers = [
     {
@@ -105,17 +104,26 @@ describe('toggleIsFetching testing', () => {
 
 describe('toggleFollowing testing', () => {
   test('The length of the "followingInProcess" array must be 1', () => {
-    const newState = usersReducer(state, toggleFollowing(true, 1));
+    const newState = usersReducer(
+      state,
+      toggleFollowing({ isFollowing: true, userId: 1 })
+    );
     expect(newState.followingInProcess.length).toBe(1);
   });
 
   test('The id in the "following process" array must be equal to 3', () => {
-    const newState = usersReducer(state, toggleFollowing(true, 3));
+    const newState = usersReducer(
+      state,
+      toggleFollowing({ isFollowing: true, userId: 3 })
+    );
     expect(newState.followingInProcess[0]).toEqual(3);
   });
 
   test('The "followingInProcess" array must be empty', () => {
-    const newState = usersReducer(state, toggleFollowing(false, 2));
+    const newState = usersReducer(
+      state,
+      toggleFollowing({ isFollowing: false, userId: 2 })
+    );
     expect(newState.followingInProcess.length).toBe(0);
   });
 });
