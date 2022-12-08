@@ -1,9 +1,9 @@
 import { AppRootState } from '../store';
 
 export const getProfile = (state: AppRootState) => {
-  return state.profilePage.profile;
+  return state.profile.userProfile;
 };
 
 export const getProfileStatus = (state: AppRootState) => {
-  return state.profilePage.userProfileStatus;
+  return state.profile.userProfileStatus;
 };

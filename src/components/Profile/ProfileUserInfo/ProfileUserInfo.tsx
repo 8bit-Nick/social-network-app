@@ -1,15 +1,15 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { updateUserProfileStatusTC } from '../../../store/reducers/thunkCreators/profileThunkCreator';
 
-import { updateUserProfileStatus } from '../../../store/profileReducer';
-import { userProfile } from '../../../types/profileTypes';
+import { IUserProfile } from '../../../types/profileReducer.interface';
 import Preloader from '../../common/Preloader/Preloader';
 import Avatar from './Avatar/Avatar';
 import classes from './ProfileUserInfo.module.css';
 import UserDescription from './UserDescription/UserDescription';
 
 interface IUserInfo {
-  profile: userProfile;
+  profile: IUserProfile;
   userProfileStatus: string;
 }
 
@@ -29,7 +29,7 @@ const UserInfo: FC<IUserInfo> = (props) => {
 
   const editModeOFF = () => {
     setEditMode(false);
-    dispatch(updateUserProfileStatus(inputStatus));
+    dispatch(updateUserProfileStatusTC(inputStatus));
   };
 
   const changeInputStatus = (e: ChangeEvent<HTMLInputElement>) => {

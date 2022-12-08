@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-
 import {
-  getUserProfile,
-  getUserProfileStatus,
-} from '../../store/profileReducer';
+  getUserProfileStatusTC,
+  getUserProfileTC,
+} from '../../store/reducers/thunkCreators/profileThunkCreator';
+
 import {
   getProfile,
   getProfileStatus,
@@ -23,8 +23,8 @@ const Profile = () => {
   const { userId } = useParams();
 
   useEffect(() => {
-    dispatch(getUserProfile(userId));
-    dispatch(getUserProfileStatus(userId));
+    dispatch(getUserProfileTC(userId));
+    dispatch(getUserProfileStatusTC(userId));
   }, []);
 
   return (

@@ -19,7 +19,7 @@ const updateUsers = (users: IUser[], actionId: number, followed: boolean) => {
   });
 };
 
-export const usersSlice = createSlice({
+const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {

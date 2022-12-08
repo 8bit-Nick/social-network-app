@@ -1,15 +1,15 @@
-import { ProfileType } from '../../types/profileTypes';
-import profileReducer, {
+import { IProfileState } from '../../../types/profileReducer.interface';
+import profileSlice, {
   addProfilePost,
   setUserProfile,
   setUserProfileStatus,
-} from '../profileReducer';
+} from '../profileSlice';
 
-let state: ProfileType;
+let state: IProfileState;
 
 beforeEach(() => {
   state = {
-    postsData: [
+    postsProfile: [
       {
         id: 1,
         post: 'Lorem ipsum dolor, sit amet consectetur adipisicing.',
@@ -27,7 +27,7 @@ beforeEach(() => {
         likes: 3,
       },
     ],
-    profile: {
+    userProfile: {
       aboutMe: '',
       contacts: {
         facebook: null,
@@ -54,19 +54,19 @@ beforeEach(() => {
 
 describe('addProfilePost testing', () => {
   test('After adding a new post the length of the array should be 5', () => {
-    const newState = profileReducer(
+    const newState = profileSlice(
       state,
       addProfilePost('The first profile post')
     );
-    expect(newState.postsData.length).toBe(5);
+    expect(newState.postsProfile.length).toBe(5);
   });
 
   test('After adding the text of the post should be "The second profile post"', () => {
-    const newState = profileReducer(
+    const newState = profileSlice(
       state,
       addProfilePost('The Second Profile Post')
     );
-    expect(newState.postsData[4].post).toBe('The Second Profile Post');
+    expect(newState.postsProfile[4].post).toBe('The Second Profile Post');
   });
 });
 
@@ -94,19 +94,19 @@ describe('setUserProfile testing', () => {
   };
 
   test('After adding a new User profile the fullName should be "test User name"', () => {
-    const newState = profileReducer(state, setUserProfile(newUserProfile));
-    expect(newState.profile.fullName).toBe('test User name');
+    const newState = profileSlice(state, setUserProfile(newUserProfile));
+    expect(newState.userProfile.fullName).toBe('test User name');
   });
 
   test('The new User id must be 5', () => {
-    const newState = profileReducer(state, setUserProfile(newUserProfile));
-    expect(newState.profile.userId).toBe(5);
+    const newState = profileSlice(state, setUserProfile(newUserProfile));
+    expect(newState.userProfile.userId).toBe(5);
   });
 });
 
 describe('setUserProfileStatus testing', () => {
   test('New User profile status should be "test User profile status"', () => {
-    const newState = profileReducer(
+    const newState = profileSlice(
       state,
       setUserProfileStatus('test User profile status')
     );
