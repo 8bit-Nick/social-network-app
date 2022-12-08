@@ -1,6 +1,7 @@
-import dialogsReducer, { addNewMessage, DialogsType } from '../dialogsReducer';
+import { IDialogs } from '../../../types/dialogs.interface';
+import dialogsSlice, { addNewMessage } from '../dialogsSlice';
 
-let state: DialogsType;
+let state: IDialogs;
 beforeEach(() => {
   state = {
     contactsData: [
@@ -24,7 +25,7 @@ beforeEach(() => {
 
 describe('addNewMessage testing', () => {
   test('After adding a new message, the length of the array should be 5', () => {
-    const newState = dialogsReducer(
+    const newState = dialogsSlice(
       state,
       addNewMessage('the first test message')
     );
@@ -32,7 +33,7 @@ describe('addNewMessage testing', () => {
   });
 
   test('The new message should be "second test message"', () => {
-    const newState = dialogsReducer(
+    const newState = dialogsSlice(
       state,
       addNewMessage('the second test message')
     );

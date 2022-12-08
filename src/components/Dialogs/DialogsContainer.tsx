@@ -1,10 +1,10 @@
 import Dialogs from './Dialogs';
-import { addNewMessage } from '../../store/dialogsReducer';
 import { connect } from 'react-redux';
 import { AppRootState } from '../../store/store';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 import React from 'react';
+import { addNewMessage } from '../../store/reducers/dialogsSlice';
 
 type DialogsContainerType = {
   contactsData: Array<{ id: number; userName: string }>;
@@ -26,8 +26,8 @@ const DialogsContainer: React.FC<DialogsContainerType> = (props) => {
 
 const mapStateToProps = (state: AppRootState) => {
   return {
-    contactsData: state.dialogsPage.contactsData,
-    messagesData: state.dialogsPage.messagesData,
+    contactsData: state.dialogs.contactsData,
+    messagesData: state.dialogs.messagesData,
     isAuth: state.auth.isAuth,
   };
 };

@@ -29,20 +29,6 @@ export interface IUserState {
   followingInProcess: number[];
 }
 
-export type ActionsTypes =
-  | followType
-  | unfollowType
-  | setUsersType
-  | setPageSelectType
-  | setTotalUsersCountType
-  | toggleIsFetchingType
-  | toggleFollowingType;
 type followType = typeof follow;
 type unfollowType = typeof unfollow;
-type setUsersType = typeof setUsers;
-type setPageSelectType = typeof setPageSelect;
-type setTotalUsersCountType = typeof setTotalUsersCount;
-type toggleIsFetchingType = typeof toggleIsFetching;
-type toggleFollowingType = typeof toggleFollowing;
-
 export type actionCreatorType = followType | unfollowType;

@@ -30,11 +30,3 @@ export interface IProfileState {
   userProfile: IUserProfile;
   userProfileStatus: string;
 }
-
-export type ActionsTypes =
-  | AddPostActionType
-  | setUserProfileType
-  | setUserProfileStatusType;
-type AddPostActionType = typeof addProfilePost;
-type setUserProfileType = typeof setUserProfile;
-type setUserProfileStatusType = typeof setUserProfileStatus;
