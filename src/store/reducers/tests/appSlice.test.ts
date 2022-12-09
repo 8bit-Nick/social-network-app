@@ -1,10 +1,10 @@
-import appReducer, { initializedSuccess } from '../appReducer';
+import appSlice, { initializedSuccess } from '../appSlice';
 
 const state = {
   initialized: false,
 };
 
 test('initialized must be successful', () => {
-  const newState = appReducer(state, initializedSuccess());
+  const newState = appSlice(state, initializedSuccess());
   expect(newState.initialized).toBeTruthy();
 });

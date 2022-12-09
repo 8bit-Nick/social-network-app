@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import * as yup from 'yup';
 import { withLoginRedirect } from '../../hoc/withLoginRedirect';
-import { loginUser } from '../../store/authReducer';
+import { loginUser } from '../../store/reducers/thunkCreators/authThunkCreator';
 import styles from './Login.module.css';
 
 interface validateError {

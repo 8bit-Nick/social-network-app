@@ -1,6 +1,7 @@
-import authReducer, { authType, setAuthUserData } from '../authReducer';
+import { IAuth } from '../../../types/auth.interface';
+import authSlice, { setAuthUserData } from '../authSlice';
 
-let state: authType;
+let state: IAuth;
 
 const id = 7;
 const email = 'test@mail.com';
@@ -14,7 +15,10 @@ state = {
   isAuth: false,
 };
 
-const newState = authReducer(state, setAuthUserData(id, email, login, isAuth));
+const newState = authSlice(
+  state,
+  setAuthUserData({ id, email, login, isAuth })
+);
 
 describe('setAuthUserData testing', () => {
   test('User id must be 7', () => {

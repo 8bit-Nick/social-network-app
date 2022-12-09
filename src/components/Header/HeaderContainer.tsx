@@ -3,7 +3,10 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { authAPI } from '../../api/api';
-import { authMe, logoutUser } from '../../store/authReducer';
+import {
+  authMe,
+  logoutUser,
+} from '../../store/reducers/thunkCreators/authThunkCreator';
 import { AppRootState } from '../../store/store';
 import Header from './Header';
 
