@@ -1,22 +1,22 @@
-import { Formik, Form, Field } from 'formik';
-import { connect } from 'react-redux';
+import { Field, Form, Formik } from 'formik';
+import { useDispatch } from 'react-redux';
 import { compose } from 'redux';
 import * as yup from 'yup';
+
 import { withLoginRedirect } from '../../hoc/withLoginRedirect';
 import { loginUser } from '../../store/reducers/thunkCreators/authThunkCreator';
+import { AppDispatch } from '../../store/store';
 import styles from './Login.module.css';
 
-interface validateError {
-  email?: string;
-  password?: string;
+interface IValues {
+  email: string;
+  password: string;
+  rememberMe: boolean;
 }
 
-interface loginValidation {
-  email: string | undefined;
-  password: string | undefined;
-}
+const Login = () => {
+  const dispatch = useDispatch<AppDispatch>();
 
-const Login = (props: any) => {
   const validationSchema = yup.object().shape({
     email: yup
       .string()
@@ -25,43 +25,39 @@ const Login = (props: any) => {
     password: yup.string().required('✘ the field is empty!'),
   });
 
+  const customClassName = (
+    touched: boolean | undefined,
+    errors: string | undefined
+  ) => {
+    return touched && errors
+      ? styles.field + ' ' + styles.errorField
+      : styles.field;
+  };
+
   return (
     <div className={styles.container}>
       <h2 className={styles.auth}>authorization</h2>
       <Formik
-        initialValues={{ email: '', password: '' }}
-        onSubmit={(values: any, onSubmitProps) => {
-          setTimeout(() => {
-            props.loginUser(
+        initialValues={{ email: '', password: '', rememberMe: false }}
+        onSubmit={(values: IValues, onSubmitProps) => {
+          dispatch(
+            loginUser(
               values.email,
               values.password,
               values.rememberMe,
-              onSubmitProps.setStatus,
-              onSubmitProps.setSubmitting
-            );
-            onSubmitProps.setSubmitting(true);
-          }, 400);
+              onSubmitProps.setStatus
+            )
+          );
+          onSubmitProps.setSubmitting(true);
         }}
         validationSchema={validationSchema}
       >
-        {({
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
-          status,
-        }) => (
+        {({ errors, touched, isSubmitting, status }) => (
           <Form className={styles.form}>
             <div className={styles.login_box}>
               <div>Email:</div>
               <Field
-                className={
-                  touched.email && errors.email
-                    ? styles.field + ' ' + styles.errorField
-                    : styles.field
-                }
+                className={customClassName(touched.email, errors.email)}
                 type="email"
                 name="email"
               />
@@ -72,11 +68,7 @@ const Login = (props: any) => {
             <div className={styles.login_box}>
               <div>Password:</div>
               <Field
-                className={
-                  touched.password && errors.password
-                    ? styles.field + ' ' + styles.errorField
-                    : styles.field
-                }
+                className={customClassName(touched.password, errors.password)}
                 type="password"
                 name="password"
               />
@@ -107,7 +99,4 @@ const Login = (props: any) => {
   );
 };
 
-export default compose<React.ComponentType>(
-  connect(null, { loginUser }),
-  withLoginRedirect
-)(Login);
+export default compose<React.ComponentType>(withLoginRedirect)(Login);

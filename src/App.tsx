@@ -1,7 +1,7 @@
 import './App.css';
 
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, { FC, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
 import Preloader from './components/common/Preloader/Preloader';
@@ -16,20 +16,19 @@ import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
 import Users from './components/UsersContainer/Users/Users';
 import { initializeApp } from './store/reducers/thunkCreators/appThunkCreator';
-import { AppRootState } from './store/store';
+import { AppDispatch, AppRootState } from './store/store';
 
-type AppPropsType = {
-  initializeApp: () => void;
-  initialized: boolean;
-  id: number | null;
-};
+const App: FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const initialized = useSelector(
+    (state: AppRootState) => state.app.initialized
+  );
 
-const App: React.FC<AppPropsType> = (props) => {
   useEffect(() => {
-    props.initializeApp();
+    dispatch(initializeApp());
   }, []);
 
-  if (!props.initialized) {
+  if (!initialized) {
     return <Preloader />;
   }
 
@@ -53,9 +52,4 @@ const App: React.FC<AppPropsType> = (props) => {
   );
 };
 
-const mapStateToProps = (state: AppRootState) => ({
-  initialized: state.app.initialized,
-  id: state.auth.id,
-});
-
-export default connect(mapStateToProps, { initializeApp })(App);
+export default App;

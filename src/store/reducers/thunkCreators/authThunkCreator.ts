@@ -11,8 +11,13 @@ export const authMe = () => async (dispatch: AppDispatch) => {
 };
 
 export const loginUser =
-  (email: string, password: string, rememberMe: boolean, setStatus: any) =>
-  async (dispatch: any) => {
+  (
+    email: string,
+    password: string,
+    rememberMe: boolean,
+    setStatus: (message: string) => void
+  ) =>
+  async (dispatch: AppDispatch) => {
     const data = await authAPI.login(email, password, rememberMe);
     if (data.resultCode === 0) {
       dispatch(authMe());
@@ -21,7 +26,7 @@ export const loginUser =
     }
   };
 
-export const logoutUser = () => async (dispatch: any) => {
+export const logoutUser = () => async (dispatch: AppDispatch) => {
   const data = await authAPI.logout();
   if (data.resultCode === 0) {
     dispatch(
