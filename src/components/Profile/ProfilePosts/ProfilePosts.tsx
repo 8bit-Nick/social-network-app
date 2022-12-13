@@ -12,7 +12,13 @@ type MyPostsPropsType = {
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
   const postsElements = props.postsData.map((el) => (
-    <Post id={el.id} message={el.post} likesCount={el.likes} avatar={avatar} />
+    <Post
+      key={el.id}
+      id={el.id}
+      message={el.post}
+      likesCount={el.likes}
+      avatar={avatar}
+    />
   ));
 
   return (

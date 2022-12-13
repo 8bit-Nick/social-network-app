@@ -1,8 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {
-  IProfileState,
-  IUserProfile,
-} from '../../types/profileReducer.interface';
+import { IProfileState, IUserProfile } from '../../types/profile.interface';
 
 const initialState: IProfileState = {
   postsProfile: [

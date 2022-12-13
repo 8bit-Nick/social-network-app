@@ -1,5 +1,5 @@
 import { usersAPI } from '../../../api/api';
-import { actionCreatorType } from '../../../types/userReducer.interface';
+import { actionCreatorType } from '../../../types/users.interface';
 import { AppDispatch } from '../../store';
 import {
   follow,

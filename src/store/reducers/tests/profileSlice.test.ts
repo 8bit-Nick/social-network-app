@@ -1,4 +1,4 @@
-import { IProfileState } from '../../../types/profileReducer.interface';
+import { IProfileState } from '../../../types/profile.interface';
 import profileSlice, {
   addProfilePost,
   setUserProfile,

@@ -2,7 +2,7 @@ import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateUserProfileStatusTC } from '../../../store/reducers/thunkCreators/profileThunkCreator';
 
-import { IUserProfile } from '../../../types/profileReducer.interface';
+import { IUserProfile } from '../../../types/profile.interface';
 import Preloader from '../../common/Preloader/Preloader';
 import Avatar from './Avatar/Avatar';
 import classes from './ProfileUserInfo.module.css';

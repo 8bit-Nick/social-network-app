@@ -14,7 +14,7 @@ import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
 import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
-import Users from './components/UsersContainer/Users/Users';
+import Users from './components/Users/Users';
 import { initializeApp } from './store/reducers/thunkCreators/appThunkCreator';
 import { AppDispatch, AppRootState } from './store/store';
 

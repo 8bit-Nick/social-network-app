@@ -8,6 +8,7 @@ import {
   getSelectPage,
   getTotalCount,
 } from '../../../store/selectors/usersSelectors';
+import { v4 } from 'uuid';
 
 interface IPagination {
   stylePage: string;
@@ -37,6 +38,7 @@ export const Pagination: FC<IPagination> = (props) => {
     if (page < 10 && selectPage < 5) {
       return (
         <span
+          key={v4()}
           onClick={() => onSelectPage(page)}
           className={
             selectPage === page
@@ -50,6 +52,7 @@ export const Pagination: FC<IPagination> = (props) => {
     } else if (page > selectPage - 5 && page < selectPage + 5) {
       return (
         <span
+          key={v4()}
           onClick={() => onSelectPage(page)}
           className={
             selectPage === page
@@ -67,6 +70,7 @@ export const Pagination: FC<IPagination> = (props) => {
     if (page === pages.length) {
       return (
         <span
+          key={v4()}
           onClick={() => onSelectPage(page)}
           className={
             selectPage === page

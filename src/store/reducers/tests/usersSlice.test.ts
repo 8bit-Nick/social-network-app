@@ -1,4 +1,4 @@
-import { IUser, IUserState } from '../../../types/userReducer.interface';
+import { IUser, IUserState } from '../../../types/users.interface';
 import usersSlice, {
   follow,
   setPageSelect,

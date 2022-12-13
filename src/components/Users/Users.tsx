@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { useAppDispatch } from '../../../hooks/redux';
-import userLogo from '../../../img/userlogo.png';
-import { getUsersTC } from '../../../store/reducers/thunkCreators/usersThunkCreator';
+import { useAppDispatch } from '../../hooks/redux';
+import { getUsersTC } from '../../store/reducers/thunkCreators/usersThunkCreator';
 import {
   getCountItems,
   getIsFetching,
   getSelectPage,
   getUsers,
-} from '../../../store/selectors/usersSelectors';
-import { IUser } from '../../../types/userReducer.interface';
-import { Pagination } from '../../common/Pagination/Pagination';
-import Preloader from '../../common/Preloader/Preloader';
+} from '../../store/selectors/usersSelectors';
+import { IUser } from '../../types/users.interface';
+import { Pagination } from '../common/Pagination/Pagination';
+import Preloader from '../common/Preloader/Preloader';
 import User from './User/User';
 import styles from './Users.module.css';
 
@@ -28,16 +27,7 @@ const Users = () => {
     dispatch(getUsersTC(selectPage, countItems));
   }, []);
 
-  const addUsers = users.map((el: IUser) => (
-    <User
-      key={el.id}
-      fullName={el.name}
-      photoUrl={!el.photos.small ? userLogo : el.photos.small}
-      userStatus={el.status}
-      userId={el.id}
-      followed={el.followed}
-    />
-  ));
+  const addUsers = users.map((user: IUser) => <User key={user.id} {...user} />);
 
   return (
     <div className={styles.users}>
