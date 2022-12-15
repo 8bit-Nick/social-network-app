@@ -1,32 +1,28 @@
-import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import avatar from '../../../img/avatar.png';
+import { addProfilePost } from '../../../store/reducers/profileSlice';
+import { getProfilePosts } from '../../../store/selectors/profileSelectors';
+import { AppDispatch } from '../../../store/store';
 import MyTextarea from '../../common/MyTextarea/MyTextarea';
-import styles from './ProfilePosts.module.css';
 import Post from './Post/Post';
+import styles from './ProfilePosts.module.css';
 
-type MyPostsPropsType = {
-  postsData: Array<{ id: number; post: string; likes: number }>;
-  addPost: (newMessage: string) => void;
-};
+const ProfilePosts = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const profilePosts = useSelector(getProfilePosts);
 
-const MyPosts: React.FC<MyPostsPropsType> = (props) => {
-  const postsElements = props.postsData.map((el) => (
-    <Post
-      key={el.id}
-      id={el.id}
-      message={el.post}
-      likesCount={el.likes}
-      avatar={avatar}
-    />
+  const addPost = (message: string) => dispatch(addProfilePost(message));
+
+  const postsElements = profilePosts.map((post) => (
+    <Post key={post.id} {...post} />
   ));
 
   return (
     <div className={styles.container}>
-      <MyTextarea submitForm={props.addPost} />
+      <MyTextarea submitForm={addPost} />
       <div className={styles.postsElements}>{postsElements}</div>
     </div>
   );
 };
 
-export default MyPosts;
+export default ProfilePosts;

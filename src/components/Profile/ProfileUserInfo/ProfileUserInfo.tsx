@@ -1,27 +1,29 @@
-import React, { ChangeEvent, FC, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { updateUserProfileStatusTC } from '../../../store/reducers/thunkCreators/profileThunkCreator';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { IUserProfile } from '../../../types/profile.interface';
+import { updateUserProfileStatusTC } from '../../../store/reducers/thunkCreators/profileThunkCreator';
+import {
+  getPhotoLarge,
+  getProfile,
+  getProfileStatus,
+} from '../../../store/selectors/profileSelectors';
+import Avatar from '../../common/Avatar/Avatar';
 import Preloader from '../../common/Preloader/Preloader';
-import Avatar from './Avatar/Avatar';
 import classes from './ProfileUserInfo.module.css';
 import UserDescription from './UserDescription/UserDescription';
 
-interface IUserInfo {
-  profile: IUserProfile;
-  userProfileStatus: string;
-}
-
-const UserInfo: FC<IUserInfo> = (props) => {
+const UserInfo = () => {
   const dispatch = useDispatch();
+  const photoLarge = useSelector(getPhotoLarge);
+  const profile = useSelector(getProfile);
+  const userProfileStatus = useSelector(getProfileStatus);
 
   const [editMode, setEditMode] = useState(false);
-  const [inputStatus, setInputStatus] = useState(props.userProfileStatus);
+  const [inputStatus, setInputStatus] = useState(userProfileStatus);
 
   useEffect(() => {
-    setInputStatus(props.userProfileStatus);
-  }, [props.userProfileStatus]);
+    setInputStatus(userProfileStatus);
+  }, [userProfileStatus]);
 
   const editModeON = () => {
     setEditMode(true);
@@ -36,21 +38,15 @@ const UserInfo: FC<IUserInfo> = (props) => {
     setInputStatus(e.currentTarget.value);
   };
 
-  if (!props.profile) {
+  if (!profile) {
     return <Preloader />;
   }
 
   return (
     <div>
       <div className={classes.userInfo}>
-        <Avatar />
-        <UserDescription
-          name={props.profile.fullName}
-          surname={'Einstein'}
-          age={142}
-          country={'Kingdom of Württemberg'}
-          profession={'Physicist'}
-        />
+        <Avatar photo={photoLarge} />
+        <UserDescription />
       </div>
       <div>
         {editMode ? (
@@ -62,7 +58,7 @@ const UserInfo: FC<IUserInfo> = (props) => {
           />
         ) : (
           <span onDoubleClick={editModeON}>
-            {props.userProfileStatus || 'Double click, to write your status'}
+            {userProfileStatus || 'Double click, to write your status'}
           </span>
         )}
       </div>

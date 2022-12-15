@@ -1,41 +1,51 @@
-import React from "react";
-import classes from "./UserDescription.module.css";
+import { useSelector } from 'react-redux';
 
-type UserDescriptionPropsType = {
-	name: string | null;
-	surname: string;
-	age: number;
-	country: string;
-	profession: string;
-};
+import {
+  getAboutMe,
+  getContacts,
+  getFullName,
+  getLookingForAJob,
+  getLookingForAJobDescription,
+} from '../../../../store/selectors/profileSelectors';
+import classes from './UserDescription.module.css';
 
-const UserDescription = (props: UserDescriptionPropsType) => {
-	return (
-		<div className={classes.userDescription}>
-			<div>
-				<div>
-					<span className={classes.textStyle}>Name: </span>
-					{props.name}
-				</div>
-				<div>
-					<span className={classes.textStyle}>Surname: </span>
-					{props.surname}
-				</div>
-				<div>
-					<span className={classes.textStyle}>Age: </span>
-					{props.age}
-				</div>
-				<div>
-					<span className={classes.textStyle}>Country: </span>
-					{props.country}
-				</div>
-				<div>
-					<span className={classes.textStyle}>Profession: </span>
-					{props.profession}
-				</div>
-			</div>
-		</div>
-	);
+const UserDescription = () => {
+  const fullName = useSelector(getFullName);
+  const aboutMe = useSelector(getAboutMe);
+  const lookingForAJob = useSelector(getLookingForAJob);
+  const lookingForAJobDescription = useSelector(getLookingForAJobDescription);
+  const { facebook, instagram, github } = useSelector(getContacts);
+
+  return (
+    <div className={classes.userDescription}>
+      <div>
+        <div>
+          <span className={classes.textStyle}>Name: </span>
+          {fullName}
+        </div>
+        <div>
+          <span className={classes.textStyle}>About me: </span>
+          {aboutMe}
+        </div>
+        <div>
+          <span className={classes.textStyle}>Open to work: </span>
+          {lookingForAJob ? lookingForAJobDescription : 'Not looking for a job'}
+        </div>
+        <div>
+          <span className={classes.textStyle}>Country: </span>
+          Ukraine
+        </div>
+        <div>
+          <span className={classes.textStyle}>Contacts: </span>
+          <a href={facebook ? facebook : 'https://facebook.com'}>facebook </a>
+          <a href={instagram ? instagram : 'https://instagram.com'}>
+            instagram{' '}
+          </a>
+          <a href={github ? github : 'https://github.com'}>github</a>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default UserDescription;

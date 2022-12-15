@@ -1,9 +1,3 @@
-import {
-  addProfilePost,
-  setUserProfile,
-  setUserProfileStatus,
-} from '../store/reducers/profileSlice';
-
 interface IContacts {
   facebook: string | null;
   website: object | null;
@@ -17,16 +11,22 @@ interface IContacts {
 
 export interface IUserProfile {
   aboutMe: string | null;
-  contacts: IContacts | null;
+  contacts: IContacts;
   lookingForAJob: boolean | null;
   lookingForAJobDescription: string | null;
   fullName: string | null;
   userId: number | null;
-  photos: { small: string | null; large: string | null } | null;
+  photos: { small: string; large: string };
 }
 
 export interface IProfileState {
-  postsProfile: Array<{ id: number; post: string; likes: number }>;
+  profilePosts: Array<{ id: number; post: string; likes: number }>;
   userProfile: IUserProfile;
   userProfileStatus: string;
+}
+
+export interface IPost {
+  id: number;
+  post: string;
+  likes: number;
 }

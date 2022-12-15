@@ -1,13 +1,14 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import classes from './Navbar.module.css';
 
 const Navbar = () => {
   return (
     <nav className={classes.nav}>
       <div className={classes.item}>
-        <NavLink to={'/profile'}
-          className={({isActive}) => {
+        <NavLink
+          to={'/profile'}
+          className={({ isActive }) => {
             return isActive ? classes.active : '';
           }}
         >
@@ -15,8 +16,9 @@ const Navbar = () => {
         </NavLink>
       </div>
       <div className={classes.item}>
-        <NavLink to={'/messages'}
-          className={({isActive}) => {
+        <NavLink
+          to={'/messages'}
+          className={({ isActive }) => {
             return isActive ? classes.active : '';
           }}
         >
@@ -24,8 +26,9 @@ const Navbar = () => {
         </NavLink>
       </div>
       <div className={classes.item}>
-        <NavLink to={'/users'}
-          className={({isActive}) => {
+        <NavLink
+          to={'/users'}
+          className={({ isActive }) => {
             return isActive ? classes.active : '';
           }}
         >
@@ -33,8 +36,9 @@ const Navbar = () => {
         </NavLink>
       </div>
       <div className={classes.item}>
-        <NavLink to={'/news'}
-          className={({isActive}) => {
+        <NavLink
+          to={'/news'}
+          className={({ isActive }) => {
             return isActive ? classes.active : '';
           }}
         >
@@ -42,8 +46,9 @@ const Navbar = () => {
         </NavLink>
       </div>
       <div className={classes.item}>
-        <NavLink to={'/music'}
-          className={({isActive}) => {
+        <NavLink
+          to={'/music'}
+          className={({ isActive }) => {
             return isActive ? classes.active : '';
           }}
         >
@@ -51,8 +56,9 @@ const Navbar = () => {
         </NavLink>
       </div>
       <div className={classes.item}>
-        <NavLink to={'/settings'}
-          className={({isActive}) => {
+        <NavLink
+          to={'/settings'}
+          className={({ isActive }) => {
             return isActive ? classes.active : '';
           }}
         >
