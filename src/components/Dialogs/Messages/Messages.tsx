@@ -1,24 +1,32 @@
 import React from 'react';
-import styles from './Messages.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { addNewMessage } from '../../../store/reducers/dialogsSlice';
+import { AppDispatch, AppRootState } from '../../../store/store';
+import { IMessage } from '../../../types/dialogs.interface';
 import MyTextarea from '../../common/MyTextarea/MyTextarea';
+import styles from './Messages.module.css';
 
-type MessagesPropsType = {
-	messagesData: Array<{ id: number; message: string }>;
-	addNewMessage: (newMessage: string) => void;
-};
-export const Messages: React.FC<MessagesPropsType> = (props) => {
-	const messagesElements = props.messagesData.map((el) => (
-		<div className={styles.messageItem} key={el.id}>
-			{el.message}
-		</div>
-	));
+export const Messages = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const messages = useSelector(
+    (state: AppRootState) => state.dialogs.messagesData
+  );
 
-	return (
-		<div className={styles.container}>
-			<div className={styles.messagesBlock}>{messagesElements}</div>
-			<div>
-				<MyTextarea submitForm={props.addNewMessage} />
-			</div>
-		</div>
-	);
+  const addMessage = (message: string) => dispatch(addNewMessage(message));
+
+  const messagesElements = messages.map((message: IMessage) => (
+    <div className={styles.messageItem} key={message.id}>
+      {message.message}
+    </div>
+  ));
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.messagesBlock}>{messagesElements}</div>
+      <div>
+        <MyTextarea submitForm={addMessage} />
+      </div>
+    </div>
+  );
 };

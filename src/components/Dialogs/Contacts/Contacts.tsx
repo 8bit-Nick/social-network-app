@@ -1,13 +1,18 @@
 import React from 'react';
-import classes from './Contacts.module.css';
-import Contact from './Contact/Contact';
+import { useSelector } from 'react-redux';
 
-type ContactsPropsType = {
-  contactsData: Array<{ id: number; userName: string }>;
-};
-const Contacts: React.FC<ContactsPropsType> = (props) => {
-  const contactsElements = props.contactsData.map((el) => (
-    <Contact key={el.id} userName={el.userName} id={el.id} />
+import { AppRootState } from '../../../store/store';
+import { IContact } from '../../../types/dialogs.interface';
+import Contact from './Contact/Contact';
+import classes from './Contacts.module.css';
+
+const Contacts = () => {
+  const contacts = useSelector(
+    (state: AppRootState) => state.dialogs.contactsData
+  );
+
+  const contactsElements = contacts.map((contact: IContact) => (
+    <Contact key={contact.id} userName={contact.userName} id={contact.id} />
   ));
 
   return <div className={classes.dialogsNames}>{contactsElements}</div>;

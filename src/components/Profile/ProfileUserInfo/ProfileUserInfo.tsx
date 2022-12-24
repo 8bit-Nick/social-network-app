@@ -12,7 +12,7 @@ import Preloader from '../../common/Preloader/Preloader';
 import classes from './ProfileUserInfo.module.css';
 import UserDescription from './UserDescription/UserDescription';
 
-const UserInfo = () => {
+const ProfileUserInfo = () => {
   const dispatch = useDispatch();
   const photoLarge = useSelector(getPhotoLarge);
   const profile = useSelector(getProfile);
@@ -66,4 +66,4 @@ const UserInfo = () => {
   );
 };
 
-export default UserInfo;
+export default ProfileUserInfo;

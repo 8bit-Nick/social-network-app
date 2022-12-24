@@ -1,23 +1,18 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
-import classes from './Contact.module.css';
+import { NavLink } from 'react-router-dom';
+
+import { IContact } from '../../../../types/dialogs.interface';
 import userLogo from './../../../../img/userlogo.png';
+import classes from './Contact.module.css';
 
-type ContactPropsType = {
-  userName: string
-  id: number
-}
-
-const Contact: React.FC<ContactPropsType> = (props) => {
+const Contact: React.FC<IContact> = ({ id, userName }) => {
   return (
     <div className={classes.name + ' ' + classes.item}>
-      <NavLink to={`/messages/${props.id}`}>
+      <NavLink to={`/messages/${id}`}>
         <div className={classes.userImg}>
-          <img src={userLogo} alt="user-logo"/>
+          <img src={userLogo} alt="user-logo" />
         </div>
-        <div>
-          {props.userName}
-        </div>
+        <div>{userName}</div>
       </NavLink>
     </div>
   );

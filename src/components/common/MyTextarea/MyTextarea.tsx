@@ -6,7 +6,7 @@ interface ITextarea {
   submitForm: (value: string) => void;
 }
 
-const MyTextarea: React.FC<ITextarea> = (props) => {
+const MyTextarea: React.FC<ITextarea> = ({ submitForm }) => {
   const validationSchema = yup.object().shape({
     messageBody: yup.string().required('✘ the field is empty'),
   });
@@ -20,7 +20,7 @@ const MyTextarea: React.FC<ITextarea> = (props) => {
       initialValues={{ messageBody: '' }}
       onSubmit={(values: { messageBody: string }, { setSubmitting }) => {
         setTimeout(() => {
-          props.submitForm(values.messageBody);
+          submitForm(values.messageBody);
           values.messageBody = '';
           setSubmitting(true);
         }, 400);

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
 import Preloader from './components/common/Preloader/Preloader';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
+import Dialogs from './components/Dialogs/Dialogs';
 import { Footer } from './components/Footer/Footer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
@@ -39,7 +39,7 @@ const App: FC = () => {
       <div className="app-wrapper-content">
         <Routes>
           <Route path="/profile/:userId" element={<Profile />} />
-          <Route path="/messages" element={<DialogsContainer />} />
+          <Route path="/messages" element={<Dialogs />} />
           <Route path="/users" element={<Users />} />
           <Route path="/login" element={<Login />} />
           <Route path="/news" element={<News />} />
