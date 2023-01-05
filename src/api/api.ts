@@ -1,43 +1,40 @@
-import axios from 'axios';
+import axios from "axios";
+
+import { IUserAPI, IProfileAPI, IAuthAPI } from "../types/api.interface";
 
 const instance = axios.create({
   withCredentials: true,
-  baseURL: 'https://social-network.samuraijs.com/api/1.0/',
+  baseURL: "https://social-network.samuraijs.com/api/1.0/",
   headers: {
-    'API-KEY': 'a99ae56a-8de1-41e1-bdc2-66384efc5e52',
+    "API-KEY": "a99ae56a-8de1-41e1-bdc2-66384efc5e52",
   },
 });
 
-export const usersAPI: any = {
+export const usersAPI: IUserAPI = {
   async getUsers(selectPage: number, countItems: number) {
     const response = await instance.get(
       `users?page=${selectPage}&count=${countItems}`
     );
     return response.data;
   },
-  async follow(userId: number) {
+  async follow(userId: string | undefined) {
     const response = await instance.post(`follow/${userId}`);
     return response.data;
   },
 
-  async unfollow(userId: number) {
+  async unfollow(userId: string | undefined) {
     const response = await instance.delete(`follow/${userId}`);
     return response.data;
   },
-
-  getProfile(userId: number) {
-    console.warn('Obsolete method!');
-    return profileAPI.getProfile(userId);
-  },
 };
 
-export const profileAPI: any = {
-  async getProfile(userId: number) {
+export const profileAPI: IProfileAPI = {
+  async getProfile(userId: string | undefined) {
     const response = await instance.get(`profile/${userId}`);
     return response.data;
   },
 
-  async getStatus(userId: number) {
+  async getStatus(userId: string | undefined) {
     const response = await instance.get(`profile/status/${userId}`);
     return response.data;
   },
@@ -47,7 +44,7 @@ export const profileAPI: any = {
   },
 };
 
-export const authAPI: any = {
+export const authAPI: IAuthAPI = {
   async me() {
     const response = await instance.get(`auth/me`);
     return response.data;

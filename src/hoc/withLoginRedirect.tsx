@@ -1,6 +1,6 @@
-import { connect } from 'react-redux';
-import { Navigate } from 'react-router-dom';
-import { AppRootState } from '../store/store';
+import { connect } from "react-redux";
+import { Navigate } from "react-router-dom";
+import { AppRootState } from "../redux/store";
 
 type mstpType = {
   id: number | null;

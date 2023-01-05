@@ -1,16 +1,16 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
-import userLogo from '../../../img/userlogo.png';
+import userLogo from "../../../img/userlogo.png";
 import {
   followTC,
   unfollowTC,
-} from '../../../store/reducers/thunkCreators/usersThunkCreator';
-import { getFollowingInProcess } from '../../../store/selectors/usersSelectors';
-import { AppDispatch } from '../../../store/store';
-import { IUser, thunkCreatorType } from '../../../types/users.interface';
-import classes from './User.module.css';
+} from "../../../redux/reducers/thunkCreators/usersThunkCreator";
+import { getFollowingInProcess } from "../../../redux/selectors/usersSelectors";
+import { AppDispatch } from "../../../redux/store";
+import { IUser, thunkCreatorType } from "../../../types/users.interface";
+import classes from "./User.module.css";
 
 const User: React.FC<IUser> = ({ followed, id, name, photos, status }) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -31,11 +31,11 @@ const User: React.FC<IUser> = ({ followed, id, name, photos, status }) => {
     <div className={classes.user}>
       <div className={classes.userPhoto}>
         <div>
-          <NavLink to={'/profile/' + id}>
+          <NavLink to={"/profile/" + id}>
             <img
               src={!photos.small ? userLogo : photos.small}
               className={classes.img}
-              alt={'photoUrl'}
+              alt={"photoUrl"}
             />
           </NavLink>
         </div>
@@ -48,8 +48,8 @@ const User: React.FC<IUser> = ({ followed, id, name, photos, status }) => {
 
       <div className={classes.userBtn}>
         {followed
-          ? followUnfollowButton('UNFOLLOWED', unfollowTC(id))
-          : followUnfollowButton('FOLLOWED', followTC(id))}
+          ? followUnfollowButton("UNFOLLOWED", unfollowTC(id))
+          : followUnfollowButton("FOLLOWED", followTC(id))}
       </div>
     </div>
   );

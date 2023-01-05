@@ -1,10 +1,11 @@
 import React from 'react';
+
 import classes from './Favorite.module.css';
 
 type FavoritePropsType = {
-  id: number
-  user: string
-}
+  id: number;
+  user: string;
+};
 
 const Favorite: React.FC<FavoritePropsType> = (props) => {
   return (

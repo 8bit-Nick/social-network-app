@@ -1,14 +1,14 @@
-import { FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { FC } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { getUsersTC } from '../../../store/reducers/thunkCreators/usersThunkCreator';
-import { setPageSelect } from '../../../store/reducers/usersSlice';
+import { getUsersTC } from "../../../redux/reducers/thunkCreators/usersThunkCreator";
+import { setPageSelect } from "../../../redux/reducers/usersSlice";
 import {
   getCountItems,
   getSelectPage,
   getTotalCount,
-} from '../../../store/selectors/usersSelectors';
-import { v4 } from 'uuid';
+} from "../../../redux/selectors/usersSelectors";
+import { v4 } from "uuid";
 
 interface IPagination {
   stylePage: string;
@@ -42,7 +42,7 @@ export const Pagination: FC<IPagination> = (props) => {
           onClick={() => onSelectPage(page)}
           className={
             selectPage === page
-              ? props.stylePage + ' ' + props.stylePages
+              ? props.stylePage + " " + props.stylePages
               : props.stylePages
           }
         >
@@ -56,7 +56,7 @@ export const Pagination: FC<IPagination> = (props) => {
           onClick={() => onSelectPage(page)}
           className={
             selectPage === page
-              ? props.stylePage + ' ' + props.stylePages
+              ? props.stylePage + " " + props.stylePages
               : props.stylePages
           }
         >
@@ -74,7 +74,7 @@ export const Pagination: FC<IPagination> = (props) => {
           onClick={() => onSelectPage(page)}
           className={
             selectPage === page
-              ? props.stylePage + ' ' + props.stylePages
+              ? props.stylePage + " " + props.stylePages
               : props.stylePages
           }
         >
@@ -87,7 +87,7 @@ export const Pagination: FC<IPagination> = (props) => {
   return (
     <div>
       {paginationStart}
-      {'...'}
+      {"..."}
       {paginationEnd}
     </div>
   );

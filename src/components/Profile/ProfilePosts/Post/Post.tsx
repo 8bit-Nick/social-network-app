@@ -1,9 +1,9 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { getPhotoSmall } from '../../../../store/selectors/profileSelectors';
-import { IPost } from '../../../../types/profile.interface';
-import Avatar from '../../../common/Avatar/Avatar';
-import styles from './Post.module.css';
+import React from "react";
+import { useSelector } from "react-redux";
+import { getPhotoSmall } from "../../../../redux/selectors/profileSelectors";
+import { IPost } from "../../../../types/profile.interface";
+import Avatar from "../../../common/Avatar/Avatar";
+import styles from "./Post.module.css";
 
 const Post: React.FC<IPost> = (props) => {
   const photoSmall = useSelector(getPhotoSmall);
@@ -18,7 +18,7 @@ const Post: React.FC<IPost> = (props) => {
         <div className={styles.message__like}>
           <span className={props.likes === 0 ? styles.heartZero : styles.heart}>
             ♥
-          </span>{' '}
+          </span>{" "}
           <span className={styles.likesCount}>{props.likes}</span>
         </div>
       </div>

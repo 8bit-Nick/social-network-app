@@ -1,16 +1,16 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { ChangeEvent, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { updateUserProfileStatusTC } from '../../../store/reducers/thunkCreators/profileThunkCreator';
+import { updateUserProfileStatusTC } from "../../../redux/reducers/thunkCreators/profileThunkCreator";
 import {
   getPhotoLarge,
   getProfile,
   getProfileStatus,
-} from '../../../store/selectors/profileSelectors';
-import Avatar from '../../common/Avatar/Avatar';
-import Preloader from '../../common/Preloader/Preloader';
-import classes from './ProfileUserInfo.module.css';
-import UserDescription from './UserDescription/UserDescription';
+} from "../../../redux/selectors/profileSelectors";
+import Avatar from "../../common/Avatar/Avatar";
+import Preloader from "../../common/Preloader/Preloader";
+import classes from "./ProfileUserInfo.module.css";
+import UserDescription from "./UserDescription/UserDescription";
 
 const ProfileUserInfo = () => {
   const dispatch = useDispatch();
@@ -58,7 +58,7 @@ const ProfileUserInfo = () => {
           />
         ) : (
           <span onDoubleClick={editModeON}>
-            {userProfileStatus || 'Double click, to write your status'}
+            {userProfileStatus || "Double click, to write your status"}
           </span>
         )}
       </div>

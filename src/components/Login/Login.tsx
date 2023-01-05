@@ -1,18 +1,13 @@
-import { Field, Form, Formik } from 'formik';
-import { useDispatch } from 'react-redux';
-import { compose } from 'redux';
-import * as yup from 'yup';
+import { Field, Form, Formik } from "formik";
+import { useDispatch } from "react-redux";
+import { compose } from "redux";
+import * as yup from "yup";
 
-import { withLoginRedirect } from '../../hoc/withLoginRedirect';
-import { loginUser } from '../../store/reducers/thunkCreators/authThunkCreator';
-import { AppDispatch } from '../../store/store';
-import styles from './Login.module.css';
-
-interface IValues {
-  email: string;
-  password: string;
-  rememberMe: boolean;
-}
+import { withLoginRedirect } from "../../hoc/withLoginRedirect";
+import { loginUser } from "../../redux/reducers/thunkCreators/authThunkCreator";
+import { AppDispatch } from "../../redux/store";
+import { ILoginValues } from "../../types/login.interface";
+import styles from "./Login.module.css";
 
 const Login = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -20,9 +15,9 @@ const Login = () => {
   const validationSchema = yup.object().shape({
     email: yup
       .string()
-      .email('please enter a valid email')
-      .required('✘ the field is empty'),
-    password: yup.string().required('✘ the field is empty!'),
+      .email("please enter a valid email")
+      .required("✘ the field is empty"),
+    password: yup.string().required("✘ the field is empty!"),
   });
 
   const customClassName = (
@@ -30,7 +25,7 @@ const Login = () => {
     errors: string | undefined
   ) => {
     return touched && errors
-      ? styles.field + ' ' + styles.errorField
+      ? styles.field + " " + styles.errorField
       : styles.field;
   };
 
@@ -38,8 +33,8 @@ const Login = () => {
     <div className={styles.container}>
       <h2 className={styles.auth}>authorization</h2>
       <Formik
-        initialValues={{ email: '', password: '', rememberMe: false }}
-        onSubmit={(values: IValues, onSubmitProps) => {
+        initialValues={{ email: "", password: "", rememberMe: false }}
+        onSubmit={(values: ILoginValues, onSubmitProps) => {
           dispatch(
             loginUser(
               values.email,

@@ -1,24 +1,24 @@
-import './App.css';
+import "./App.css";
 
-import React, { FC, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Route, Routes } from "react-router-dom";
 
-import Preloader from './components/common/Preloader/Preloader';
-import Dialogs from './components/Dialogs/Dialogs';
-import { Footer } from './components/Footer/Footer';
-import HeaderContainer from './components/Header/HeaderContainer';
-import Login from './components/Login/Login';
-import Music from './components/Music/Music';
-import Navbar from './components/Navbar/Navbar';
-import News from './components/News/News';
-import Profile from './components/Profile/Profile';
-import Settings from './components/Settings/Settings';
-import Users from './components/Users/Users';
-import { initializeApp } from './store/reducers/thunkCreators/appThunkCreator';
-import { AppDispatch, AppRootState } from './store/store';
+import Preloader from "./components/common/Preloader/Preloader";
+import Dialogs from "./components/Dialogs/Dialogs";
+import { Footer } from "./components/Footer/Footer";
+import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
+import Music from "./components/Music/Music";
+import Navbar from "./components/Navbar/Navbar";
+import News from "./components/News/News";
+import Profile from "./components/Profile/Profile";
+import Settings from "./components/Settings/Settings";
+import Users from "./components/Users/Users";
+import { initializeApp } from "./redux/reducers/thunkCreators/appThunkCreator";
+import { AppDispatch, AppRootState } from "./redux/store";
 
-const App: FC = () => {
+const App = () => {
   const dispatch = useDispatch<AppDispatch>();
   const initialized = useSelector(
     (state: AppRootState) => state.app.initialized

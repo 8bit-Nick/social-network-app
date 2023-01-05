@@ -1,14 +1,11 @@
-import axios from 'axios';
-import { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { authAPI } from '../../api/api';
+import { connect } from "react-redux";
+import { compose } from "redux";
 import {
   authMe,
   logoutUser,
-} from '../../store/reducers/thunkCreators/authThunkCreator';
-import { AppRootState } from '../../store/store';
-import Header from './Header';
+} from "../../redux/reducers/thunkCreators/authThunkCreator";
+import { AppRootState } from "../../redux/store";
+import Header from "./Header";
 
 type HeaderContainerTypes = {
   login: string | null;

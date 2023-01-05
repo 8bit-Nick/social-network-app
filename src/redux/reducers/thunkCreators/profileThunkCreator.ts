@@ -1,10 +1,10 @@
-import { profileAPI, usersAPI } from '../../../api/api';
-import { AppDispatch } from '../../store';
-import { setUserProfile, setUserProfileStatus } from '../profileSlice';
+import { profileAPI } from "../../../api/api";
+import { AppDispatch } from "../../store";
+import { setUserProfile, setUserProfileStatus } from "../profileSlice";
 
 export const getUserProfileTC =
   (userId: string | undefined) => async (dispatch: AppDispatch) => {
-    const data = await usersAPI.getProfile(userId);
+    const data = await profileAPI.getProfile(userId);
     dispatch(setUserProfile(data));
   };
 

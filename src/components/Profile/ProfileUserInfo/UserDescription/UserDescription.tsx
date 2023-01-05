@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 import {
   getAboutMe,
@@ -6,8 +6,8 @@ import {
   getFullName,
   getLookingForAJob,
   getLookingForAJobDescription,
-} from '../../../../store/selectors/profileSelectors';
-import classes from './UserDescription.module.css';
+} from "../../../../redux/selectors/profileSelectors";
+import classes from "./UserDescription.module.css";
 
 const UserDescription = () => {
   const fullName = useSelector(getFullName);
@@ -29,7 +29,7 @@ const UserDescription = () => {
         </div>
         <div>
           <span className={classes.textStyle}>Open to work: </span>
-          {lookingForAJob ? lookingForAJobDescription : 'Not looking for a job'}
+          {lookingForAJob ? lookingForAJobDescription : "Not looking for a job"}
         </div>
         <div>
           <span className={classes.textStyle}>Country: </span>
@@ -37,11 +37,11 @@ const UserDescription = () => {
         </div>
         <div>
           <span className={classes.textStyle}>Contacts: </span>
-          <a href={facebook ? facebook : 'https://facebook.com'}>facebook </a>
-          <a href={instagram ? instagram : 'https://instagram.com'}>
-            instagram{' '}
+          <a href={facebook ? facebook : "https://facebook.com"}>facebook </a>
+          <a href={instagram ? instagram : "https://instagram.com"}>
+            instagram{" "}
           </a>
-          <a href={github ? github : 'https://github.com'}>github</a>
+          <a href={github ? github : "https://github.com"}>github</a>
         </div>
       </div>
     </div>

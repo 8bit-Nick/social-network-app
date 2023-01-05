@@ -1,15 +1,20 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import classes from './Navbar.module.css';
+import React from "react";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+
+import { AppRootState } from "../../redux/store";
+import classes from "./Navbar.module.css";
 
 const Navbar = () => {
+  const authId = useSelector((state: AppRootState) => state.auth.id);
+
   return (
     <nav className={classes.nav}>
       <div className={classes.item}>
         <NavLink
-          to={'/profile'}
+          to={`/profile/${authId}`}
           className={({ isActive }) => {
-            return isActive ? classes.active : '';
+            return isActive ? classes.active : "";
           }}
         >
           Profile
@@ -17,9 +22,9 @@ const Navbar = () => {
       </div>
       <div className={classes.item}>
         <NavLink
-          to={'/messages'}
+          to={"/messages"}
           className={({ isActive }) => {
-            return isActive ? classes.active : '';
+            return isActive ? classes.active : "";
           }}
         >
           Messages
@@ -27,9 +32,9 @@ const Navbar = () => {
       </div>
       <div className={classes.item}>
         <NavLink
-          to={'/users'}
+          to={"/users"}
           className={({ isActive }) => {
-            return isActive ? classes.active : '';
+            return isActive ? classes.active : "";
           }}
         >
           Users
@@ -37,9 +42,9 @@ const Navbar = () => {
       </div>
       <div className={classes.item}>
         <NavLink
-          to={'/news'}
+          to={"/news"}
           className={({ isActive }) => {
-            return isActive ? classes.active : '';
+            return isActive ? classes.active : "";
           }}
         >
           News
@@ -47,9 +52,9 @@ const Navbar = () => {
       </div>
       <div className={classes.item}>
         <NavLink
-          to={'/music'}
+          to={"/music"}
           className={({ isActive }) => {
-            return isActive ? classes.active : '';
+            return isActive ? classes.active : "";
           }}
         >
           Music
@@ -57,9 +62,9 @@ const Navbar = () => {
       </div>
       <div className={classes.item}>
         <NavLink
-          to={'/settings'}
+          to={"/settings"}
           className={({ isActive }) => {
-            return isActive ? classes.active : '';
+            return isActive ? classes.active : "";
           }}
         >
           Settings

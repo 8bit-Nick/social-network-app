@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
-import { useAppDispatch } from '../../hooks/redux';
-import { getUsersTC } from '../../store/reducers/thunkCreators/usersThunkCreator';
+import { useAppDispatch } from "../../hooks/redux";
+import { getUsersTC } from "../../redux/reducers/thunkCreators/usersThunkCreator";
 import {
   getCountItems,
   getIsFetching,
   getSelectPage,
   getUsers,
-} from '../../store/selectors/usersSelectors';
-import { IUser } from '../../types/users.interface';
-import { Pagination } from '../common/Pagination/Pagination';
-import Preloader from '../common/Preloader/Preloader';
-import User from './User/User';
-import styles from './Users.module.css';
+} from "../../redux/selectors/usersSelectors";
+import { IUser } from "../../types/users.interface";
+import { Pagination } from "../common/Pagination/Pagination";
+import Preloader from "../common/Preloader/Preloader";
+import User from "./User/User";
+import styles from "./Users.module.css";
 
 const Users = () => {
   const dispatch = useAppDispatch();
