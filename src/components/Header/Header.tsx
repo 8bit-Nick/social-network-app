@@ -1,22 +1,23 @@
-import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+
+import { logoutUser } from '../../redux/reducers/thunkCreators/authThunkCreator';
+import { AppRootState } from '../../redux/store';
 import classes from './Header.module.css';
 
-type HeaderTypes = {
-  isAuth: boolean | undefined;
-  login: string | null;
-  logoutUser: () => void;
-};
+const Header = () => {
+  const dispatch = useDispatch()
+  const isAuth = useSelector((state: AppRootState) => state.auth.isAuth)
+  const login = useSelector((state: AppRootState) => state.auth.login)
 
-const Header: React.FC<HeaderTypes> = (props) => {
   return (
     <header className={classes.header}>
       Facepalm
       <div className={classes.login}>
-        {props.isAuth ? (
+        {isAuth ? (
           <div>
-            {props.login} |{' '}
-            <NavLink to="/login" onClick={props.logoutUser}>
+            {login} |{' '}
+            <NavLink to="/login" onClick={dispatch(logoutUser)}>
               Logout
             </NavLink>
           </div>
@@ -25,7 +26,7 @@ const Header: React.FC<HeaderTypes> = (props) => {
         )}
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
