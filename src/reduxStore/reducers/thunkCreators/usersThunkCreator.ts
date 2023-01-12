@@ -1,6 +1,5 @@
-import { usersAPI } from '../../../api/api';
-import { actionCreatorType } from '../../../types/users.interface';
-import { AppDispatch } from '../../store';
+import { usersAPI } from "api";
+import { actionCreatorType } from "types";
 import {
   follow,
   setTotalUsersCount,
@@ -8,7 +7,8 @@ import {
   toggleFollowing,
   toggleIsFetching,
   unfollow,
-} from './../usersSlice';
+  AppDispatch,
+} from "reduxStore";
 
 export const getUsersTC =
   (selectPage: number, countItems: number) => async (dispatch: AppDispatch) => {

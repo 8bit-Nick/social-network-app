@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { stat } from 'fs';
-import { IAuth } from '../../types/auth.interface';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+import { IAuth } from "types";
 
 const initialState: IAuth = {
   id: null,
@@ -10,7 +10,7 @@ const initialState: IAuth = {
 };
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
     setAuthUserData(state, action: PayloadAction<IAuth>) {
@@ -23,6 +23,6 @@ const authSlice = createSlice({
   },
 });
 
-export default authSlice.reducer;
+export const authSliceReducer = authSlice.reducer;
 
 export const { setAuthUserData } = authSlice.actions;

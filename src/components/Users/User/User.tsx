@@ -2,17 +2,24 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-import userLogo from "../../../img/userlogo.png";
+import userLogo from "img/userlogo.png";
 import {
   followTC,
   unfollowTC,
-} from "../../../redux/reducers/thunkCreators/usersThunkCreator";
-import { getFollowingInProcess } from "../../../redux/selectors/usersSelectors";
-import { AppDispatch } from "../../../redux/store";
-import { IUser, thunkCreatorType } from "../../../types/users.interface";
+  getFollowingInProcess,
+  AppDispatch,
+} from "reduxStore";
+import { IUser, thunkCreatorType } from "types";
+
 import classes from "./User.module.css";
 
-const User: React.FC<IUser> = ({ followed, id, name, photos, status }) => {
+export const User: React.FC<IUser> = ({
+  followed,
+  id,
+  name,
+  photos,
+  status,
+}) => {
   const dispatch = useDispatch<AppDispatch>();
   const followingInProcess = useSelector(getFollowingInProcess);
 
@@ -54,5 +61,3 @@ const User: React.FC<IUser> = ({ followed, id, name, photos, status }) => {
     </div>
   );
 };
-
-export default User;

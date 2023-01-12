@@ -1,6 +1,5 @@
-import { authAPI } from '../../../api/api';
-import { AppDispatch } from '../../store';
-import { setAuthUserData } from '../authSlice';
+import { authAPI } from "api";
+import { setAuthUserData, AppDispatch } from "reduxStore";
 
 export const authMe = () => async (dispatch: AppDispatch) => {
   const data = await authAPI.me();
@@ -17,14 +16,14 @@ export const loginUser =
     rememberMe: boolean,
     setStatus: (message: string) => void
   ) =>
-  async (dispatch: AppDispatch) => {
-    const data = await authAPI.login(email, password, rememberMe);
-    if (data.resultCode === 0) {
-      dispatch(authMe());
-    } else {
-      setStatus(data.messages);
-    }
-  };
+    async (dispatch: AppDispatch) => {
+      const data = await authAPI.login(email, password, rememberMe);
+      if (data.resultCode === 0) {
+        dispatch(authMe());
+      } else {
+        setStatus(data.messages);
+      }
+    };
 
 export const logoutUser = () => async (dispatch: AppDispatch) => {
   const data = await authAPI.logout();

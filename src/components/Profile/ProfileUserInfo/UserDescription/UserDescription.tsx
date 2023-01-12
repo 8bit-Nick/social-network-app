@@ -6,10 +6,10 @@ import {
   getFullName,
   getLookingForAJob,
   getLookingForAJobDescription,
-} from "../../../../redux/selectors/profileSelectors";
+} from "reduxStore/selectors";
 import classes from "./UserDescription.module.css";
 
-const UserDescription = () => {
+export const UserDescription = () => {
   const fullName = useSelector(getFullName);
   const aboutMe = useSelector(getAboutMe);
   const lookingForAJob = useSelector(getLookingForAJob);
@@ -47,5 +47,3 @@ const UserDescription = () => {
     </div>
   );
 };
-
-export default UserDescription;

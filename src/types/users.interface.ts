@@ -1,8 +1,4 @@
-import {
-  followTC,
-  unfollowTC,
-} from "../redux/reducers/thunkCreators/usersThunkCreator";
-import { follow, unfollow } from "../redux/reducers/usersSlice";
+import { follow, unfollow, followTC, unfollowTC } from "reduxStore";
 
 export interface IUser {
   name: string;

@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import { compose } from "redux";
 import * as yup from "yup";
 
-import { withLoginRedirect } from "../../hoc/withLoginRedirect";
-import { loginUser } from "../../redux/reducers/thunkCreators/authThunkCreator";
-import { AppDispatch } from "../../redux/store";
-import { ILoginValues } from "../../types/login.interface";
+import { withLoginRedirect } from "hoc/withLoginRedirect";
+import { loginUser, AppDispatch } from "reduxStore";
+import { ILoginValues } from "types";
+
 import styles from "./Login.module.css";
 
 const Login = () => {

@@ -1,8 +1,7 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-import { AppRootState } from "../../redux/store";
+import { AppRootState } from "reduxStore/store";
 import classes from "./Navbar.module.css";
 
 const Navbar = () => {

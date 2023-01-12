@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { AppRootState } from "../redux/store";
+import { AppRootState } from "reduxStore/store";
 
 type mstpType = {
   isAuth: boolean | undefined;

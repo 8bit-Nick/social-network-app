@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
 
-import { AppRootState } from "../../../redux/store";
-import { IContact } from "../../../types/dialogs.interface";
+import { AppRootState } from "reduxStore/store";
+import { IContact } from "types";
 import Contact from "./Contact/Contact";
 import classes from "./Contacts.module.css";
 
-const Contacts = () => {
+export const Contacts = () => {
   const contacts = useSelector(
     (state: AppRootState) => state.dialogs.contactsData
   );
@@ -16,5 +16,3 @@ const Contacts = () => {
 
   return <div className={classes.dialogsNames}>{contactsElements}</div>;
 };
-
-export default Contacts;

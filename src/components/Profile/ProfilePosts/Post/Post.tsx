@@ -1,11 +1,12 @@
-import React from "react";
 import { useSelector } from "react-redux";
-import { getPhotoSmall } from "../../../../redux/selectors/profileSelectors";
-import { IPost } from "../../../../types/profile.interface";
-import Avatar from "../../../common/Avatar/Avatar";
+
+import { getPhotoSmall } from "reduxStore/selectors";
+import { Avatar } from "components/common";
+import { IPost } from "types";
+
 import styles from "./Post.module.css";
 
-const Post: React.FC<IPost> = (props) => {
+export const Post: React.FC<IPost> = (props) => {
   const photoSmall = useSelector(getPhotoSmall);
 
   return (
@@ -25,5 +26,3 @@ const Post: React.FC<IPost> = (props) => {
     </div>
   );
 };
-
-export default Post;

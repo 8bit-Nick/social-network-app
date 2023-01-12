@@ -7,7 +7,7 @@ interface ITextarea {
   submitForm: (value: string) => void;
 }
 
-const MyTextarea: React.FC<ITextarea> = ({ submitForm }) => {
+export const MyTextarea: React.FC<ITextarea> = ({ submitForm }) => {
   const validationSchema = yup.object().shape({
     messageBody: yup.string().required("✘ the field is empty"),
   });
@@ -54,5 +54,3 @@ const MyTextarea: React.FC<ITextarea> = ({ submitForm }) => {
     </Formik>
   );
 };
-
-export default MyTextarea;

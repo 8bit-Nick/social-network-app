@@ -1,13 +1,13 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import avatar from '../../../img/avatar.png';
-import classes from './Avatar.module.css';
+import avatar from "../../../img/avatar.png";
+import classes from "./Avatar.module.css";
 
 interface IAvatar {
   photo: string;
 }
 
-const Avatar: FC<IAvatar> = (props) => {
+export const Avatar: FC<IAvatar> = (props) => {
   return (
     <div>
       <img
@@ -18,5 +18,3 @@ const Avatar: FC<IAvatar> = (props) => {
     </div>
   );
 };
-
-export default Avatar;

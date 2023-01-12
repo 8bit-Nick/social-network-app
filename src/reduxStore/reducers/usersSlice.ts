@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IUser, IUserState } from '../../types/users.interface';
+import { IUser, IUserState } from "types";
 
 const initialState: IUserState = {
   users: [],
@@ -9,52 +9,52 @@ const initialState: IUserState = {
   selectPage: 1,
   isFetching: true,
   followingInProcess: [],
-}
+};
 
 const updateUsers = (users: IUser[], actionId: number, followed: boolean) => {
   return users.map((user: IUser) => {
     if (user.id === actionId) {
-      return { ...user, followed }
+      return { ...user, followed };
     }
-    return user
-  })
-}
+    return user;
+  });
+};
 
 const usersSlice = createSlice({
-  name: 'users',
+  name: "users",
   initialState,
   reducers: {
     follow(state, action: PayloadAction<number>) {
-      state.users = updateUsers(state.users, action.payload, true)
+      state.users = updateUsers(state.users, action.payload, true);
     },
     unfollow(state, action: PayloadAction<number>) {
-      state.users = updateUsers(state.users, action.payload, false)
+      state.users = updateUsers(state.users, action.payload, false);
     },
     setUsers(state, action: PayloadAction<IUser[]>) {
-      state.users = action.payload
+      state.users = action.payload;
     },
     setPageSelect(state, action: PayloadAction<number>) {
-      state.selectPage = action.payload
+      state.selectPage = action.payload;
     },
     setTotalUsersCount(state, action: PayloadAction<number>) {
-      state.totalUsersCount = action.payload
+      state.totalUsersCount = action.payload;
     },
     toggleIsFetching(state, action: PayloadAction<boolean>) {
-      state.isFetching = action.payload
+      state.isFetching = action.payload;
     },
     toggleFollowing(
       state,
       action: PayloadAction<{ isFollowing: boolean; userId: number }>
     ) {
-      state.followingInProcess = []
+      state.followingInProcess = [];
       action.payload.isFollowing
         ? state.followingInProcess.push(action.payload.userId)
-        : state.followingInProcess.filter((id) => id !== action.payload.userId)
+        : state.followingInProcess.filter((id) => id !== action.payload.userId);
     },
   },
-})
+});
 
-export default usersSlice.reducer
+export const usersSliceReducer = usersSlice.reducer;
 
 export const {
   follow,
@@ -64,4 +64,4 @@ export const {
   setTotalUsersCount,
   toggleIsFetching,
   toggleFollowing,
-} = usersSlice.actions
+} = usersSlice.actions;

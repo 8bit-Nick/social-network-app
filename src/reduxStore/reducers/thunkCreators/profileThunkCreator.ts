@@ -1,6 +1,5 @@
-import { profileAPI } from "../../../api/api";
-import { AppDispatch } from "../../store";
-import { setUserProfile, setUserProfileStatus } from "../profileSlice";
+import { profileAPI } from "api";
+import { setUserProfile, setUserProfileStatus, AppDispatch } from "reduxStore";
 
 export const getUserProfileTC =
   (userId: string | undefined) => async (dispatch: AppDispatch) => {

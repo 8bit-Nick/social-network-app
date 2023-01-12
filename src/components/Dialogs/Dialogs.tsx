@@ -1,10 +1,9 @@
-import React from 'react';
-import { compose } from 'redux';
+import { compose } from "redux";
 
-import { withAuthRedirect } from '../../hoc/withAuthRedirect';
-import Contacts from './Contacts/Contacts';
-import classes from './Dialogs.module.css';
-import { Messages } from './Messages/Messages';
+import { withAuthRedirect } from "hoc";
+import { Contacts } from "./Contacts";
+import classes from "./Dialogs.module.css";
+import { Messages } from "./Messages/Messages";
 
 const Dialogs = () => {
   return (

@@ -1,27 +1,28 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IProfileState, IUserProfile } from '../../types/profile.interface';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+import { IProfileState, IUserProfile } from "types";
 
 const initialState: IProfileState = {
   profilePosts: [
     {
       id: 1,
-      post: 'Lorem ipsum dolor, sit amet consectetur adipisicing.',
+      post: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
       likes: 15,
     },
     {
       id: 2,
-      post: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus reiciendis et nam assumenda soluta est!',
+      post: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus reiciendis et nam assumenda soluta est!",
       likes: 0,
     },
-    { id: 3, post: 'Lorem ipsum dolor sit amet.', likes: 370 },
+    { id: 3, post: "Lorem ipsum dolor sit amet.", likes: 370 },
     {
       id: 4,
-      post: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, deleniti.',
+      post: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, deleniti.",
       likes: 3,
     },
   ],
   userProfile: {
-    aboutMe: '',
+    aboutMe: "",
     contacts: {
       facebook: null,
       website: null,
@@ -34,18 +35,18 @@ const initialState: IProfileState = {
     },
     lookingForAJob: false,
     lookingForAJobDescription: null,
-    fullName: '',
+    fullName: "",
     userId: 3,
     photos: {
-      small: '',
-      large: '',
+      small: "",
+      large: "",
     },
   },
-  userProfileStatus: '',
+  userProfileStatus: "",
 };
 
 const profileSlice = createSlice({
-  name: 'profile',
+  name: "profile",
   initialState,
   reducers: {
     addProfilePost(state, action: PayloadAction<string>) {
@@ -60,7 +61,7 @@ const profileSlice = createSlice({
   },
 });
 
-export default profileSlice.reducer;
+export const profileSliceReducer = profileSlice.reducer;
 
 export const { addProfilePost, setUserProfile, setUserProfileStatus } =
   profileSlice.actions;

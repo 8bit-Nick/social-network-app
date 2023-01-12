@@ -1,6 +1,4 @@
-import React from 'react';
-
-import classes from './Favorite.module.css';
+import classes from "./Favorite.module.css";
 
 type FavoritePropsType = {
   id: number;

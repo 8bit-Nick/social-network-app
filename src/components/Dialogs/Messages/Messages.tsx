@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { addNewMessage } from "../../../redux/reducers/dialogsSlice";
-import { AppDispatch, AppRootState } from "../../../redux/store";
-import { IMessage } from "../../../types/dialogs.interface";
-import MyTextarea from "../../common/MyTextarea/MyTextarea";
+import { MyTextarea } from "components/common";
+import { addNewMessage, AppDispatch, AppRootState } from "reduxStore";
+import { IMessage } from "types";
+
 import styles from "./Messages.module.css";
 
 export const Messages = () => {

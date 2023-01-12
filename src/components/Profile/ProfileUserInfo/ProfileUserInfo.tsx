@@ -1,18 +1,18 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { updateUserProfileStatusTC } from "../../../redux/reducers/thunkCreators/profileThunkCreator";
 import {
   getPhotoLarge,
   getProfile,
   getProfileStatus,
-} from "../../../redux/selectors/profileSelectors";
-import Avatar from "../../common/Avatar/Avatar";
-import Preloader from "../../common/Preloader/Preloader";
-import classes from "./ProfileUserInfo.module.css";
-import UserDescription from "./UserDescription/UserDescription";
+  updateUserProfileStatusTC,
+} from "reduxStore";
+import { Avatar, Preloader } from "components/common";
+import { UserDescription } from "./UserDescription";
 
-const ProfileUserInfo = () => {
+import classes from "./ProfileUserInfo.module.css";
+
+export const ProfileUserInfo = () => {
   const dispatch = useDispatch();
   const photoLarge = useSelector(getPhotoLarge);
   const profile = useSelector(getProfile);
@@ -65,5 +65,3 @@ const ProfileUserInfo = () => {
     </div>
   );
 };
-
-export default ProfileUserInfo;

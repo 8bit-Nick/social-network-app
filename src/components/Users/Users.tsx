@@ -1,22 +1,22 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { useAppDispatch } from "../../hooks/redux";
-import { getUsersTC } from "../../redux/reducers/thunkCreators/usersThunkCreator";
 import {
   getCountItems,
   getIsFetching,
   getSelectPage,
   getUsers,
-} from "../../redux/selectors/usersSelectors";
-import { IUser } from "../../types/users.interface";
-import { Pagination } from "../common/Pagination/Pagination";
-import Preloader from "../common/Preloader/Preloader";
-import User from "./User/User";
+  getUsersTC,
+  AppDispatch,
+} from "reduxStore";
+import { IUser } from "types";
+import { Pagination, Preloader } from "components/common";
+import { User } from "./User";
+
 import styles from "./Users.module.css";
 
-const Users = () => {
-  const dispatch = useAppDispatch();
+export const Users = () => {
+  const dispatch = useDispatch<AppDispatch>();
 
   const users = useSelector(getUsers);
   const selectPage = useSelector(getSelectPage);
@@ -39,5 +39,3 @@ const Users = () => {
     </div>
   );
 };
-
-export default Users;

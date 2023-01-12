@@ -1,13 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { addProfilePost } from "../../../redux/reducers/profileSlice";
-import { getProfilePosts } from "../../../redux/selectors/profileSelectors";
-import { AppDispatch } from "../../../redux/store";
-import MyTextarea from "../../common/MyTextarea/MyTextarea";
-import Post from "./Post/Post";
+import { addProfilePost, getProfilePosts, AppDispatch } from "reduxStore";
+import { MyTextarea } from "components/common";
+import { Post } from "./Post";
+
 import styles from "./ProfilePosts.module.css";
 
-const ProfilePosts = () => {
+export const ProfilePosts = () => {
   const dispatch = useDispatch<AppDispatch>();
   const profilePosts = useSelector(getProfilePosts);
 
@@ -24,5 +23,3 @@ const ProfilePosts = () => {
     </div>
   );
 };
-
-export default ProfilePosts;

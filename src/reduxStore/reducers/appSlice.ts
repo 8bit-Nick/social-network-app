@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 export type authType = {
   initialized: boolean;
@@ -9,7 +9,7 @@ const initialState: authType = {
 };
 
 const appSlice = createSlice({
-  name: 'app',
+  name: "app",
   initialState,
   reducers: {
     initializedSuccess(state) {
@@ -18,6 +18,6 @@ const appSlice = createSlice({
   },
 });
 
-export default appSlice.reducer;
+export const appSliceReducer = appSlice.reducer;
 
 export const { initializedSuccess } = appSlice.actions;

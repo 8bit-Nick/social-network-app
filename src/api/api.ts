@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { IUserAPI, IProfileAPI, IAuthAPI } from "../types/api.interface";
+import { IAuthAPI, IProfileAPI, IUserAPI } from "types";
 
 const instance = axios.create({
   withCredentials: true,
@@ -15,10 +15,12 @@ export const usersAPI: IUserAPI = {
     const response = await instance.get(
       `users?page=${selectPage}&count=${countItems}`
     );
+
     return response.data;
   },
   async follow(userId: string | undefined) {
     const response = await instance.post(`follow/${userId}`);
+    console.log(response.data);
     return response.data;
   },
 
