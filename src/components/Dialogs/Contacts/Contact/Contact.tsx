@@ -5,7 +5,7 @@ import { IContact } from "types";
 import userLogo from "img/userlogo.png";
 import classes from "./Contact.module.css";
 
-const Contact: React.FC<IContact> = ({ id, userName }) => {
+export const Contact: React.FC<IContact> = ({ id, userName }) => {
   return (
     <div className={classes.name + " " + classes.item}>
       <NavLink to={`/messages/${id}`}>
@@ -17,5 +17,3 @@ const Contact: React.FC<IContact> = ({ id, userName }) => {
     </div>
   );
 };
-
-export default Contact;

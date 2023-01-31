@@ -16,11 +16,11 @@ export interface IUserProfile {
   lookingForAJobDescription: string | null;
   fullName: string | null;
   userId: number | null;
-  photos: { small: string; large: string };
+  photos: { small: string | null; large: string | null };
 }
 
 export interface IProfileState {
-  profilePosts: Array<{ id: number; post: string; likes: number }>;
+  postsProfile: Array<{ id: number; post: string; likes: number }>;
   userProfile: IUserProfile;
   userProfileStatus: string;
 }

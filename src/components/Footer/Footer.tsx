@@ -3,7 +3,7 @@ import gmail from "img/gmail.svg";
 import linkedin from "img/linkedin.svg";
 import styles from "./Footer.module.css";
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <div className={styles.footer}>
       <div className={styles.links}>
@@ -39,3 +39,5 @@ export const Footer = () => {
     </div>
   );
 };
+
+export default Footer;

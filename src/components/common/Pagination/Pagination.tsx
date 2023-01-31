@@ -1,22 +1,19 @@
-import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 } from "uuid";
 
-import { getUsersTC } from "reduxStore/reducers/thunkCreators";
-import { setPageSelect } from "reduxStore/reducers";
 import {
+  AppDispatch,
   getCountItems,
   getSelectPage,
   getTotalCount,
-} from "reduxStore/selectors";
+  getUsersTC,
+  setPageSelect,
+} from "reduxStore";
 
-interface IPagination {
-  stylePage: string;
-  stylePages: string;
-}
+import styles from "./Pagination.module.css";
 
-export const Pagination: FC<IPagination> = (props) => {
-  const dispatch = useDispatch();
+export const Pagination = () => {
+  const dispatch = useDispatch<AppDispatch>();
 
   const totalCount = useSelector(getTotalCount);
   const countItems = useSelector(getCountItems);
@@ -34,61 +31,56 @@ export const Pagination: FC<IPagination> = (props) => {
     pages.push(i + 1);
   }
 
-  const paginationStart = pages.map((page: number) => {
+  const selectPageClassName = (page: number) => {
+    return page === selectPage
+      ? styles.selectPage.concat(" ", styles.pages)
+      : styles.pages;
+  };
+
+  const pageSpan = (page: number) => {
+    return (
+      <span
+        key={v4()}
+        onClick={() => onSelectPage(page)}
+        className={selectPageClassName(page)}
+      >
+        {page}
+      </span>
+    );
+  };
+
+  const paginationList = pages.map((page: number) => {
     if (page < 10 && selectPage < 5) {
-      return (
-        <span
-          key={v4()}
-          onClick={() => onSelectPage(page)}
-          className={
-            selectPage === page
-              ? props.stylePage + " " + props.stylePages
-              : props.stylePages
-          }
-        >
-          {page}
-        </span>
-      );
+      return pageSpan(page);
     } else if (page > selectPage - 5 && page < selectPage + 5) {
-      return (
-        <span
-          key={v4()}
-          onClick={() => onSelectPage(page)}
-          className={
-            selectPage === page
-              ? props.stylePage + " " + props.stylePages
-              : props.stylePages
-          }
-        >
-          {page}
-        </span>
-      );
+      return pageSpan(page);
     }
   });
 
-  const paginationEnd = pages.map((page: number) => {
-    if (page === pages.length) {
-      return (
-        <span
-          key={v4()}
-          onClick={() => onSelectPage(page)}
-          className={
-            selectPage === page
-              ? props.stylePage + " " + props.stylePages
-              : props.stylePages
-          }
-        >
-          {page}
-        </span>
-      );
-    }
-  });
+  const showLeftButton = () => {
+    return selectPage === 1 ? true : false;
+  };
+  const showRightButton = () => {
+    return selectPage === pagesCount ? true : false;
+  };
 
   return (
-    <div>
-      {paginationStart}
-      {"..."}
-      {paginationEnd}
+    <div className={styles.wrapper}>
+      <button
+        className={styles.btn}
+        onClick={() => onSelectPage(1)}
+        disabled={showLeftButton()}
+      >
+        ❮❮
+      </button>
+      <div> {paginationList}</div>
+      <button
+        className={styles.btn}
+        onClick={() => onSelectPage(pagesCount)}
+        disabled={showRightButton()}
+      >
+        ❯❯
+      </button>
     </div>
   );
 };

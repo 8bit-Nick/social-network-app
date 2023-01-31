@@ -5,12 +5,10 @@ type FavoritePropsType = {
   user: string;
 };
 
-const Favorite: React.FC<FavoritePropsType> = (props) => {
+export const Favorite: React.FC<FavoritePropsType> = (props) => {
   return (
     <div className={classes.item} key={props.id}>
       {props.user}
     </div>
   );
 };
-
-export default Favorite;

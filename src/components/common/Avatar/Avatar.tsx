@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 
-import avatar from "../../../img/avatar.png";
+import avatar from "img/avatar.png";
 import classes from "./Avatar.module.css";
 
 interface IAvatar {
-  photo: string;
+  photo: null | string;
 }
 
 export const Avatar: FC<IAvatar> = (props) => {

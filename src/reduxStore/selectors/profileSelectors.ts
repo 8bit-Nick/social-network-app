@@ -1,4 +1,4 @@
-import { AppRootState } from '../store';
+import { AppRootState } from "../store";
 
 export const getProfile = (state: AppRootState) => state.profile.userProfile;
 
@@ -29,4 +29,4 @@ export const getPhotoSmall = (state: AppRootState) =>
 
 // Profile posts
 export const getProfilePosts = (state: AppRootState) =>
-  state.profile.profilePosts;
+  state.profile.postsProfile;

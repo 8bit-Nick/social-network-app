@@ -1,5 +1,6 @@
-import { IUser, IUserState } from '../../../types/users.interface';
-import usersSlice, {
+import { IUser, IUserState } from "types";
+import {
+  usersSliceReducer,
   follow,
   setPageSelect,
   setTotalUsersCount,
@@ -7,7 +8,7 @@ import usersSlice, {
   toggleFollowing,
   toggleIsFetching,
   unfollow,
-} from '../usersSlice';
+} from "../usersSlice";
 
 let state: IUserState;
 let newUsers: IUser[];
@@ -16,20 +17,23 @@ beforeEach(() => {
     {
       id: 1,
       followed: false,
-      name: 'User 1',
-      status: 'Status 1',
+      name: "User 1",
+      status: "Status 1",
+      photos: { small: null, large: null },
     },
     {
       id: 2,
       followed: false,
-      name: 'User 2',
-      status: 'Status 2',
+      name: "User 2",
+      status: "Status 2",
+      photos: { small: null, large: null },
     },
     {
       id: 3,
       followed: true,
-      name: 'User 3',
-      status: 'Status 3',
+      name: "User 3",
+      status: "Status 3",
+      photos: { small: null, large: null },
     },
   ];
 
@@ -43,24 +47,24 @@ beforeEach(() => {
   };
 });
 
-describe('follow / unfollow testing', () => {
+describe("follow / unfollow testing", () => {
   test('After subscribing a user with id 2 "followed" must change on true', () => {
-    const newState = usersSlice(state, follow(2));
+    const newState = usersSliceReducer(state, follow(2));
     expect(newState.users[1].followed).toBeTruthy();
   });
 
   test('User with id 1 "followed" not changed', () => {
-    const newState = usersSlice(state, follow(2));
+    const newState = usersSliceReducer(state, follow(2));
     expect(newState.users[0].followed).toBeFalsy();
   });
 
   test('After unsubscribing a user with id 3 "followed" must change on false', () => {
-    const newState = usersSlice(state, unfollow(3));
+    const newState = usersSliceReducer(state, unfollow(3));
     expect(newState.users[2].followed).not.toBeTruthy();
   });
 });
 
-describe('setUsers testing', () => {
+describe("setUsers testing", () => {
   const emptyState = {
     users: [],
     totalUsersCount: 0,
@@ -70,41 +74,41 @@ describe('setUsers testing', () => {
     followingInProcess: [],
   };
 
-  test('After add new users array length must be 3', () => {
-    const newState = usersSlice(emptyState, setUsers(newUsers));
+  test("After add new users array length must be 3", () => {
+    const newState = usersSliceReducer(emptyState, setUsers(newUsers));
     expect(newState.users.length).toBe(3);
   });
 
   test('User name with id 2 must be "User 2"', () => {
-    const newState = usersSlice(emptyState, setUsers(newUsers));
-    expect(newState.users[1].name).toBe('User 2');
+    const newState = usersSliceReducer(emptyState, setUsers(newUsers));
+    expect(newState.users[1].name).toBe("User 2");
   });
 });
 
-describe('setPageSelect testing', () => {
+describe("setPageSelect testing", () => {
   test('When we selected page number 8 "selectPage" must be 8', () => {
-    const newState = usersSlice(state, setPageSelect(8));
+    const newState = usersSliceReducer(state, setPageSelect(8));
     expect(newState.selectPage).toBe(8);
   });
 });
 
-describe('setTotalUsersCount testing', () => {
+describe("setTotalUsersCount testing", () => {
   test('When we get total count of users "totalUsersCount" must be 123', () => {
-    const newState = usersSlice(state, setTotalUsersCount(123));
+    const newState = usersSliceReducer(state, setTotalUsersCount(123));
     expect(newState.totalUsersCount).toBe(123);
   });
 });
 
-describe('toggleIsFetching testing', () => {
+describe("toggleIsFetching testing", () => {
   test('"isFetching" should change to false', () => {
-    const newState = usersSlice(state, toggleIsFetching(false));
+    const newState = usersSliceReducer(state, toggleIsFetching(false));
     expect(newState.isFetching).toBeFalsy();
   });
 });
 
-describe('toggleFollowing testing', () => {
+describe("toggleFollowing testing", () => {
   test('The length of the "followingInProcess" array must be 1', () => {
-    const newState = usersSlice(
+    const newState = usersSliceReducer(
       state,
       toggleFollowing({ isFollowing: true, userId: 1 })
     );
@@ -112,7 +116,7 @@ describe('toggleFollowing testing', () => {
   });
 
   test('The id in the "following process" array must be equal to 3', () => {
-    const newState = usersSlice(
+    const newState = usersSliceReducer(
       state,
       toggleFollowing({ isFollowing: true, userId: 3 })
     );
@@ -120,7 +124,7 @@ describe('toggleFollowing testing', () => {
   });
 
   test('The "followingInProcess" array must be empty', () => {
-    const newState = usersSlice(
+    const newState = usersSliceReducer(
       state,
       toggleFollowing({ isFollowing: false, userId: 2 })
     );

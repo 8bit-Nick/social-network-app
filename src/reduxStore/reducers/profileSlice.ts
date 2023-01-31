@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IProfileState, IUserProfile } from "types";
 
 const initialState: IProfileState = {
-  profilePosts: [
+  postsProfile: [
     {
       id: 1,
       post: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
@@ -50,7 +50,7 @@ const profileSlice = createSlice({
   initialState,
   reducers: {
     addProfilePost(state, action: PayloadAction<string>) {
-      state.profilePosts.push({ id: 5, post: action.payload, likes: 0 });
+      state.postsProfile.push({ id: 5, post: action.payload, likes: 0 });
     },
     setUserProfile(state, action: PayloadAction<IUserProfile>) {
       state.userProfile = action.payload;

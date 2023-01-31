@@ -1,21 +1,21 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import { Pagination, Preloader } from "components/common";
 import {
+  AppDispatch,
   getCountItems,
   getIsFetching,
   getSelectPage,
   getUsers,
   getUsersTC,
-  AppDispatch,
 } from "reduxStore";
 import { IUser } from "types";
-import { Pagination, Preloader } from "components/common";
 import { User } from "./User";
 
 import styles from "./Users.module.css";
 
-export const Users = () => {
+const Users = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const users = useSelector(getUsers);
@@ -32,10 +32,12 @@ export const Users = () => {
   return (
     <div className={styles.users}>
       <div className={styles.pageWrapper}>
-        <Pagination stylePage={styles.page} stylePages={styles.pages} />
+        <Pagination />
       </div>
 
       {isFetching ? <Preloader /> : addUsers}
     </div>
   );
 };
+
+export default Users;

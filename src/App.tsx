@@ -4,15 +4,18 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 
-import Dialogs from "./components/Dialogs/Dialogs";
-import Header from "./components/Header/Header";
-import Login from "./components/Login/Login";
-import Music from "./components/Music/Music";
-import Navbar from "./components/Navbar/Navbar";
-import News from "./components/News/News";
-import Profile from "./components/Profile/Profile";
-import { Footer, Preloader, Settings, Users } from "./components";
-import { initializeApp, AppDispatch, AppRootState } from "reduxStore";
+import Dialogs from "./components/Dialogs";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Login from "./components/Login";
+import Music from "./components/Music";
+import Navbar from "./components/Navbar";
+import News from "./components/News";
+import Profile from "./components/Profile";
+import Settings from "./components/Settings";
+import Users from "./components/Users";
+import { Preloader } from "./components/common";
+import { initializeApp, AppDispatch, AppRootState } from "./reduxStore";
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
