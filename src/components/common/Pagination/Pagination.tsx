@@ -10,7 +10,7 @@ import {
   setPageSelect,
 } from "reduxStore";
 
-import styles from "./Pagination.module.css";
+import styles from "./Pagination.module.scss";
 
 export const Pagination = () => {
   const dispatch = useDispatch<AppDispatch>();
