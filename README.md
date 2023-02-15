@@ -1,5 +1,9 @@
 # Getting Started with Create React App
 
+# Try out Social Network App
+
+[Click here](https://8bitnikita.github.io/social-network-app/) to open the application.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
