@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 
-// import Dialogs from "./components/Dialogs";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Login from "./components/Login";
@@ -13,7 +12,6 @@ import Navbar from "./components/Navbar";
 import News from "./components/News";
 import Profile from "./components/Profile";
 import Settings from "./components/Settings";
-// import Users from "./components/Users";
 import { Preloader } from "./components/common";
 import { initializeApp, AppDispatch, AppRootState } from "./reduxStore";
 
