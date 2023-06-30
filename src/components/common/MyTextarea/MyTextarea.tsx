@@ -1,30 +1,30 @@
-import { Field, Form, Formik } from 'formik'
-import * as yup from 'yup'
+import { Field, Form, Formik } from "formik";
+import * as yup from "yup";
 
-import styles from './MyTextarea.module.css'
+import styles from "./MyTextarea.module.css";
 
 interface ITextarea {
-  submitForm: (value: string) => void
+  submitForm: (value: string) => void;
 }
 
 export const MyTextarea: React.FC<ITextarea> = ({ submitForm }) => {
   const validationSchema = yup.object().shape({
-    messageBody: yup.string().required('✘ the field is empty'),
-  })
+    messageBody: yup.string().required("✘ the field is empty"),
+  });
 
   const myTextarea = (props: any) => {
-    return <textarea {...props.field} {...props} />
-  }
+    return <textarea {...props.field} {...props} />;
+  };
 
   return (
     <Formik
-      initialValues={{ messageBody: '' }}
+      initialValues={{ messageBody: "" }}
       onSubmit={(values: { messageBody: string }, { setSubmitting }) => {
         setTimeout(() => {
-          submitForm(values.messageBody)
-          values.messageBody = ''
-          setSubmitting(true)
-        }, 400)
+          submitForm(values.messageBody);
+          values.messageBody = "";
+          setSubmitting(true);
+        }, 400);
       }}
       validationSchema={validationSchema}
     >
@@ -36,7 +36,7 @@ export const MyTextarea: React.FC<ITextarea> = ({ submitForm }) => {
           <Field
             className={
               props.errors.messageBody
-                ? styles.myTextarea + ' ' + styles.errorField
+                ? styles.myTextarea + " " + styles.errorField
                 : styles.myTextarea
             }
             component={myTextarea}
@@ -52,5 +52,5 @@ export const MyTextarea: React.FC<ITextarea> = ({ submitForm }) => {
         </Form>
       )}
     </Formik>
-  )
-}
+  );
+};

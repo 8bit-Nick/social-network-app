@@ -16,7 +16,7 @@ const Header = () => {
         {isAuth ? (
           <div>
             {login} |{" "}
-            <NavLink to="/login" onClick={dispatch(logoutUser)}>
+            <NavLink to="/login" onClick={() => dispatch(logoutUser())}>
               Logout
             </NavLink>
           </div>

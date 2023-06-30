@@ -1,6 +1,3 @@
-import { compose } from "redux";
-
-import { withAuthRedirect } from "hoc";
 import { Contacts } from "./Contacts";
 import { Messages } from "./Messages/Messages";
 
@@ -15,4 +12,4 @@ const Dialogs = () => {
   );
 };
 
-export default compose<React.ComponentType>(withAuthRedirect)(Dialogs);
+export default Dialogs;
