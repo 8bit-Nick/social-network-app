@@ -1,5 +1,5 @@
 
-Social Network application [live preview](https://nk8bnj.github.io/social-network-app/).
+Social Network application [Live Preview](https://nk8bnj.github.io/social-network-app/).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
