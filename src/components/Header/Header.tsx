@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <header className={classes.header}>
-      Facepalm
+      Social Network
       <div className={classes.login}>
         {isAuth ? (
           <div>
